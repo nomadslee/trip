@@ -408,13 +408,16 @@ h4.ck-sub{margin:18px 0 2px;font-family:var(--font-display);font-weight:400;font
 .tt-head h4{margin:0;font-family:var(--font-display);font-weight:400;font-size:18px;line-height:1.3;letter-spacing:-.02em}
 .tt-head p{margin:1px 0 0;font-size:13px;line-height:1.45;color:var(--sub)}
 .tt-more{align-self:start;font-size:13px;text-decoration:none;color:var(--link);border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:var(--surface-2);white-space:nowrap}
-.tt-bar{position:relative;height:48px;margin:12px 0 0;border:2px solid var(--outline);border-radius:12px;overflow:hidden;
-  background:repeating-linear-gradient(90deg,transparent 0 calc(100% / 16 - 1px),var(--line) calc(100% / 16 - 1px) calc(100% / 16)),var(--surface-2)}
+.tt-rows{margin-top:12px;display:grid;gap:6px}
+.tt-row{display:grid;grid-template-columns:44px 1fr;gap:6px;align-items:start}
+.tt-lbl{height:44px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;line-height:1.15;text-align:center;color:var(--sub);word-break:keep-all}
+.tt-bar{position:relative;height:44px;margin:0;border:2px solid var(--outline);border-radius:12px;overflow:hidden;
+  background:repeating-linear-gradient(90deg,transparent 0 calc(100% / 6 - 1px),var(--line) calc(100% / 6 - 1px) calc(100% / 6)),var(--surface-2)}
 .tt-seg{position:absolute;top:0;bottom:0;margin:0;padding:0 2px;border:0;border-right:1.5px solid var(--surface);cursor:pointer;
   display:flex;align-items:center;justify-content:center;overflow:hidden;font:inherit;color:var(--ink);
   background:color-mix(in srgb,var(--c) 48%,var(--surface))}
 .tt-seg.opt{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--c) 42%,var(--surface)) 0 5px,var(--surface) 5px 9px)}
-.tt-seg span{display:block;max-width:100%;font-size:11.5px;font-weight:700;line-height:1.15;text-align:center;word-break:keep-all;overflow-wrap:normal}
+.tt-seg span{display:block;max-width:100%;font-size:11.5px;font-weight:700;line-height:1.12;text-align:center;word-break:keep-all;overflow-wrap:anywhere;letter-spacing:-.03em}
 .tt-seg.tiny span{visibility:hidden}
 .tt-seg.on{box-shadow:inset 0 0 0 2.5px var(--outline);z-index:1}
 .tt-seg:focus-visible{outline:2px solid var(--focus);outline-offset:-3px;z-index:2}
@@ -432,6 +435,12 @@ h4.ck-sub{margin:18px 0 2px;font-family:var(--font-display);font-weight:400;font
 .tt-list li.opt span{color:var(--sub)}
 .tt-list time{flex:0 0 auto;min-width:40px;font-weight:800;color:var(--sub);font-variant-numeric:tabular-nums}
 .tt-list li.on{background:color-mix(in srgb,var(--c) 22%,var(--surface))}
+.shows{display:grid;gap:6px;margin:8px 0 4px}
+.show{display:flex;align-items:center;gap:8px;background:var(--accent-soft);border-radius:var(--radius-sm);padding:7px 10px}
+.show .sn{white-space:nowrap;font-size:14px;flex:0 0 auto}
+.show .st{display:flex;gap:5px;margin-left:auto;flex:0 0 auto}
+.show .st em{font-style:normal;font-variant-numeric:tabular-nums;font-size:13.5px;line-height:1.5;padding:1px 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);white-space:nowrap}
+.show .st em.on{background:var(--accent-ink);color:var(--surface);border-color:transparent;font-weight:700}
 </style>
 </head>
 <body>
@@ -447,9 +456,9 @@ h4.ck-sub{margin:18px 0 2px;font-family:var(--font-display);font-weight:400;font
   <button role="tab" data-p="ov">한눈에<small>요약</small></button>
   <button role="tab" data-p="stay">숙소<small>3곳</small></button>
   <button role="tab" data-p="d1">16 수<small>도착</small></button>
-  <button role="tab" data-p="d2">17 목<small>오사카</small></button>
-  <button role="tab" data-p="d3">18 금<small>스마·아리마</small></button>
-  <button role="tab" data-p="d4">19 토<small>고베</small></button>
+  <button role="tab" data-p="d2">17 목<small>우메다·고베</small></button>
+  <button role="tab" data-p="d3">18 금<small>기타노·아리마</small></button>
+  <button role="tab" data-p="d4">19 토<small>스마·고베</small></button>
   <button role="tab" data-p="d5">20 일<small>귀국</small></button>
   <button role="tab" data-p="food">맛집<small>종류별</small></button>
   <button role="tab" data-p="tr">교통<small>ICOCA</small></button>
@@ -487,7 +496,7 @@ h4.ck-sub{margin:18px 0 2px;font-family:var(--font-display);font-weight:400;font
   </div>
 
   <h3 class="tt-title">🕒 날짜별 타임테이블</h3>
-  <p class="jp tt-note">막대 한 칸 = 1시간 · 색은 위 범례와 같아요. 칸을 누르면 아래 목록에서 표시되고, <b>자세히 →</b>를 누르면 그날 탭으로 가요. 빗금 칸은 선택 일정.</p>
+  <p class="jp tt-note">하루를 <b>오전(6~12시) · 오후(12~18시) · 저녁(18~24시)</b> 세 줄로 나눴어요. 한 칸 = 1시간 · 색은 위 범례와 같아요. 칸을 누르면 아래 목록에서 표시되고, <b>자세히 →</b>를 누르면 그날 탭으로 가요. 빗금 칸은 선택 일정.</p>
   <div id="tt" class="tt"></div>
   <noscript><p class="jp">타임테이블은 자바스크립트가 켜져 있어야 보여요. 날짜 탭에서 자세한 일정을 볼 수 있어요.</p></noscript>
 
@@ -511,10 +520,11 @@ h4.ck-sub{margin:18px 0 2px;font-family:var(--font-display);font-weight:400;font
     <tr><th>구간</th><th>수단</th><th>시간</th><th>어른</th></tr>
     <tr><td>고베공항 ↔ 산노미야</td><td>포트라이너</td><td>18분</td><td>340엔</td></tr>
     <tr><td>산노미야 → 고베공항</td><td>택시 (1대)</td><td>20~25분</td><td>대당 약 3,000엔</td></tr>
-    <tr><td>고베산노미야 ↔ 오사카난바</td><td>한신선 직통 (17일)</td><td>40~50분</td><td>약 400엔대</td></tr>
-    <tr><td>산노미야 ↔ 스마카이힌코엔</td><td>JR 普通 (18일)</td><td>15~20분</td><td>약 200엔대</td></tr>
+    <tr><td>산노미야 → 오사카(우메다)</td><td>JR 新快速 (17일 아침)</td><td>약 21분</td><td>약 400엔대</td></tr>
+    <tr><td>오사카우메다 → 고베산노미야</td><td>한큐 特急 (17일 오후)</td><td>약 30분</td><td>약 300엔대</td></tr>
+    <tr><td>고베(하버랜드) → 산노미야</td><td>JR (17일 밤)</td><td>5분</td><td>약 170엔</td></tr>
     <tr><td>산노미야 ↔ 아리마온천</td><td>고속버스 (18·19일)</td><td>30~45분</td><td>약 780엔</td></tr>
-    <tr><td>산노미야 → 고베(하버랜드)</td><td>JR (19일)</td><td>5분</td><td>약 170엔</td></tr>
+    <tr><td>산노미야 ↔ 스마카이힌코엔</td><td>JR 普通 (19일)</td><td>15~20분</td><td>약 200엔대</td></tr>
   </table>
   <p class="jp">아들(초등학생)은 대부분 어린이 요금(약 반값), 딸(15세)은 어른 요금. 요금은 변동될 수 있어요.</p>
 </section>
@@ -587,9 +597,9 @@ h4.ck-sub{margin:18px 0 2px;font-family:var(--font-display);font-weight:400;font
     <h4>🏨 remm plus 고베산노미야 <span class="jp">(レムプラス神戸三宮)</span></h4>
     <table>
       <tr><th>날짜</th><td>12/16(수) ~ 12/18(금) · 2박</td></tr>
-      <tr><th>체크인/아웃</th><td>14:00 / <b>12:00</b> (18일은 씨월드 때문에 08:30쯤 일찍 체크아웃)</td></tr>
+      <tr><th>체크인/아웃</th><td>14:00 / <b>12:00</b> (18일은 <b>08:00</b> 체크아웃 → 짐은 베이스레이어로 → <a href="#" data-go="stay" data-open="luggage">짐 맡기기</a>)</td></tr>
       <tr><th>객실</th><td>더블룸 2개 — 아빠+아들 / 엄마+딸</td></tr>
-      <tr><th>식사</th><td><b>조식 없음</b> → 17일 빵집 · 18일 코메다 (일정 탭 참고)</td></tr>
+      <tr><th>식사</th><td><b>조식 없음</b> → 17일 코메다 · 18일 빵집 (일정 탭 참고)</td></tr>
       <tr><th>위치</th><td>神戸市中央区加納町4-2-1 <b>神戸三宮阪急ビル</b> 안. 한큐 고베산노미야역 <b>동쪽 개찰구와 직결</b>, 호텔 입구는 2층. JR 산노미야역·포트라이너역·산노미야 버스터미널 모두 도보 몇 분</td></tr>
     </table>
     <p class="jp">부부가 저녁에 나갈 때는 아이 둘을 한 방에 모아두면 안심.</p>
@@ -657,100 +667,112 @@ h4.ck-sub{margin:18px 0 2px;font-family:var(--font-display);font-weight:400;font
       <tr><th>식사</th><td><b>조식 없음</b> → 20일 아침은 편의점 위주 (일정 탭 참고)</td></tr>
       <tr><th>위치</th><td>神戸市中央区中山手通3-1-19 · <b>トアロード(토어로드)</b> 변. JR·한큐·한신 산노미야역 도보 7분, 지하철 산노미야역 도보 5분. 기타노·난킨마치 모두 걸어갈 수 있는 위치</td></tr>
     </table>
-    <p class="jp">2026년 11월 10일 새로 문을 연 호텔이에요. 전날(18일) 큰 짐을 맡아줄 수 있는지 미리 문의해 두세요 → 아래 <a href="#" data-go="stay" data-open="luggage">짐 맡기기</a>.</p>
+    <p class="jp">2026년 11월 10일 새로 문을 연 호텔이에요. 예약 번호 <b>2610310100621462316</b> (YUHYUN LEE). <b>18일 아침부터 큰 짐</b>을 맡아줄 수 있는지 미리 문의 → 아래 <a href="#" data-go="stay" data-open="luggage">짐 맡기기</a>. 19일은 씨월드에서 돌아와 <b>15:05쯤 체크인</b>.</p>
     <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=BASE+LAYER+HOTEL+KOBE+SANNOMIYA">지도</a></div>
   </div>
-  <details class="cat" id="luggage"><summary>🧳 18일 짐 맡기기 — 베이스레이어 호텔에 미리 <small>방법 · 문의 메일</small></summary>
+  <details class="cat" id="luggage"><summary>🧳 18일 짐 맡기기 — 베이스레이어 호텔에 미리 <small>방법 · 문의 메시지</small></summary>
     <div class="card" style="margin-top:8px">
-      <h4>가능할까?</h4>
-      <p>일본 호텔은 <b>숙박 당일 체크인 전 짐 보관</b>은 거의 다 무료로 해줘요. 하지만 <b>숙박 하루 전부터 보관</b>은 호텔마다 달라서(보관 공간 문제) <b>미리 물어보고 OK를 받아야</b> 해요. 거절당해도 아래 코인로커·짐 보관 서비스가 있으니 걱정 마세요.</p>
-      <p><b>맡길 것</b>: 큰 캐리어, 16~17일 쇼핑 짐(오사카 포함)<br>
-      <b>맡기지 말 것</b>: 여권·현금·귀중품·약·충전기·깨지는 물건, 씨월드·아리마 1박 짐(작은 가방)</p>
+      <h4>계획</h4>
+      <p>18일 아침 렘 플러스를 체크아웃하고 <b>19일 숙소인 베이스레이어 호텔</b>(토어로드)에 짐을 미리 맡겨요. 베이스레이어는 <b>기타노 가는 길목</b>이라 동선이 그대로 이어지고, 19일엔 씨월드에서 돌아와 <b>체크인하면서 바로 짐을 받아</b> 방에 두고 가볍게 나갈 수 있어요.</p>
+      <table>
+        <tr><th>언제</th><th>할 일</th></tr>
+        <tr><td><b>18일(금) 08:00</b></td><td>렘 플러스 체크아웃 → 짐 들고 <b>택시 5분</b>(1,000엔 안팎) 또는 도보 7~10분</td></tr>
+        <tr><td><b>18일(금) 08:15</b></td><td>베이스레이어 프런트에 <b>캐리어 2개</b>(+쇼핑백 1개 정도) 맡기기 → 19일 체크인까지. 아리마 1박 백팩은 아빠가 매고, 아이들은 각자 작은 가방</td></tr>
+        <tr><td><b>19일(토) 15:00~15:15</b></td><td>씨월드에서 돌아와 <b>체크인 + 맡긴 짐 받기</b> → 방에 두고 가볍게 쇼핑</td></tr>
+      </table>
+      <p>일본 호텔은 <b>숙박 당일 체크인 전 보관</b>은 거의 무료로 해 주지만, <b>숙박 하루 전부터</b>는 호텔마다 달라서 <b>미리 물어보고 OK를 받아야</b> 해요. 거절당해도 아래 대안이 있어요.</p>
+      <p><b>맡길 것</b>: <b>캐리어 2개</b> (16~17일 쇼핑 짐은 캐리어에 넣고, 넘치면 쇼핑백 1개 추가)<br>
+      <b>안 맡김</b>: 아리마 1박 백팩(아빠가 매고 다님) · 아이들 작은 가방<br>
+      <b>맡기지 말 것</b>: 여권·현금·귀중품·약·충전기·깨지는 물건</p>
     </div>
 
     <div class="card">
-      <h4>진행 순서 (처음이어도 쉬워요)</h4>
+      <h4>진행 순서</h4>
       <ol>
-        <li><b>예약한 곳 확인</b>: 아고다·부킹닷컴·익스피디아 같은 예약 사이트면 앱의 <b>“숙소에 메시지 보내기 / 문의하기”</b>, 호텔 공식 사이트로 예약했으면 공식 사이트의 <b>문의(Contact) 이메일·폼</b></li>
-        <li><b>출발 2~3주 전</b>에 아래 문장을 <b>영어 + 일본어 둘 다</b> 붙여 보내기 (직원이 빨리 이해해요)</li>
-        <li>답장이 오면 <b>캡처</b>해 두기. 1주일 안에 답이 없으면 한 번 더 보내거나, 렘 플러스 체크인 때 프런트에 베이스레이어로 전화 부탁</li>
-        <li><b>18일 08:30 전후</b> (씨월드 가기 전) 베이스레이어 프런트: 답장 캡처 + 예약 확인서 보여주고 짐 맡기기 → <b>보관표(번호표·태그)</b> 받기 → 짐과 보관표를 <b>사진</b>으로 남기기</li>
-        <li><b>19일 11:00</b> 아리마에서 돌아와 보관표 제시 → 체크인(15:00)까지 계속 보관하거나, 방 배정 후 받기</li>
+        <li><b>예약한 곳에서 문의</b>: 예약 사이트 앱의 <b>“숙소에 메시지 보내기”</b>가 예약 번호와 연결돼 가장 확실해요. 호텔 공식 사이트 문의 폼도 OK</li>
+        <li><b>출발 2~3주 전</b>에 아래 메시지를 <b>영어 + 일본어 둘 다</b> 붙여 보내기 (그대로 복사)</li>
+        <li>답장이 오면 <b>캡처</b>. 1주일 안에 답이 없으면 한 번 더 보내거나, 16일 렘 플러스 체크인 때 프런트에 베이스레이어로 전화 부탁</li>
+        <li><b>18일 08:15</b> 베이스레이어 프런트: 답장 캡처 + 예약 확인서 보여주고 맡기기 → <b>보관표(번호표·태그)</b> 받기 → 짐과 보관표를 <b>사진</b>으로</li>
+        <li><b>19일 15:00~15:15</b> 체크인 때 보관표 보여주고 캐리어 받기</li>
       </ol>
+      <div class="box tip" style="margin-bottom:0"><b>베이스레이어 예약 정보</b>Booking Reference No. <b>2610310100621462316</b> · Name <b>YUHYUN LEE</b> · 12/19(토) 1박 · 컴포트 트윈룸</div>
     </div>
 
     <div class="card">
       <h4>✉️ 보낼 메시지 — 영어</h4>
-      <p class="jp">○○ 부분만 바꿔서 그대로 복사하세요.</p>
-      <pre class="msg">Subject: Luggage storage before check-in (Reservation No. ○○, Dec 19)
+      <pre class="msg">Subject: Luggage storage from Dec 18, the day before check-in (Ref. 2610310100621462316)
 
 Dear BASE LAYER HOTEL KOBE SANNOMIYA,
 
 I have a reservation for one night from Saturday, December 19, 2026.
-(Reservation No.: ○○ / Name: ○○)
+- Booking Reference No.: 2610310100621462316
+- Name: YUHYUN LEE (4 guests)
 
 We will stay at Arima Onsen on the night of December 18.
-Could you please keep our luggage from around 11:30-12:00 on Friday,
-December 18, until we come back around 11:00 on Saturday, December 19?
+Could you please keep our luggage from the day before check-in?
 
-- Luggage: ○ suitcases and ○ shopping bags
+- From: around 8:15 AM on Friday, December 18
+- Until: our check-in around 15:00-15:15 on Saturday, December 19
+- Luggage: 2 suitcases (possibly 1 additional shopping bag)
 - No valuables or fragile items
 
 Please let me know if this is possible and if there is any fee.
 Thank you very much.
 
-○○ (email / phone)</pre>
+YUHYUN LEE</pre>
     </div>
 
     <div class="card">
       <h4>✉️ 보낼 메시지 — 일본어</h4>
-      <pre class="msg">件名：12月19日宿泊予定・前日からの荷物預かりについて（予約番号○○）
+      <pre class="msg">件名：12月19日宿泊・前日18日からの荷物預かりについて（予約番号 2610310100621462316）
 
 BASE LAYER HOTEL KOBE SANNOMIYA ご担当者様
 
-12月19日（土）から1泊で予約している○○と申します。
-（予約番号：○○）
+12月19日（土）から1泊で予約しているYUHYUN LEEと申します。
+・予約番号（Booking Reference No.）：2610310100621462316
+・お名前：YUHYUN LEE（4名）
 
 12月18日（金）は有馬温泉に宿泊するため、
-18日の11時半〜12時頃にお荷物をお預けし、
-19日（土）11時頃に受け取らせていただくことは可能でしょうか。
+前日からお荷物を預かっていただくことは可能でしょうか。
 
-・お荷物：スーツケース○個、買い物袋○個
+・期間：18日（金）朝8時15分頃〜19日（土）15時〜15時15分頃のチェックインまで
+・お荷物：スーツケース2個（買い物袋が1つ増えるかもしれません）
 ・貴重品や壊れ物は入れません
 
 料金がかかる場合はお知らせください。
 どうぞよろしくお願いいたします。
 
-○○（メール／電話番号）</pre>
+YUHYUN LEE</pre>
     </div>
 
     <div class="card">
       <h4>🗣 18일 프런트에서 (보여주기)</h4>
-      <div class="phrase"><div class="ja">メールで荷物の預かりをお願いした○○です。明日19日に泊まります。</div><div class="rd">메-루데 니모츠노 아즈카리오 오네가이시타 ○○데스. 아시타 쥬-쿠니치니 토마리마스.</div><div class="en">I'm ○○. I emailed you about storing our luggage. We're staying tomorrow, the 19th.</div><div class="ko">메일로 짐 보관을 부탁드린 ○○예요. 내일 19일에 묵어요.</div></div>
+      <div class="phrase"><div class="ja">荷物の預かりをお願いしたYUHYUN LEEです。明日19日に泊まります。</div><div class="rd">니모츠노 아즈카리오 오네가이시타 YUHYUN LEE 데스. 아시타 쥬-쿠니치니 토마리마스.</div><div class="en">I'm YUHYUN LEE. I asked you to keep our luggage. We're staying tomorrow, the 19th.</div><div class="ko">짐 보관을 부탁드린 YUHYUN LEE예요. 내일 19일에 묵어요.</div></div>
     </div>
 
     <h4 style="margin:14px 4px 4px">거절당했을 때 — 대안</h4>
 
-    <details class="r"><summary><b>① 코인로커 자세히</b><span>산노미야역 주변 · 가장 흔한 방법</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/JP_%E6%97%A5%E6%9C%AC_Japan_%E5%A4%A7%E9%98%AA_Osaka_Station_%E8%A1%8C%E6%9D%8E%E6%9A%AB%E5%AF%84%E5%AD%98%E7%AE%B1_baggage_coin_lockers_June_2026_N13P_01.jpg/960px-JP_%E6%97%A5%E6%9C%AC_Japan_%E5%A4%A7%E9%98%AA_Osaka_Station_%E8%A1%8C%E6%9D%8E%E6%9A%AB%E5%AF%84%E5%AD%98%E7%AE%B1_baggage_coin_lockers_June_2026_N13P_01.jpg" alt="역 코인로커 (사진은 오사카역) — 터치패널 결제식" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>역 코인로커 (사진은 오사카역) — 터치패널 결제식 · <a href="https://commons.wikimedia.org/wiki/File:JP_%E6%97%A5%E6%9C%AC_Japan_%E5%A4%A7%E9%98%AA_Osaka_Station_%E8%A1%8C%E6%9D%8E%E6%9A%AB%E5%AF%84%E5%AD%98%E7%AE%B1_baggage_coin_lockers_June_2026_N13P_01.jpg" target="_blank" rel="noopener">📷 TKdows 2026 · CC0</a></figcaption></figure>
+    <details class="r"><summary><b>① 렘 플러스에 체크아웃 후 보관</b><span>16~17일 숙소 · 한큐 산노미야역 직결</span></summary>
+      <p>체크아웃 후 짐 보관은 보통 <b>당일만</b>이라, 19일 오후까지 맡아 줄 수 있는지 16일 체크인 때 프런트에 물어보기. OK면 19일엔 산노미야역에서 짐을 찾아 <b>택시 5분</b>으로 베이스레이어 체크인.</p>
+      <div class="phrase"><div class="ja">チェックアウトの後、明日19日の午後3時頃まで荷物を預かってもらえますか？</div><div class="rd">첵쿠아우토노 아토, 아시타 쥬-쿠니치노 고고 산지 고로마데 니모츠오 아즈캇테 모라에마스카?</div><div class="en">After check-out, could you keep our luggage until about 3 PM tomorrow, the 19th?</div><div class="ko">체크아웃 후 내일 19일 오후 3시쯤까지 짐을 맡아 주실 수 있나요?</div></div>
+    </details>
+    <details class="r"><summary><b>② 코인로커</b><span>산노미야역 주변 · 가장 흔한 방법</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/JP_%E6%97%A5%E6%9C%AC_Japan_%E5%A4%A7%E9%98%AA_Osaka_Station_%E8%A1%8C%E6%9D%8E%E6%9A%AB%E5%AF%84%E5%AD%98%E7%AE%B1_baggage_coin_lockers_June_2026_N13P_01.jpg/960px-JP_%E6%97%A5%E6%9C%AC_Japan_%E5%A4%A7%E9%98%AA_Osaka_Station_%E8%A1%8C%E6%9D%8E%E6%9A%AB%E5%AF%84%E5%AD%98%E7%AE%B1_baggage_coin_lockers_June_2026_N13P_01.jpg" alt="역 코인로커 (사진은 오사카역) — 터치패널 결제식" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>역 코인로커 (사진은 오사카역) — 터치패널 결제식 · <a href="https://commons.wikimedia.org/wiki/File:JP_%E6%97%A5%E6%9C%AC_Japan_%E5%A4%A7%E9%98%AA_Osaka_Station_%E8%A1%8C%E6%9D%8E%E6%9A%AB%E5%AF%84%E5%AD%98%E7%AE%B1_baggage_coin_lockers_June_2026_N13P_01.jpg" target="_blank" rel="noopener">📷 TKdows 2026 · CC0</a></figcaption></figure>
       <ul>
         <li><b>어디에</b>: JR 산노미야역(개찰구 안팎), 한큐·한신 고베산노미야역, 포트라이너 산노미야역, 산노미야 버스터미널(민트 고베) 주변. 구글맵에서 <b>“コインロッカー 三宮”</b> 검색</li>
         <li><b>크기·요금(대략)</b>: 소형 300~400엔 · 중형 500~600엔 · <b>대형(캐리어) 700~1,000엔</b> / 1일. 역·회사마다 다름</li>
-        <li><b>“1일” 기준</b>: 넣은 시각부터 24시간이 아니라 <b>날짜가 바뀌면</b>(자정 또는 새벽 특정 시각) 하루치가 더 붙어요 → 18일 아침 ~ 19일 낮 = <b>2일치</b>. 짐 꺼낼 때 추가 요금 정산</li>
-        <li><b>최대 보관</b>: 보통 <b>3일</b>까지. 넘기면 회수돼 유실물 센터로 → 우리 일정(1박)은 OK</li>
-        <li><b>결제</b>: 100엔 동전 또는 ICOCA. <b>ICOCA로 잠그면 그 카드가 열쇠</b> → 짐 찾기 전에 그 ICOCA를 환불하거나 잃어버리면 안 돼요 (환불은 19일 밤이라 OK). 동전식이면 나오는 <b>영수증·비밀번호</b>를 사진으로</li>
-        <li><b>주의</b>: 대형 칸은 개수가 적어 <b>금요일 낮엔 찰 수 있어요</b>. 28인치 이상 큰 캐리어는 대형 칸에도 안 들어갈 수 있음 → 그땐 ②</li>
+        <li><b>“1일” 기준</b>: 넣은 시각부터 24시간이 아니라 <b>날짜가 바뀌면</b> 하루치가 더 붙어요 → 18일 아침 ~ 19일 오후 = <b>2일치</b>. 짐 꺼낼 때 추가 요금 정산</li>
+        <li><b>최대 보관</b>: 보통 <b>3일</b>까지 → 우리 일정(1박)은 OK</li>
+        <li><b>결제</b>: 100엔 동전 또는 ICOCA. <b>ICOCA로 잠그면 그 카드가 열쇠</b> → 짐 찾기 전에 그 ICOCA를 환불하면 안 돼요. 동전식이면 나오는 <b>영수증·비밀번호</b>를 사진으로</li>
+        <li><b>주의</b>: 대형 칸은 개수가 적어 <b>금요일엔 찰 수 있어요</b>. 28인치 이상 캐리어는 대형 칸에도 안 들어갈 수 있음 → 그땐 ③</li>
       </ul>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=コインロッカー+三宮">코인로커 찾기</a></div>
     </details>
-    <details class="r"><summary><b>② 짐 보관 서비스 (ecbo cloak 등)</b><span>스마트폰 사전 예약 · 큰 캐리어 OK</span></summary>
-      <p>앱/웹으로 예약하면 근처 가게(여행사·카페 등)가 사람 손으로 짐을 맡아줘요. 산노미야역 주변에 여러 곳 있고, 코인로커보다 큰 캐리어도 받아줘요. 요금·영업시간(밤에 닫는 곳 많음)과 <b>1박 보관 가능 여부</b>를 예약할 때 확인.</p>
+    <details class="r"><summary><b>③ 짐 보관 서비스 (ecbo cloak 등)</b><span>스마트폰 사전 예약 · 큰 캐리어 OK</span></summary>
+      <p>앱/웹으로 예약하면 근처 가게(여행사·카페 등)가 짐을 맡아줘요. 산노미야역 주변에 여러 곳 있고, 코인로커보다 큰 캐리어도 받아줘요. 요금·영업시간과 <b>1박 보관 가능 여부</b>를 예약할 때 확인.</p>
       <div class="links"><a href="https://www.google.com/search?q=ecbo+cloak+%EC%82%B0%EB%85%B8%EB%AF%B8%EC%95%BC">한국어로 검색</a></div>
     </details>
-    <details class="r"><summary><b>③ 그냥 다 들고 아리마로</b><span>가장 단순</span></summary>
-      <p>산노미야→아리마 고속버스는 트렁크에 캐리어를 실을 수 있고, 월광원도 송영차로 옮겨줘요. 이동이 조금 번거로울 뿐 문제는 없어요.</p>
-    </details>
-    <details class="r"><summary><b>④ 호텔→호텔 택배</b><span>비추천 · 참고만</span></summary>
-      <p>렘 플러스 프런트에서 택배로 베이스레이어에 보내는 방법도 있지만, 두 호텔 모두의 허락과 도착 시각 조율이 필요해 이번 일정엔 번거로워요.</p>
+    <details class="r"><summary><b>④ 그냥 다 들고 아리마로</b><span>가장 단순 · 19일이 무거워요</span></summary>
+      <p>산노미야→아리마 고속버스는 트렁크에 캐리어를 실을 수 있고, 월광원도 송영차로 옮겨줘요. 다만 19일 아침 씨월드에 가려면 캐리어 2개를 <b>산노미야역 코인로커</b>(대형)에 다시 맡겨야 해요.</p>
     </details>
   </details>
 </section>
@@ -829,7 +851,7 @@ BASE LAYER HOTEL KOBE SANNOMIYA ご担当者様
         <li>영업 11:30~21:30 (주문 마감 21:00) · 연중무휴 — 방문 전 구글맵에서 확인</li>
         <li>얇게 썬 고기 위에 특제 소스·요구르트 소스·달걀노른자를 올려 비벼 먹어요. 크기는 보통 <i class="jpn">並</i> · 곱빼기 <i class="jpn">大</i> · 특대 <i class="jpn">特盛</i> → 가볍게 먹는 가족은 보통으로 충분</li>
         <li>덮밥 1개 대략 1,500~2,000엔대 (시기마다 달라져요)</li>
-        <li>고베규 전문점은 아니에요. 고베규는 19일 점심에!</li>
+        <li>고베규 전문점은 아니에요. 이번 일정엔 고베규 철판 런치가 없어서 여기가 소고기 한 끼예요.</li>
         <li>줄이 있어도 회전이 빠른 편</li>
       </ul>
       <details class="r" data-q="못코스 라멘 산노미야"><summary><b>대안: 못코스 라멘</b> <em class="rv no">예약 없이</em> <i class="jpn">もっこす</i><span>레드락이 마감했거나 줄이 너무 길 때</span></summary>
@@ -842,7 +864,7 @@ BASE LAYER HOTEL KOBE SANNOMIYA ご担当者様
 
     <div class="it c-shop"><div class="t">20:30</div><div class="b">
       <h4><span class="tag">산책 · 가벼운 쇼핑</span>산노미야 센터가이 아케이드</h4>
-      <p>지붕 덮인 600m 상점가라 비/추위 걱정 없음. 오늘은 <b>위치만 파악</b>하고 본격 쇼핑은 19일에. 편의점에서 내일 아침 간식 사두기. 끝나면 남쪽으로 내려가 시청 전망대로.</p>
+      <p>지붕 덮인 600m 상점가라 비/추위 걱정 없음. 오늘은 <b>위치만 파악</b>하고 본격 쇼핑은 17일 오후·19일에. 편의점에서 내일 아침 간식 사두기. 끝나면 남쪽으로 내려가 시청 전망대로.</p>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E4%B8%89%E5%AE%AE%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E8%A1%97">센터가이 지도</a></div>
     </div></div>
 
@@ -853,7 +875,7 @@ BASE LAYER HOTEL KOBE SANNOMIYA ご担当者様
       <ul>
         <li><b>평일 9:00~22:00</b> (토·일·공휴일 10:00~22:00) · 연말연시 휴관 → 수요일 21시는 OK. 마감 전 30분은 여유 두기</li>
         <li>1호관 1층 로비에서 <b>전망 로비 전용 엘리베이터</b>로 24층. 입구 위치는 경비원에게 “<b>展望ロビー</b>?” 하고 물어보면 돼요</li>
-        <li>창가에 서면 바로 아래 <b>포트타워(빨간 탑)</b>와 <b>모자이크 관람차</b>가 보여요 → 19일 밤에 갈 곳 미리 구경</li>
+        <li>창가에 서면 바로 아래 <b>포트타워(빨간 탑)</b>와 <b>모자이크 관람차</b>가 보여요 → 17일 밤에 갈 곳 미리 구경</li>
       </ul>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=神戸市役所1号館+展望ロビー">지도</a><a href="https://www.google.com/maps/dir/?api=1&origin=三宮センター街&destination=神戸市役所1号館&travelmode=walking">센터가이에서 도보 경로</a></div>
     </div></div>
@@ -872,34 +894,244 @@ BASE LAYER HOTEL KOBE SANNOMIYA ご担当者様
   <div class="dayhead">
     <div class="sign">
       <div class="sign-top"><span class="no"><b>2</b><small>일차</small></span><span class="date">12월 17일 목요일</span></div>
-      <p class="name">오사카<span>Osaka</span></p>
-      <div class="band"><a href="#" data-go="d1" class="prev">16 수 <span lang="ja">三宮</span></a><a href="#" data-go="d3" class="next">18 금 <span lang="ja">有馬</span></a></div>
+      <p class="name">우메다 · 고베항<span>Umeda · Kobe</span></p>
+      <div class="band"><a href="#" data-go="d1" class="prev">16 수 <span lang="ja">三宮</span></a><a href="#" data-go="d3" class="next">18 금 <span lang="ja">北野·有馬</span></a></div>
     </div>
-    <h2>기타노 산책 → 오사카 난바 · 도톤보리</h2>
-    <p>오전엔 고베 기타노 언덕 산책과 고베 타다 점심, 오후엔 한신 직통으로 난바로 넘어가 도톤보리·신사이바시에서 놀고 저녁까지 먹고 돌아와요. 밤엔 산노미야 가볍게.</p>
-    <div class="chips"><span class="chip">ICOCA 필수</span><span class="chip">걷는 양 많음 · 운동화</span><span class="chip">여권 (면세)</span><span class="chip">고베 타다 11:30 예약</span></div>
+    <h2>우메다 포켓몬센터 오픈런 → 고베 쇼핑 → 하버랜드 야경</h2>
+    <p>오전엔 JR 신쾌속으로 오사카 우메다에 가서 <b>포켓몬센터 오픈런</b> → 요도바시 → 우메다 점심(스시). 오후엔 <b>한큐선</b>으로 렘 플러스 바로 아래에 내려 쇼핑 짐을 두고 산노미야 쇼핑. 저녁 먹고 <b>메리켄파크 → 하버랜드 대관람차</b>까지 바닷가 야경 산책. 난바·도톤보리는 가지 않아요.</p>
+    <div class="chips"><span class="chip">ICOCA 필수</span><span class="chip">포켓몬센터 10:00 오픈</span><span class="chip">갈 때 JR · 올 때 한큐</span><span class="chip">여권 (면세)</span><span class="chip">포트타워 옥상 X</span></div>
   </div>
   <div class="tl">
 
-    <div class="it c-food"><div class="t">08:00</div><div class="b">
+    <div class="it c-food"><div class="t">07:30</div><div class="b">
+      <h4><span class="tag">아침 · 빠르게 40분 <em class="rv no">예약 없이</em></span>코메다 커피 모닝 서비스</h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Komeda%27s_Morning_Set_20200805.jpg/960px-Komeda%27s_Morning_Set_20200805.jpg" alt="코메다 모닝 세트 (다른 매장)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>코메다 모닝 세트 (다른 매장) · <a href="https://commons.wikimedia.org/wiki/File:Komeda%27s_Morning_Set_20200805.jpg" target="_blank" rel="noopener">📷 円周率３パーセント · CC BY-SA 4.0</a></figcaption></figure>
+      <p><b>코메다 커피 한큐산노미야 서쪽출구점</b> <i class="jpn">コメダ珈琲店 阪急三宮西口店</i> — 렘 플러스가 있는 한큐 산노미야역 바로 옆. 영업 <b>07:00~23:00</b>, 모닝 <b>07:00~11:00</b> (본사 공통 기준 · 매장 사정으로 바뀔 수 있음). 오픈런이 있는 날이라 숙소 바로 옆에서 빠르게.</p>
+      <details class="r"><summary><b>모닝 주문하는 법</b><span>음료 1잔 = 모닝 세트 1개 무료</span></summary>
+        <ol>
+          <li><b>음료</b>를 고른다 (커피·홍차·코코아·주스 등 — 아이들도 1인 1음료)</li>
+          <li><b>빵</b>: 두꺼운 토스트 <i class="jpn">山食パン</i> 또는 로브빵 <i class="jpn">ローブパン</i>(매장별 수량 한정)</li>
+          <li><b>토핑</b>: 삶은 달걀 <i class="jpn">ゆで卵</i> / 계란 스프레드 <i class="jpn">たまごペースト</i> / 단팥 <i class="jpn">おぐらあん</i></li>
+          <li><b>스프레드</b>: 버터(마가린) 또는 딸기잼</li>
+        </ol>
+        <p>💡 <b>두꺼운 토스트 + 단팥 + 버터</b> = 일본식 앙버터. 메뉴판 사진을 손가락으로 가리키면 끝.</p>
+      </details>
+      <details class="r"><summary><b>대안</b><span>도토루 · 편의점</span></summary>
+        <p>JR 산노미야역 주변 <b>도토루</b> <i class="jpn">ドトール</i>에서 빵+음료 15분 컷, 또는 전날 밤 편의점에서 사서 방에서.</p>
+      </details>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=コメダ珈琲店+阪急三宮西口店">지도</a></div>
+    </div></div>
+
+    <div class="it c-move"><div class="t">08:30</div><div class="b">
+      <h4><span class="tag">이동 · 약 25분</span>JR 산노미야 → 오사카역 (新快速)</h4>
+      <p>JR <b>新快速(신쾌속)</b>이 가장 빨라요 (약 21분 · 400엔대). 오사카역 <b>남쪽 출구</b>로 나오면 <b>다이마루 우메다</b> 건물과 바로 이어져요. 09:15 전후 도착 → 백화점 문 앞에서 오픈 대기.</p>
+      <details><summary>이용 방법</summary>
+        <ol>
+          <li>JR <b>三ノ宮駅</b> 개찰구 ICOCA 터치 → <b>JR神戸線 大阪・京都方面</b> 플랫폼</li>
+          <li><b>新快速 (Special Rapid)</b> 또는 快速 탑승 → <b>大阪</b> 하차 (출근 시간대라 붐빌 수 있어요)</li>
+          <li><b>南口(남쪽 출구)</b> 방향 → <b>大丸梅田店</b> 표지 따라 이동</li>
+        </ol>
+      </details>
+      <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=三ノ宮駅&destination=大丸梅田店&travelmode=transit">구글맵 경로</a></div>
+    </div></div>
+
+    <div class="it c-play"><div class="t">09:30</div><div class="b">
+      <h4><span class="tag">오픈런! · 아이들 최애</span>포켓몬센터 오사카 <i class="jpn">ポケモンセンターオーサカ</i></h4>
+      <p><b>다이마루 우메다점 13층</b>. 백화점과 같이 <b>10:00 오픈</b>(대략 10:00~20:00)이라 <b>09:30쯤 백화점 입구 줄</b>에 서 있다가 문 열리면 엘리베이터로 13층 직행.</p>
+      <ul>
+        <li>같은 13층에 <b>닌텐도 오사카</b> <i class="jpn">Nintendo OSAKA</i>도 있어요 → 포켓몬센터 보고 바로 옆으로</li>
+        <li>붐비는 날엔 <b>입장 제한·정리권(번호표)</b>을 나눠줄 수 있어요 → 현장 안내 따르기. 평일 아침이라 비교적 수월한 편</li>
+        <li>한정 굿즈·인형은 금방 빠져요. <b>살 것 목록</b>을 아이들과 미리 정해 두기 (예산도!)</li>
+        <li><b>면세</b>: 한 매장 5,000엔 이상이면 <b>여권</b> 제시 (계산대에서 확인)</li>
+        <li>⚠ 오사카에는 <b>포켓몬센터 오사카 DX</b>(신사이바시 다이마루)도 따로 있어요. 오늘은 <b>우메다</b> 쪽!</li>
+      </ul>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ポケモンセンターオーサカ+大丸梅田">지도</a><a href="https://www.google.com/search?q=ポケモンセンターオーサカ+大丸梅田+営業時間">영업시간 확인</a><a href="https://www.google.com/search?q=포켓몬센터+오사카+우메다">한국어로 검색</a></div>
+    </div></div>
+
+    <div class="it c-shop"><div class="t">11:15</div><div class="b">
+      <h4><span class="tag">쇼핑 · 즐길거리</span>요도바시 카메라 멀티미디어 우메다 <i class="jpn">ヨドバシカメラ マルチメディア梅田</i></h4>
+      <p>오사카역 <b>북쪽</b>, 도보 약 5분. 대략 <b>09:30~22:00</b>. 층마다 장난감·게임·가챠·전자제품이 가득한 초대형 매장이라 아이들이 가장 좋아하는 곳.</p>
+      <ul>
+        <li><b>장난감·게임·프라모델·가챠(캡슐 토이)</b> 층 — 아들 추천. 층 안내판에서 <b>おもちゃ / ゲーム</b> 찾기</li>
+        <li>⌚ <b>시계 코너</b>: 나연이 카시오(G-SHOCK·Baby-G), 아빠 세이코 — 실제로 차 보고 가격 사진. 마음에 들면 <b>여기서 면세 구매</b> (<a href="#" data-go="sh" data-open="watch">시계 후보 →</a>)</li>
+        <li>화장품·전자기기·여행용품도 있어서 한 곳에서 끝내기 좋아요. 포인트 적립·할인 조건은 계산 전에 확인</li>
+        <li>바로 옆 <b>LINKS UMEDA</b>(쇼핑몰) · <b>그랜드 프론트 오사카</b>와 연결 → 점심 장소로 이어서</li>
+      </ul>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ヨドバシカメラ+マルチメディア梅田">지도</a><a href="https://www.google.com/search?q=요도바시+우메다">한국어로 검색</a></div>
+    </div></div>
+
+    <div class="it c-food"><div class="t">12:30</div><div class="b">
+      <h4><span class="tag">점심 · 우메다 <em class="rv no">예약 없이 · 대기표</em></span>회전초밥 하코타로 오사카점 <i class="jpn">函太郎 大阪店</i></h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/%E5%9B%9E%E8%BB%A2%E5%AF%BF%E5%8F%B8%E3%83%AC%E3%83%BC%E3%83%B3%E3%81%AB%E8%BC%89%E3%81%A3%E3%81%A6%E3%82%8B%E5%AF%BF%E5%8F%B8.jpg/960px-%E5%9B%9E%E8%BB%A2%E5%AF%BF%E5%8F%B8%E3%83%AC%E3%83%BC%E3%83%B3%E3%81%AB%E8%BC%89%E3%81%A3%E3%81%A6%E3%82%8B%E5%AF%BF%E5%8F%B8.jpg" alt="회전초밥 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>회전초밥 (예시) · <a href="https://commons.wikimedia.org/wiki/File:%E5%9B%9E%E8%BB%A2%E5%AF%BF%E5%8F%B8%E3%83%AC%E3%83%BC%E3%83%B3%E3%81%AB%E8%BC%89%E3%81%A3%E3%81%A6%E3%82%8B%E5%AF%BF%E5%8F%B8.jpg" target="_blank" rel="noopener">📷 Kyu3a · CC BY-SA 4.0</a></figcaption></figure>
+      <p>홋카이도 하코다테에서 온 회전초밥. <b>그랜드 프론트 오사카</b> 안, JR 오사카역 도보 1분이라 요도바시에서 바로 이어져요. 큰 단새우(ボタンえび) 등 네타가 좋아 <b>식사 시간엔 늘 줄</b>이 서는 인기 가게. 회전초밥이라 아이들도 골라 먹기 편해요.</p>
+      <ul>
+        <li>12시 정각이 가장 붐벼요 → 요도바시 가기 전 <b>대기 접수</b>가 되면 먼저 이름 올려 두기, 아니면 <b>11:30 이전 / 13:30 이후</b></li>
+        <li>줄이 <b>40분 넘으면</b> 아래 대안으로 (웨이팅 규칙)</li>
+      </ul>
+      <details class="r"><summary><b>스시 대안 · 평점 좋은 곳</b><span>모두 우메다 도보 10분 안</span></summary>
+        <ul>
+          <li><b>원조 붓치기리 스시 우오신 우메다점</b> <i class="jpn">元祖ぶっち切り寿司 魚心 梅田店</i> <em class="rv no">예약 없이</em> — 네타가 밥을 덮을 만큼 큰 <b>가성비 스시</b>로 유명. 11:00부터, 점심 정식·치라시가 저렴. 한큐 우메다역 도보 약 5분</li>
+          <li><b>기슈 야이치 한큐우메다 본점</b> <i class="jpn">紀州 弥一 阪急うめだ本店</i> <em class="rv no">예약 없이</em> — 한큐백화점 식당가. 좌석이 넉넉하고 차분해서 <b>아이 동반 가족</b>에게 추천되는 곳</li>
+          <li><b>스시이치 오사카에키마에 제4빌딩점</b> <i class="jpn">すしいち 大阪駅前第4ビル店</i> <em class="rv no">예약 없이</em> — 회사원 점심용 스시 정식, 빠르고 저렴</li>
+        </ul>
+        <p class="jp">⚠ 유명했던 <b>가메스시 총본점</b>(亀すし)은 <b>2025년 3월 폐업</b>했어요. 블로그 추천에 나와도 가지 마세요.</p>
+      </details>
+      <details class="r"><summary><b>스시 말고</b><span>우메다 식당가 · 맛집 탭</span></summary>
+        <p><b>LUCUA 바르치카 · 그랜드 프론트 식당가</b>(돈카츠·우동·파스타), <b>신우메다 식도가</b>(서서 먹는 쿠시카츠 마츠바), <b>한신백화점 이카야키</b>(간식) 등. <a href="#" data-go="food" data-open="f-umeda">맛집 탭 · 우메다 →</a></p>
+      </details>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=函太郎+大阪店+グランフロント">지도</a><a href="https://www.google.com/search?q=하코타로+오사카+그랜드프론트">한국어로 검색</a></div>
+    </div></div>
+
+    <div class="it c-play"><div class="t">13:45</div><div class="b">
+      <h4><span class="tag">즐길거리 · 골라서 1시간</span>우메다 한 바퀴</h4>
+      <ul>
+        <li><b>키디랜드 우메다점</b> <i class="jpn">キデイランド 梅田店</i> (한큐 3번가) — 캐릭터 굿즈 총집합(치이카와·산리오·스누피 등). 한큐 우메다역 바로 아래라 <b>돌아가는 길</b>에 딱</li>
+        <li><b>한큐 3번가 · 우메다 로프트</b> — 잡화·문구, 딸 취향</li>
+        <li><b>한신백화점 B1 이카야키</b> — 오사카 명물 간식 1장씩 (200엔 안팎)</li>
+        <li><b>HEP FIVE 빨간 관람차</b> (선택) — 오늘 밤 하버랜드 관람차를 탈 거라 <b>하나만</b> 고르기. 밤 바다 야경이 더 예뻐서 하버랜드 추천</li>
+      </ul>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=キデイランド+梅田店">키디랜드</a><a href="https://www.google.com/maps/search/?api=1&query=阪神梅田本店+スナックパーク">이카야키</a><a href="#" data-go="sh" data-open="osaka-shop">쇼핑 탭 · 우메다 →</a></div>
+    </div></div>
+
+    <div class="it c-move"><div class="t">14:45</div><div class="b">
+      <h4><span class="tag">이동 · 약 30분 · 갈아타기 없음</span>한큐 오사카우메다 → 고베산노미야 (特急)</h4>
+      <p>올 때는 <b>한큐 고베선</b>. 종점 <b>神戸三宮</b>에 내리면 <b>동쪽 개찰구가 렘 플러스와 직결</b>이라 오사카 쇼핑 짐을 방에 두고 가볍게 나갈 수 있어요. 약 300엔대.</p>
+      <details><summary>이용 방법</summary>
+        <ol>
+          <li><b>阪急 大阪梅田駅</b> 3층 개찰구 ICOCA 터치 (한큐 3번가 위)</li>
+          <li><b>神戸線(고베선)</b> 승강장 → <b>特急 / 通勤特急 新開地行き</b> 탑승 (보통 열차는 오래 걸려요)</li>
+          <li><b>神戸三宮</b> 하차 → <b>東口</b> → 렘 플러스 2층 입구</li>
+        </ol>
+      </details>
+      <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=大阪梅田駅+阪急&destination=神戸三宮駅+阪急&travelmode=transit">구글맵 경로</a></div>
+    </div></div>
+
+    <div class="it c-shop"><div class="t">15:30</div><div class="b">
+      <h4><span class="tag">쇼핑 · 산노미야 센터가이</span>신발 · 옷 · 잡화</h4>
+      <p>오사카 짐은 방에 두고 출발. 센터가이(지붕 있는 상점가)라 비·추위 걱정 없어요. 오늘은 <b>신발·옷</b> 위주, <b>드럭스토어·돈키호테</b>는 19일 오후에 몰아서.</p>
+      <ul>
+        <li>👟 <b>ABC마트</b> — 4명 워킹화 신어 보기 (뉴발란스 880·1080, 호카 본디·클리프톤). 1시간 잡기 (<a href="#" data-go="sh" data-open="shoes">신발 →</a>)</li>
+        <li>👕 <b>유니클로 고베산노미야점</b> — 효고현 최대 매장, 센터가이 동쪽 입구 1~5층. 일본 한정 UT</li>
+        <li><b>GU · 오니츠카 타이거 · 고베 로프트</b> — 시간 남으면</li>
+        <li>면세는 <b>매장별 5,000엔 이상</b>, 산 사람 <b>여권</b>으로</li>
+      </ul>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ABC-MART+三宮">ABC마트</a><a href="https://www.google.com/maps/search/?api=1&query=ユニクロ+神戸三宮店">유니클로</a></div>
+    </div></div>
+
+    <div class="it c-food"><div class="t">17:15</div><div class="b">
+      <h4><span class="tag">저녁 · 양지연 추천 <em class="rv no">예약 없이 · 오픈 직후</em></span>돈카츠 킨톤 고베점 <i class="jpn">とんかつ きんとん 神戸店</i></h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Tonkatsu_Teishoku_20200715-02.jpg/960px-Tonkatsu_Teishoku_20200715-02.jpg" alt="돈카츠 정식 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>돈카츠 정식 (예시) · <a href="https://commons.wikimedia.org/wiki/File:Tonkatsu_Teishoku_20200715-02.jpg" target="_blank" rel="noopener">📷 円周率３パーセント · CC BY-SA 4.0</a></figcaption></figure>
+      <p>산노미야 <b>상프라자(さんプラザ) 지하 1층</b> 돈카츠 집. “회보다 균이 적어 날로도 먹을 수 있다”고 소개하는 <b>나가사키 브랜드 돼지(芳寿豚)</b>로 유명하고, 타베로그 <b>돈카츠 백명점</b>에 꼽힌 곳. 암염·특제 소스로 먹고 마지막엔 <b>가츠 오차즈케</b>로 마무리. 센터가이 동쪽 끝이라 쇼핑하다 바로.</p>
+      <ul>
+        <li>대략 <b>11:00~15:00 · 17:00~21:00</b> (토·일·공휴일 점심은 15:30까지) — 저녁 <b>17:00 오픈 직후</b>가 덜 붐벼요</li>
+        <li>추천: <b>특선 로스카츠 정식</b> <i class="jpn">特選ロースかつ定食</i> · 아이들은 히레(안심)도 좋아요</li>
+        <li>쇼핑 짐이 많으면 먼저 렘 플러스에 두고 오기 (도보 5분)</li>
+      </ul>
+      <details class="r"><summary><b>대안 · 모토마치 쪽 (메리켄파크 가는 길)</b><span>도보로 바다까지 10분</span></summary>
+        <ul>
+          <li><b>고베 모토마치 별관 모란원</b> <i class="jpn">神戸元町別館牡丹園</i> <em class="rv rec">주말 예약 권장</em> — 고베 대표 광둥요리 노포. 원탁·코스·단품 모두 되어 <b>가족 외식</b>에 딱. 저녁 17:00~21:00(주문 마감 20:00) · <b>수요일 휴무</b> → 목요일 OK</li>
+          <li><b>우나쥬</b> <i class="jpn">うな重</i> — 양지연 추천 장어덮밥. 19:00 마감이라 저녁으로는 일찍 (이번 일정엔 없음)</li>
+          <li><b>하버랜드 umie 모자이크 식당</b> — 대관람차 보이는 창가 (오스테리아 가우단테 · 나카나곤 · 프란츠 카페 등). 산책을 먼저 하고 늦게 먹고 싶을 때</li>
+        </ul>
+      </details>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=とんかつ+きんとん+神戸店+さんプラザ">지도</a><a href="https://3nomiya.net/shops/kinton.html">상프라자 매장 안내</a><a href="https://www.google.com/search?q=고베+돈카츠+킨톤">한국어로 검색</a></div>
+    </div></div>
+
+    <div class="it c-see"><div class="t">18:30</div><div class="b">
+      <h4><span class="tag">야경 산책 · 약 20분 걷기</span>모토마치 · 난킨마치 → 메리켄파크</h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Kobe_Nankinmachi_%28chinatown%29_entrance.jpg/960px-Kobe_Nankinmachi_%28chinatown%29_entrance.jpg" alt="난킨마치 입구 문" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>난킨마치 입구 문 · <a href="https://commons.wikimedia.org/wiki/File:Kobe_Nankinmachi_(chinatown)_entrance.jpg" target="_blank" rel="noopener">📷 Laitr Keiows · CC BY-SA 3.0</a></figcaption></figure>
+      <p>센터가이를 따라 서쪽 <b>모토마치</b>로 → 불 켜진 <b>난킨마치(차이나타운)</b>를 지나 남쪽 바다로. 걷기 싫으면 택시 5분.</p>
+      <ul>
+        <li>⌚ 지나가는 길 <b>다이마루 고베</b>(보통 20:00까지)에서 시계 가격 비교 — 요도바시와 비교 후 구매</li>
+        <li><b>BE KOBE</b> 조형물 앞 야경 가족사진 · 빨간 <b>포트타워는 밖에서 조명만</b> 감상 (옥상 데크는 안 가요)</li>
+        <li><b>스타벅스 고베 메리켄파크점</b> — 바다 앞 유리 건물, 따뜻한 음료 한 잔 (보통 22:00까지, 확인)</li>
+      </ul>
+      <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=さんプラザ+三宮&destination=BE+KOBE+メリケンパーク&travelmode=walking">도보 경로</a><a href="https://www.google.com/maps/search/?api=1&query=スターバックス+神戸メリケンパーク店">스타벅스 메리켄파크</a></div>
+    </div></div>
+
+    <div class="it c-see"><div class="t">19:30</div><div class="b">
+      <h4><span class="tag">야경 · 양지연 추천 <em class="rv no">예약 없이</em></span>하버랜드 · 모자이크 대관람차</h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Kobe%27s_Harborland%2C_Hyogo%2C_Japan_--_Night_View_of_Mosaic_Ferris_Wheel.jpg/960px-Kobe%27s_Harborland%2C_Hyogo%2C_Japan_--_Night_View_of_Mosaic_Ferris_Wheel.jpg" alt="하버랜드 모자이크 대관람차 야경" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>하버랜드 모자이크 대관람차 야경 · <a href="https://commons.wikimedia.org/wiki/File:Kobe%27s_Harborland,_Hyogo,_Japan_--_Night_View_of_Mosaic_Ferris_Wheel.jpg" target="_blank" rel="noopener">📷 Brett Fagan · CC0</a></figcaption></figure>
+      <p>메리켄파크에서 바닷가 산책로를 따라 서쪽으로 <b>도보 약 15분</b>. 약 12만 개 LED로 반짝이는 <b>모자이크 대관람차</b>(4인승 · 1바퀴 약 10분)와 겨울 <b>umie 일루미네이션</b>. 운행 시간은 평일·주말이 다르니 당일 확인.</p>
+      <ul>
+        <li>관람차 위에서 포트타워·메리켄파크·고베 시내 야경이 한눈에 → 포트타워 옥상 대신 충분해요</li>
+        <li><b>umie</b> 쇼핑몰에서 못 산 것 보충 · 화장실·쉼터</li>
+        <li>고베 프란츠(항아리 푸딩)·디저트 사서 숙소 디저트로</li>
+      </ul>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=神戸ハーバーランドumie+モザイク">모자이크 지도</a><a href="https://umie.jp/">umie 공식</a></div>
+    </div></div>
+
+    <div class="it c-move"><div class="t">20:40</div><div class="b">
+      <h4><span class="tag">이동 · 5분</span>JR 고베역 → 산노미야 (3정거장)</h4>
+      <p>모자이크에서 북쪽으로 도보 5분 <b>JR 神戸駅</b> → <b>三ノ宮</b> 방면 아무 열차 (약 5분, 약 170엔). 산노미야역에서 렘 플러스까지 도보 3분. 걸으면 약 30분.</p>
+      <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=神戸駅&destination=レムプラス神戸三宮&travelmode=transit">구글맵 경로</a></div>
+    </div></div>
+
+    <div class="it c-stay"><div class="t">21:00</div><div class="b">
+      <h4><span class="tag">숙소 · 내일 준비</span>짐 두 덩어리로 나눠 싸기</h4>
+      <p>내일은 <b>렘 플러스 체크아웃 후 베이스레이어 호텔에 짐을 맡기고</b> 기타노 → 아리마 1박이에요 (<a href="#" data-go="stay" data-open="luggage">짐 맡기기 · 메시지</a>).</p>
+      <ul>
+        <li><b>① 캐리어 2개</b> (16~17일 쇼핑 짐 포함, 넘치면 쇼핑백 1개) → 19일 체크인(15:00)까지 베이스레이어에 보관</li>
+        <li><b>② 1박 백팩</b>(아빠가 매고 다님): 속옷·양말, 세면도구·화장품 소량, 충전기·보조배터리, 상비약, 여권, 작은 수건(족욕) · 아이들은 <b>각자 작은 가방</b> → 맡기지 않고 그대로 기타노·아리마로</li>
+        <li>19일 씨월드 웹티켓(QR) 미리 구매 · 내일 08:00 기상 알람</li>
+      </ul>
+    </div></div>
+
+    <div class="it c-food"><div class="t">21:30</div><div class="b">
+      <h4><span class="tag">부부 타임 🍶 · 선택</span>산노미야에서 한잔</h4>
+      <p>아이 둘을 한 방에 모아두고, 호텔 10분 거리 안에서 맥주·사케 한잔.</p>
+      <div class="links"><a href="#" data-go="food" data-open="f-night">맛집 탭 · 부부 한잔 →</a></div>
+    </div></div>
+
+  </div>
+</section>
+
+<!-- ================= DAY 3 ================= -->
+<section class="pane" id="d3">
+  <div class="dayhead">
+    <div class="sign">
+      <div class="sign-top"><span class="no"><b>3</b><small>일차</small></span><span class="date">12월 18일 금요일</span></div>
+      <p class="name">기타노 · 아리마<span>Kitano · Arima</span></p>
+      <div class="band"><a href="#" data-go="d2" class="prev">17 목 <span lang="ja">梅田</span></a><a href="#" data-go="d4" class="next">19 토 <span lang="ja">須磨·神戸</span></a></div>
+    </div>
+    <h2>기타노 이진칸 산책 · 고베 타다 점심 → 아리마 온천</h2>
+    <p>렘 플러스를 체크아웃하고 내일 묵을 <b>베이스레이어</b>(토어로드)에 캐리어 2개를 맡긴 뒤 <b>1박 백팩만 매고</b> <b>기타노 언덕 산책</b>. <b>고베 타다</b>에서 점심 먹고 바로 버스터미널로 내려가 아리마에. 오후엔 <b>온천마을 산책</b> → 15시 체크인 → 한산한 시간에 온천 · 석식 뷔페.</p>
+    <div class="chips"><span class="chip">렘 체크아웃 08:00 → 베이스레이어에 짐</span><span class="chip">고베 타다 11:30 예약</span><span class="chip">아리마 버스 13시대</span><span class="chip">월광원 체크인 15:00</span><span class="chip">아리마는 2~3℃ 더 추움</span></div>
+  </div>
+
+  <div class="box tip"><b>🧳 오늘 짐은 이렇게</b>
+    <ul>
+      <li><b>큰 캐리어 · 16~17일 쇼핑 짐</b> → 내일 묵을 <b>베이스레이어 호텔</b>에 맡기고 <b>19일 체크인 때</b> 받기 (출발 전 메시지로 문의 · <a href="#" data-go="stay" data-open="luggage">메시지 템플릿</a>)</li>
+      <li><b>1박 백팩</b>은 맡기지 않고 아빠가 매고, 아이들은 각자 작은 가방 → 점심 후 호텔에 들를 필요 없이 바로 아리마로</li>
+      <li>안 맡겨 준다고 하면: <b>렘 플러스</b>에 체크아웃 후 보관 문의 → 그것도 안 되면 <b>산노미야역 코인로커</b>(대형) (<a href="#" data-go="stay" data-open="luggage">대안 보기</a>)</li>
+    </ul>
+  </div>
+
+  <div class="tl">
+
+    <div class="it c-stay"><div class="t">08:00</div><div class="b">
+      <h4><span class="tag">체크아웃 → 짐 맡기기 · 택시 5분</span>렘 플러스 체크아웃 → 베이스레이어에 짐 맡기기</h4>
+      <ol>
+        <li><b>렘 플러스</b> 체크아웃 (Booking ID 1792146647)</li>
+        <li>짐을 들고 <b>택시 5분</b>(1,000엔 안팎)으로 <b>베이스레이어 호텔</b>(토어로드). 걸으면 오르막 7~10분</li>
+        <li>프런트에 <b>답장 캡처 + Booking Reference No. 2610310100621462316</b> 보여주고 <b>캐리어 2개</b>(+쇼핑백) 맡기기 → <b>19일 체크인까지</b></li>
+        <li><b>보관표(태그)</b>를 받으면 짐과 같이 <b>사진</b></li>
+      </ol>
+      <div class="phrase"><div class="ja">荷物の預かりをお願いしたYUHYUN LEEです。明日19日に泊まります。</div><div class="rd">니모츠노 아즈카리오 오네가이시타 YUHYUN LEE 데스. 아시타 쥬-쿠니치니 토마리마스.</div><div class="en">I'm YUHYUN LEE. I asked you to keep our luggage. We're staying tomorrow, the 19th.</div><div class="ko">짐 보관을 부탁드린 YUHYUN LEE예요. 내일 19일에 묵어요.</div></div>
+      <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=レムプラス神戸三宮&destination=BASE+LAYER+HOTEL+KOBE+SANNOMIYA&travelmode=driving">택시 경로</a><a href="#" data-go="stay" data-open="luggage">짐 맡기기 · 메시지 →</a></div>
+    </div></div>
+
+    <div class="it c-food"><div class="t">08:30</div><div class="b">
       <h4><span class="tag">아침 · 가볍게 <em class="rv no">예약 없이</em></span>고베 빵으로 아침</h4>
-      <p>고베는 “빵의 도시”. 오늘 아침은 여유가 있으니 기타노 가는 길에 빵집 카페에서.</p>
+      <p>고베는 “빵의 도시”. 점심이 11:30이니 가볍게. 베이스레이어에서 기타노 쪽으로 올라가는 길이나 산노미야역 쪽에서.</p>
       <details class="r" data-q="콤 시노와 빵집 고베 산노미야"><summary><b>콤 시노와 빵집</b> <i class="jpn">コム・シノワ</i><span>추천 · 8:00 오픈 · 빵 이트인 카페 · JR역 도보 5분</span></summary>
         <p>고베 대표 빵집. 고른 빵을 매장 안쪽 카페에서 음료와 함께. 가볍게 먹는 가족에게 딱.</p>
         <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=コム・シノワ+三宮">지도</a></div>
       </details>
       <details class="r" data-q="이스즈 베이커리 고베 산노미야"><summary><b>이스즈 베이커리</b> <i class="jpn">イスズベーカリー</i><span>1946년 · 테이크아웃</span></summary>
-        <p>170종 넘는 빵. 산노미야 매장은 8:30 전후 오픈이라 사서 방에서 먹거나 기타노 가는 길에.</p>
+        <p>170종 넘는 빵. 산노미야 매장은 8:30 전후 오픈이라 사서 기타노 가는 길에.</p>
         <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=イスズベーカリー+三宮">지도</a></div>
-      </details>
-      <details class="r" data-q="코메다 커피 / 도토루"><summary><b>코메다 커피 / 도토루</b> <i class="jpn">コメダ珈琲店 / ドトール</i><span>체인 카페 · 이른 시간</span></summary>
-        <p>렘 플러스 바로 옆 코메다(모닝 서비스, 07:00~)나 JR 동쪽 출구 도토루도 무난. 코메다는 내일(18일) 아침에 가요.</p>
       </details>
     </div></div>
 
-    <div class="it c-see"><div class="t">08:45</div><div class="b">
+    <div class="it c-see"><div class="t">09:00</div><div class="b">
       <h4><span class="tag">관광 · 양지연 추천 · 신사 2곳</span>기타노 이진칸 산책 코스</h4><div class="gal"><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/%E9%A2%A8%E8%A6%8B%E9%B6%8F%E3%81%AE%E9%A4%A8_-_panoramio.jpg/960px-%E9%A2%A8%E8%A6%8B%E9%B6%8F%E3%81%AE%E9%A4%A8_-_panoramio.jpg" alt="풍향계의 집" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>풍향계의 집 · <a href="https://commons.wikimedia.org/wiki/File:%E9%A2%A8%E8%A6%8B%E9%B6%8F%E3%81%AE%E9%A4%A8_-_panoramio.jpg" target="_blank" rel="noopener">📷 alonfloc · CC BY 3.0</a></figcaption></figure><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Haiden_of_Kitano_Tenman_Shrine_in_Kitano-cho%2C_Kobe_01.jpg/960px-Haiden_of_Kitano_Tenman_Shrine_in_Kitano-cho%2C_Kobe_01.jpg" alt="기타노 텐만 신사" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>기타노 텐만 신사 · <a href="https://commons.wikimedia.org/wiki/File:Haiden_of_Kitano_Tenman_Shrine_in_Kitano-cho,_Kobe_01.jpg" target="_blank" rel="noopener">📷 ノボホショコロトソ · CC BY 4.0</a></figcaption></figure><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%82%B9_%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC_%E7%A5%9E%E6%88%B8%E5%8C%97%E9%87%8E%E7%95%B0%E4%BA%BA%E9%A4%A8%E5%BA%97_%2855063223592%29.jpg/960px-%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%82%B9_%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC_%E7%A5%9E%E6%88%B8%E5%8C%97%E9%87%8E%E7%95%B0%E4%BA%BA%E9%A4%A8%E5%BA%97_%2855063223592%29.jpg" alt="스타벅스 기타노이진칸점" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>스타벅스 기타노이진칸점 · <a href="https://commons.wikimedia.org/wiki/File:%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%82%B9_%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC_%E7%A5%9E%E6%88%B8%E5%8C%97%E9%87%8E%E7%95%B0%E4%BA%BA%E9%A4%A8%E5%BA%97_(55063223592).jpg" target="_blank" rel="noopener">📷 nagi usano · CC BY 4.0</a></figcaption></figure></div>
-      <p>렘 플러스에서 북쪽 언덕길로 출발 → 위에서부터 보고 <b>토어로드</b>로 내려오는 순서가 덜 힘들어요. 11:30 고베 타다 점심에 맞춰 내려와요.</p>
+      <p>빈손이라 언덕길도 가뿐해요. 위에서부터 보고 <b>토어로드</b>로 내려오는 순서가 덜 힘들어요. 11:30 고베 타다 점심에 맞춰 내려와요.</p>
       <ol>
         <li><b>이쿠타 신사</b> <i class="jpn">生田神社</i> — 가는 길에 잠깐. 고베 대표 신사, 오마모리(부적) 구경</li>
         <li><b>기타노 텐만 신사</b> <i class="jpn">北野天満神社</i> — 학문의 신. 계단 위에서 고베 시내와 바다가 내려다보여요. 딸 공부·시험 기원 <b>에마</b>(소원 나무판) 써 보기</li>
@@ -919,286 +1151,39 @@ BASE LAYER HOTEL KOBE SANNOMIYA ご担当者様
       </details>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=北野天満神社">기타노 텐만 신사</a><a href="https://www.google.com/maps/search/?api=1&query=風見鶏の館">풍향계의 집</a><a href="https://www.google.com/maps/search/?api=1&query=スターバックス+神戸北野異人館店">스타벅스 이진칸</a></div>
     </div></div>
-    <div class="it c-shop"><div class="t">10:30</div><div class="b">
+
+    <div class="it c-shop"><div class="t">10:45</div><div class="b">
       <h4><span class="tag">간단한 쇼핑 · 내려오면서</span>기타노자카 · 토어로드</h4>
       <ul>
-        <li><b>고베 기타노 노스타</b> <i class="jpn">神戸北野ノスタ</i> — 옛 기타노 초등학교 건물에 2024년 11월 문을 연 시설(가게·카페·레스토랑). 예전 “기타노 공방의 마을” 자리. 입점 구성은 방문 전 확인</li>
-        <li><b>토어로드 잡화점</b> — 고베다운 수입 잡화·액세서리·인테리어 소품 가게가 띄엄띄엄. 19일에 묵을 <b>베이스레이어 호텔도 이 길</b>에 있어요</li>
+        <li><b>고베 기타노 노스타</b> <i class="jpn">神戸北野ノスタ</i> — 옛 기타노 초등학교 건물에 2024년 11월 문을 연 시설(가게·카페·레스토랑). 입점 구성은 방문 전 확인</li>
+        <li><b>토어로드 잡화점</b> — 고베다운 수입 잡화·액세서리·인테리어 소품. 19일에 묵을 <b>베이스레이어 호텔도 이 길</b>에 있어요</li>
         <li><b>선물거리</b>: 고베 홍차·커피 원두, 고베 푸딩·쿠키 (가벼워서 들고 다니기 OK)</li>
       </ul>
-      <p class="jp">이진칸 내부 관람이나 트릭아트관 등 유료 관을 여러 개 볼 거면 공통권이 이득. 오늘은 시간이 짧으니 1~2곳만.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=神戸北野ノスタ">기타노 노스타</a><a href="https://www.google.com/search?q=고베+기타노+노스타">한국어로 검색</a></div>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=神戸北野ノスタ">기타노 노스타</a></div>
     </div></div>
 
     <div class="it c-food"><div class="t">11:30</div><div class="b">
-      <h4><span class="tag">점심 · 양지연 추천 <em class="rv rec">예약 권장 · 20석</em></span>고베 타다 <i class="jpn">神戸 北野 多田</i></h4>
+      <h4><span class="tag">점심 · 양지연 추천 <em class="rv rec">예약 권장 · 20석</em></span>고베 타다 <i class="jpn">神戸 北野 多田</i></h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Sobameshi_%288697338872%29.jpg/960px-Sobameshi_%288697338872%29.jpg" alt="소바메시 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>소바메시 (예시) · <a href="https://commons.wikimedia.org/wiki/File:Sobameshi_(8697338872).jpg" target="_blank" rel="noopener">📷 Masayuki (Yuki) Kawagishi · CC BY 2.0</a></figcaption></figure>
       <p>기타노자카 아래 야마모토도리에 있는 <b>철판 오코노미야키·소바메시 집</b>. 대표 메뉴는 철판에 구운 스테이크를 올린 <b>스테이크 소바메시</b> (한국 블로그에선 “고베규 소바메시”로 소개 — 소고기 종류는 메뉴에서 확인). 기타노 산책 코스 바로 아래라 내려오면서 들르기 좋아요.</p>
       <ul>
         <li>11:00~20:00 (주문 마감 19:00) · 20석 · 어린이 OK · 전석 금연 · 카드·PayPay 가능</li>
-        <li>월요일 휴무라는 정보도 있어요 → 목요일인 오늘은 OK</li>
+        <li>월요일 휴무라는 정보도 있어요 → 금요일인 오늘은 OK</li>
         <li>1인 약 1,500~3,000엔</li>
-        <li>좌석이 적어 <b>핫페퍼 구르메 온라인 예약</b> 추천 (4명 · 11:30)</li>
+        <li>좌석이 적어 <b>핫페퍼 구르메 온라인 예약</b> 추천 (<b>12/18 금 · 4명 · 11:30</b>)</li>
         <li>소바메시 = 볶음면과 밥을 잘게 썰어 철판에 함께 볶은 고베 서민 음식</li>
       </ul>
-      <p class="jp">예약이 안 됐는데 자리가 없으면: 이름 적고 <b>토어로드 구경하다 다시</b> 오거나, 아래 난킨마치 / 산노미야역 쪽 <b>나가타 혼조켄</b>(같은 소바메시, 예약 없이)로.</p>
-      <details class="r" data-q="난킨마치 고베 차이나타운"><summary><b>대안: 난킨마치 길거리 음식</b> <em class="rv no">예약 없이</em> <i class="jpn">南京町</i><span>부타만 · 소룡포 · 메리켄파크 가족사진</span></summary>
-        <figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Kobe_Nankinmachi_%28chinatown%29_entrance.jpg/960px-Kobe_Nankinmachi_%28chinatown%29_entrance.jpg" alt="난킨마치 입구 문" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>난킨마치 입구 문 · <a href="https://commons.wikimedia.org/wiki/File:Kobe_Nankinmachi_(chinatown)_entrance.jpg" target="_blank" rel="noopener">📷 Laitr Keiows · CC BY-SA 3.0</a></figcaption></figure>
-        <p>베이스레이어 호텔 앞 토어로드를 따라 남쪽으로 도보 약 10~15분. <b>로쇼키 부타만</b> <i class="jpn">老祥記</i>(일본 최초의 부타만), 소룡포·베이징덕 롤·군만두를 조금씩 사서 나눠 먹기. 끝나면 바로 아래 <b>한신 모토마치역</b>이나 산노미야로 걸어가서 난바행 열차를 타요.</p>
-        <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=南京町+神戸">난킨마치</a><a href="#" data-go="food" data-open="f-nankin">맛집 탭 →</a></div>
-      </details>
+      <p class="jp">예약이 안 됐는데 자리가 없으면: 이름 적고 <b>토어로드 구경하다 다시</b> 오거나, 산노미야역 쪽 <b>나가타 혼조켄</b>(같은 소바메시, 예약 없이)로.</p>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=神戸+北野+多田+山本通">지도</a><a href="https://www.hotpepper.jp/strJ004612188/">핫페퍼 예약</a><a href="https://www.google.com/search?q=고베+타다+소바메시">한국어로 검색</a></div>
     </div></div>
 
     <div class="it c-move"><div class="t">12:45</div><div class="b">
-      <h4><span class="tag">이동</span>고베산노미야 → 오사카난바 (한신선 직통)</h4>
-      <p>고베 타다에서 기타노자카를 따라 <b>도보 약 10~15분</b>(내리막) → 한신 <b>神戸三宮駅</b>. 갈아타기 없이 난바까지 약 40~50분, 약 400엔대.</p>
-      <details><summary>이용 방법</summary>
-        <ol>
-          <li>산노미야 교차로 지하의 <b>阪神 神戸三宮駅</b>으로 (JR·한큐 산노미야역 남쪽, “阪神電車” 표지).</li>
-          <li>ICOCA 터치 → <b>阪神なんば線 · 大阪難波・奈良方面</b> 플랫폼.</li>
-          <li><b>快速急行 (Rapid Express) 奈良行き</b> 탑승 → <b>大阪難波</b> 하차. 快速急行가 아니면 갈아타야 하니 전광판 확인!</li>
-          <li>오사카난바역에서 도톤보리는 <b>14번 출구</b> 쪽 → 지상으로 나와 북쪽 3분.</li>
-        </ol>
-      </details>
-      <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=神戸三宮駅&destination=大阪難波駅&travelmode=transit">구글맵 경로</a></div>
-    </div></div>
-
-    <div class="it c-see"><div class="t">13:45</div><div class="b">
-      <h4><span class="tag">관광</span>도톤보리 산책 · 사진</h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Neon_sign_of_Dotonbori_daytime.JPG/960px-Neon_sign_of_Dotonbori_daytime.JPG" alt="도톤보리 글리코 간판" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>도톤보리 글리코 간판 · <a href="https://commons.wikimedia.org/wiki/File:Neon_sign_of_Dotonbori_daytime.JPG" target="_blank" rel="noopener">📷 Sakaori (talk) · CC BY-SA 3.0</a></figcaption></figure>
-      <p>글리코 간판(에비스바시 다리 위가 포토존), 움직이는 대형 게 간판, 돈키호테 도톤보리점 관람차 구경.</p>
-    </div></div>
-
-    <div class="it c-play"><div class="t">14:15</div><div class="b">
-      <h4><span class="tag">인형뽑기 메인!</span>GiGO 오사카 도톤보리 본점</h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/UFO_Catcher_Arcade_Game%2C_Shinjuku_%2853416842023%29.jpg/960px-UFO_Catcher_Arcade_Game%2C_Shinjuku_%2853416842023%29.jpg" alt="일본 크레인게임 (사진은 다른 매장)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>일본 크레인게임 (사진은 다른 매장) · <a href="https://commons.wikimedia.org/wiki/File:UFO_Catcher_Arcade_Game,_Shinjuku_(53416842023).jpg" target="_blank" rel="noopener">📷 Stephen Kelly · CC BY 2.0</a></figcaption></figure>
-      <p>관서 최초 GiGO 플래그십. <b>1~2층에 크레인게임 약 300대</b> — 아들 최애 코스.</p>
-      <ul>
-        <li>예산을 미리 정하기 (예: 아들 3,000엔)</li>
-        <li>근처 <b>라운드원 센니치마에점</b> <i class="jpn">ラウンドワン 千日前店</i>도 크레인게임 많음</li>
-      </ul>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=GiGO大阪道頓堀本店">GiGO 지도</a></div>
-    </div></div>
-
-    <div class="it c-shop"><div class="t">15:30</div><div class="b">
-      <h4><span class="tag">쇼핑 · 즐길거리 · 골라서</span>신사이바시 · 난바 주변</h4>
-      <p>모두 도톤보리에서 도보 15분 이내. 오늘 산 물건은 내일 아침 <b>베이스레이어에 맡기는 큰 짐</b>에 같이 넣으면 돼서 부담이 적어요.</p>
-      <details class="r"><summary><b>신사이바시스지 상점가 쇼핑</b><span>지붕 있는 600m 쇼핑 거리</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Shinsaibashi-suji_201408.JPG/960px-Shinsaibashi-suji_201408.JPG" alt="신사이바시스지 상점가 입구" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>신사이바시스지 상점가 입구 · <a href="https://commons.wikimedia.org/wiki/File:Shinsaibashi-suji_201408.JPG" target="_blank" rel="noopener">📷 Mc681 · CC BY-SA 4.0</a></figcaption></figure>
-        <ul>
-          <li><b>유니클로 신사이바시점 · GU</b> — 대형 매장, 면세 가능</li>
-          <li><b>다이마루 신사이바시</b> <i class="jpn">大丸心斎橋店</i> — 백화점, 브랜드·화장품·식품관</li>
-          <li><b>신사이바시 PARCO</b> — 캐릭터·서브컬처 숍 (치이카와 등, 2026 리뉴얼로 층 확인)</li>
-          <li>드럭스토어(마츠모토키요시 등)가 여러 개 있어 가격 비교 쉬움</li>
-        </ul>
-        <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=心斎橋筋商店街">지도</a></div>
-      </details>
-      <details class="r"><summary><b>⌚ 빅카메라 난바점 시계 코너</b><span>나연이 카시오 · 아빠 세이코 가격 보기</span></summary>
-        <p><b>빅카메라 난바점</b> <i class="jpn">ビックカメラ なんば店</i> — 난바역 동쪽 센니치마에 쪽 대형 가전 매장. 카시오(G-SHOCK·Baby-G)·세이코 진열이 많아요. 실제로 차 보고 가격 사진 → 19일 다이마루 고베와 비교. 마음에 들면 여기서 바로 면세 구매(쓸 사람 <b>여권</b>)해도 OK.</p>
-        <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ビックカメラ+なんば店">지도</a><a href="#" data-go="sh" data-open="watch">시계 후보 →</a></div>
-      </details>
-      <details class="r"><summary><b>돈키호테 도톤보리점</b><span>관람차 달린 돈키호테 · 늦게까지</span></summary>
-        <p>고베 돈키호테와 품목은 비슷하지만 규모가 크고 늦게까지 열어요. 관람차 <b>에비스 타워</b>는 운행 여부 현장 확인.</p>
-        <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ドン・キホーテ道頓堀店">지도</a></div>
-      </details>
-      <details class="r"><summary><b>아메리카무라</b><span>딸 추천 · 스트리트 패션·구제</span></summary><figure class="ph"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Americamura.JPG" alt="아메리카무라" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>아메리카무라 · <a href="https://commons.wikimedia.org/wiki/File:Americamura.JPG" target="_blank" rel="noopener">📷 Wikimedia Commons · CC BY-SA 3.0</a></figcaption></figure>
-        <p>빈티지 옷가게·스트리트 브랜드가 몰린 10대들의 거리. 중심은 <b>삼각공원</b>. 타코야키 <b>코가류</b> <i class="jpn">甲賀流</i> 본점도 여기.</p>
-        <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=アメリカ村+三角公園">지도</a></div>
-      </details>
-      <details class="r"><summary><b>닛폰바시 덴덴타운</b><span>아들 추천 · 피규어·게임·인형뽑기 2차</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Den-Den_Town%2C_Nipponbashi%2C_Osaka_-_Jul_12%2C_2023.jpg/960px-Den-Den_Town%2C_Nipponbashi%2C_Osaka_-_Jul_12%2C_2023.jpg" alt="닛폰바시 덴덴타운" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>닛폰바시 덴덴타운 · <a href="https://commons.wikimedia.org/wiki/File:Den-Den_Town,_Nipponbashi,_Osaka_-_Jul_12,_2023.jpg" target="_blank" rel="noopener">📷 Clemens Vasters · CC BY 2.0</a></figcaption></figure>
-        <p>난바역 남동쪽 도보 10분. 애니 굿즈·피규어·레트로 게임 거리. 게임센터·크레인게임도 곳곳에.</p>
-        <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=オタロード+日本橋">지도</a></div>
-      </details>
-      <details class="r"><summary><b>톤보리 리버크루즈</b><span>강 위에서 보는 도톤보리 · 약 20분</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Osaka_Dotonbori_Canal.jpg/960px-Osaka_Dotonbori_Canal.jpg" alt="도톤보리 강 — 크루즈가 다니는 곳" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>도톤보리 강 — 크루즈가 다니는 곳 · <a href="https://commons.wikimedia.org/wiki/File:Osaka_Dotonbori_Canal.jpg" target="_blank" rel="noopener">📷 32linesky · CC BY-SA 4.0</a></figcaption></figure>
-        <p>글리코 간판 앞 다리 아래 출발. 요금 약 1,000엔대, 시간대별 정원제라 현장에서 다음 배 시간 확인.</p>
-        <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=とんぼりリバークルーズ">지도</a></div>
-      </details>
-      <details class="r"><summary><b>호젠지 요코초</b><span>도톤보리 옆 돌길 골목 · 5분</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Hozenji_Yokocho_at_night.jpg/960px-Hozenji_Yokocho_at_night.jpg" alt="호젠지 요코초 밤 골목" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>호젠지 요코초 밤 골목 · <a href="https://commons.wikimedia.org/wiki/File:Hozenji_Yokocho_at_night.jpg" target="_blank" rel="noopener">📷 Choi2451 · CC BY-SA 3.0</a></figcaption></figure>
-        <p>이끼로 뒤덮인 <b>미즈카케 부동명왕</b>에 물을 끼얹으며 소원 빌기. 사진 찍기 좋아요.</p>
-        <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=法善寺横丁">지도</a></div>
-      </details>
-      <details class="r"><summary><b>구로몬 시장 · 리쿠로 치즈케이크</b><span>간식 · 숙소 디저트</span></summary>
-        <p><b>구로몬 시장</b> <i class="jpn">黒門市場</i>은 16시 전에(해산물·과일 꼬치). <b>리쿠로 오지상 치즈케이크</b> <i class="jpn">りくろーおじさんの店</i>는 1판 사서 오늘 밤 <b>방에서 디저트 파티</b>용으로.</p>
-      </details>
-    </div></div>
-
-    <div class="it c-food"><div class="t">17:45</div><div class="b">
-      <h4><span class="tag">저녁 · 오사카에서 <em class="rv no">예약 없이</em></span>쿠시카츠 다루마 도톤보리점 <i class="jpn">串カツだるま 道頓堀店</i></h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Kushikatsu_-_Shinsekai_%2828289215848%29.jpg/960px-Kushikatsu_-_Shinsekai_%2828289215848%29.jpg" alt="쿠시카츠 — 공용 소스는 한 번만 찍기 (사진은 신세카이)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>쿠시카츠 — 공용 소스는 한 번만 찍기 (사진은 신세카이) · <a href="https://commons.wikimedia.org/wiki/File:Kushikatsu_-_Shinsekai_(28289215848).jpg" target="_blank" rel="noopener">📷 Ajay Suresh · CC BY 2.0</a></figcaption></figure>
-      <p>오사카에 왔으면 한 번은 먹어야 하는 <b>쿠시카츠(꼬치튀김)</b> 원조급 가게. 고기·새우·채소·치즈 등을 하나씩 골라 시키는 방식이라 아이들도 좋아하고, 부부는 생맥주 한 잔 곁들이기 좋아요. 도톤보리 한가운데라 쇼핑 끝나고 바로.</p>
-      <ul>
-        <li>공용 소스 통에 <b>두 번 찍기 금지</b> <i class="jpn">二度づけ禁止</i> — 더 찍고 싶으면 양배추로 소스를 떠서 뿌려요 (양배추 무료)</li>
-        <li>처음엔 <b>모둠 세트</b> <i class="jpn">セット</i>로 시키고 맛있던 것만 추가 → 1인 약 2,000~3,500엔</li>
-        <li>저녁 시간 줄이 길면 근처 다른 다루마 지점(도톤보리 주변에 여러 곳)이나 아래 대안으로</li>
-        <li>17:45 전후가 덜 붐벼요. 19:15쯤 난바역으로 출발</li>
-      </ul>
-      <details class="r"><summary><b>다른 저녁 후보</b><span>도톤보리에서 도보 5~10분 · 기분 따라</span></summary>
-        <ul>
-          <li><b>카니도라쿠 도톤보리 본점</b> <i class="jpn">かに道楽 道頓堀本店</i> — 움직이는 게 간판 본점. 게 코스는 비싸지만 오사카 마지막 저녁으로 기억에 남아요 (코스는 예약 권장)</li>
-          <li><b>홋쿄쿠세이 신사이바시 본점</b> <i class="jpn">北極星</i> — 오므라이스 원조, 다다미 방에서 차분하게</li>
-          <li><b>겐로쿠 스시 도톤보리점</b> <i class="jpn">元禄寿司</i> — 회전초밥, 싸고 빠름</li>
-          <li><b>도톤보리 카무쿠라</b> <i class="jpn">どうとんぼり神座</i> — 순한 라멘, 늦게까지</li>
-          <li>귀갓길 야식: <b>551 호라이</b> 부타만 · <b>리쿠로 치즈케이크</b></li>
-        </ul>
-        <div class="links"><a href="#" data-go="food" data-open="f-namba">맛집 탭 · 난바 전체 보기 →</a></div>
-      </details>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=串カツだるま+道頓堀店">지도</a><a href="https://www.google.com/search?q=쿠시카츠+다루마+도톤보리">한국어로 검색</a></div>
-    </div></div>
-
-    <div class="it c-move"><div class="t">19:15</div><div class="b">
-      <h4><span class="tag">이동</span>오사카난바 → 고베산노미야 (한신선 직통)</h4>
-      <p>갈아타기 없이 한 번에! 약 40~50분, 약 400엔대. 퇴근 시간대라 붐빌 수 있어요. 아이들 먼저 빈자리에.</p>
-      <details><summary>이용 방법</summary>
-        <ol>
-          <li><b>오사카난바역</b> <i class="jpn">大阪難波</i>으로 (난바역 지하, 긴테쓰/한신 표지).</li>
-          <li>ICOCA 터치 → <b>阪神なんば線 · 神戸三宮方面</b> 플랫폼.</li>
-          <li><b>快速急行 (Rapid Express) 神戸三宮行き</b> 탑승 → <b>神戸三宮</b> 하차.</li>
-        </ol>
-      </details>
-      <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=大阪難波駅&destination=神戸三宮駅&travelmode=transit">구글맵 경로</a></div>
-    </div></div>
-
-    <div class="it c-play"><div class="t">20:15</div><div class="b">
-      <h4><span class="tag">가볍게 · 숙소 근처</span>산노미야 밤 산책 · 인형뽑기 · 디저트</h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Ikuta_jinja_kobe_15.jpg/960px-Ikuta_jinja_kobe_15.jpg" alt="이쿠타 신사" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>이쿠타 신사 · <a href="https://commons.wikimedia.org/wiki/File:Ikuta_jinja_kobe_15.jpg" target="_blank" rel="noopener">📷 Hyppolyte de Saint-Rambert · CC BY-SA 4.0</a></figcaption></figure>
-      <ul>
-        <li><b>이쿠타 신사</b> <i class="jpn">生田神社</i> — 산노미야 한가운데 큰 신사, 밤에도 경내 산책 가능 (렘 플러스에서 도보 5분)</li>
-        <li><b>센터가이 게임센터</b>에서 인형뽑기 1차 (토요일 2차와 비교)</li>
-        <li>편의점·백화점 지하 디저트 사 와서 <b>방에서 디저트 파티</b> (리쿠로 치즈케이크 샀다면 지금!)</li>
-      </ul>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=生田神社">이쿠타 신사</a></div>
-    </div></div>
-
-    <div class="it c-stay"><div class="t">21:15</div><div class="b">
-      <h4><span class="tag">숙소 · 내일 준비</span>18일용 최소 짐 꾸리기</h4>
-      <p>내일은 <b>씨월드 + 아리마 1박</b>을 작은 가방만 들고 다녀요. 큰 캐리어·쇼핑 짐은 아침에 <b>베이스레이어 호텔</b>에 맡겨요 (<a href="#" data-go="stay" data-open="luggage">짐 맡기기 방법</a>).</p>
-      <ul>
-        <li><b>들고 갈 것</b> (백팩·작은 가방 1~2개): 갈아입을 속옷·양말, 세면도구·화장품 소량, 충전기·보조배터리, 상비약, 여권, 작은 수건(족욕)</li>
-        <li>씨월드는 <b>캐리어 같은 큰 짐 반입 불가</b> · 코인로커는 메인 엔트런스 옆(당일만) → 작게 쌀수록 편해요</li>
-        <li>아침 7시 기상 알람 · 씨월드 웹티켓(QR) 미리 확인</li>
-        <li>씨월드 공식 사이트에서 <b>내일 공연 시간</b> 확인 (<a href="#" data-go="d3">18일 탭</a>)</li>
-      </ul>
-    </div></div>
-
-    <div class="it c-food"><div class="t">21:45</div><div class="b">
-      <h4><span class="tag">부부 타임 🍶 · 선택</span>산노미야에서 한잔</h4>
-      <p>아이 둘을 한 방에 모아두고, 호텔 10분 거리 안에서 맥주·사케 한잔.</p>
-      <div class="links"><a href="#" data-go="food" data-open="f-night">맛집 탭 · 부부 한잔 →</a></div>
-    </div></div>
-
-  </div>
-</section>
-
-<!-- ================= DAY 3 ================= -->
-<section class="pane" id="d3">
-  <div class="dayhead">
-    <div class="sign">
-      <div class="sign-top"><span class="no"><b>3</b><small>일차</small></span><span class="date">12월 18일 금요일</span></div>
-      <p class="name">스마 · 아리마<span>Suma · Arima</span></p>
-      <div class="band"><a href="#" data-go="d2" class="prev">17 목 <span lang="ja">大阪</span></a><a href="#" data-go="d4" class="next">19 토 <span lang="ja">神戸</span></a></div>
-    </div>
-    <h2>스마 씨월드 → 아리마 온천</h2>
-    <p>작은 가방만 들고 아침 일찍 스마 씨월드로. 오후 3시까지 꽉 채워 놀고 버스로 아리마에 가서 <b>바로 체크인</b> → 온천 · 석식 뷔페.</p>
-    <div class="chips"><span class="chip">씨월드 10:00~18:00</span><span class="chip">렘 체크아웃 08:30</span><span class="chip">월광원 도착 17:00 전후</span><span class="chip">석식 18:30</span><span class="chip">아리마는 2~3℃ 더 추움</span></div>
-  </div>
-
-  <div class="box tip"><b>🧳 오늘은 최소 짐만</b>
-    <ul>
-      <li><b>큰 캐리어 · 16~17일 쇼핑 짐</b> → 아침에 19일 묵을 <b>베이스레이어 호텔</b>에 맡기기 (출발 전 문의 · <a href="#" data-go="stay" data-open="luggage">메일 템플릿 · 코인로커</a>)</li>
-      <li><b>들고 다닐 것</b>: 1박 가방(백팩) 1~2개만. 씨월드는 <b>캐리어 등 큰 짐 반입 불가</b>, 코인로커는 <b>메인 엔트런스 옆</b>(유료 · 당일만)</li>
-      <li>안 맡겨 준다고 하면: <b>JR 산노미야역 코인로커</b>(대형)에 넣고 19일에 찾기 (<a href="#" data-go="stay" data-open="luggage">요금 계산 주의</a>)</li>
-    </ul>
-  </div>
-
-  <div class="tl">
-
-    <div class="it c-food"><div class="t">07:45</div><div class="b">
-      <h4><span class="tag">아침 · 빠르게 40분 <em class="rv no">예약 없이</em></span>코메다 커피 모닝 서비스</h4>
-      <p><b>코메다 커피 한큐산노미야 서쪽출구점</b> <i class="jpn">コメダ珈琲店 阪急三宮西口店</i> — 렘 플러스가 있는 한큐 산노미야역 바로 옆. 영업 <b>07:00~23:00</b>, 모닝 <b>07:00~11:00</b> (본사 공통 기준 · 매장 사정으로 바뀔 수 있음).</p>
-      <details class="r"><summary><b>모닝 주문하는 법</b><span>음료 1잔 = 모닝 세트 1개 무료</span></summary>
-        <ol>
-          <li><b>음료</b>를 고른다 (커피·홍차·코코아·주스 등 — 아이들도 1인 1음료)</li>
-          <li><b>빵</b>: 두꺼운 토스트 <i class="jpn">山食パン</i> 또는 로브빵 <i class="jpn">ローブパン</i>(매장별 수량 한정)</li>
-          <li><b>토핑</b>: 삶은 달걀 <i class="jpn">ゆで卵</i> / 계란 스프레드 <i class="jpn">たまごペースト</i> / 단팥 <i class="jpn">おぐらあん</i></li>
-          <li><b>스프레드</b>: 버터(마가린) 또는 딸기잼</li>
-        </ol>
-        <p>💡 <b>두꺼운 토스트 + 단팥 + 버터</b> = 일본식 앙버터. 한국인 인기 조합. 메뉴판 사진을 손가락으로 가리키면 끝.</p>
-      </details>
-      <details class="r"><summary><b>대안</b><span>도토루 · 스타벅스 · 편의점</span></summary>
-        <p>JR 산노미야역 주변 <b>도토루</b> <i class="jpn">ドトール</i>·스타벅스에서 빵+음료 15분 컷, 또는 전날 밤 편의점에서 사서 방에서.</p>
-      </details>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=コメダ珈琲店+阪急三宮西口店">지도</a><a href="https://www.google.com/search?q=코메다+커피+한큐+산노미야">한국어로 검색</a></div>
-    </div></div>
-
-    <div class="it c-stay"><div class="t">08:30</div><div class="b">
-      <h4><span class="tag">체크아웃 · 짐 맡기기</span>렘 플러스 → 베이스레이어 호텔</h4>
-      <ol>
-        <li>렘 플러스 체크아웃 (체크아웃은 12시까지라 여유 있지만 오늘은 일찍)</li>
-        <li>큰 캐리어를 <b>택시(약 5분 · 1,000엔 안팎)</b>로 <b>베이스레이어 호텔</b>에 가져가 맡기기 → <b>보관표</b> 받고 사진 찍어 두기</li>
-        <li>1박 가방만 들고 <b>JR 산노미야역</b>으로 (도보 약 7~10분, 내리막) — 택시를 잡아 두고 역까지 이어 타도 OK</li>
-      </ol>
-      <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=レムプラス神戸三宮&destination=BASE+LAYER+HOTEL+KOBE+SANNOMIYA&travelmode=driving">택시 경로</a><a href="#" data-go="stay" data-open="luggage">짐 맡기기 · 코인로커 →</a></div>
-    </div></div>
-    <div class="it c-move"><div class="t">09:15</div><div class="b">
-      <h4><span class="tag">이동</span>JR 산노미야 → 스마카이힌코엔역 (약 15~20분)</h4>
-      <p>ICOCA로 그대로 타요. 역에서 수족관까지 도보 약 5분 → <b>10:00 오픈</b> 전에 도착.</p>
-      <details><summary>이용 방법</summary>
-        <ol>
-          <li>JR <b>三ノ宮駅</b> 개찰구에 ICOCA 터치 → <b>JR神戸線 西明石・姫路方面</b> (Nishi-Akashi/Himeji 방면) 플랫폼</li>
-          <li><b>普通(Local)</b> 열차 탑승 — <b>쾌속·신쾌속은 이 역에 안 서요!</b> 전광판에서 “普通” 확인</li>
-          <li><b>須磨海浜公園 (Suma-kaihinkōen)</b> 하차 → 남쪽(바다 쪽)으로 도보 약 5분</li>
-          <li>다른 길: 산요전철 <b>月見山(츠키미야마)</b>역 도보 약 10분, JR <b>須磨</b>역 도보 약 20분</li>
-        </ol>
-      </details>
-      <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=三ノ宮駅&destination=神戸須磨シーワールド&travelmode=transit">구글맵 경로</a></div>
-    </div></div>
-    <div class="it c-see"><div class="t">09:50</div><div class="b">
-      <h4><span class="tag">아쿠아리움 · 양지연 추천 <em class="rv rec">웹티켓 권장</em></span>고베 스마 씨월드 <i class="jpn">神戸須磨シーワールド</i></h4><div class="gal"><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/%E7%A5%9E%E6%88%B8%E9%A0%88%E7%A3%A8%E3%82%B7%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89_%E3%82%B7%E3%83%A3%E3%83%81%E3%81%AE%E3%83%A2%E3%83%8B%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88.jpg/960px-%E7%A5%9E%E6%88%B8%E9%A0%88%E7%A3%A8%E3%82%B7%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89_%E3%82%B7%E3%83%A3%E3%83%81%E3%81%AE%E3%83%A2%E3%83%8B%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88.jpg" alt="입구의 범고래 조형물" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>입구의 범고래 조형물 · <a href="https://commons.wikimedia.org/wiki/File:%E7%A5%9E%E6%88%B8%E9%A0%88%E7%A3%A8%E3%82%B7%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89_%E3%82%B7%E3%83%A3%E3%83%81%E3%81%AE%E3%83%A2%E3%83%8B%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88.jpg" target="_blank" rel="noopener">📷 Haiskawa · CC BY 4.0</a></figcaption></figure><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Kobe_Suma_Sea_World_3.jpg/960px-Kobe_Suma_Sea_World_3.jpg" alt="바다 옆 범고래 공연장" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>바다 옆 범고래 공연장 · <a href="https://commons.wikimedia.org/wiki/File:Kobe_Suma_Sea_World_3.jpg" target="_blank" rel="noopener">📷 Totti · CC BY-SA 4.0</a></figcaption></figure></div>
-      <p>2024년 6월 문을 연 수족관. <b>서일본에서 유일하게 범고래(오르카)</b>를 볼 수 있고, 범고래·돌고래 공연이 하이라이트. 오늘은 <b>10:00 오픈부터 15:00까지 5시간</b> 꽉 채워요.</p>
-      <div class="box warn" style="margin-top:6px"><b>🐋 범고래 공연 시간 — 꼭 전날 밤 확인</b>공연 시간은 날짜마다 달라요(A·B·C… 시간표 중 하나). 공식 사이트 <b>스케줄</b> 페이지의 달력에서 <b>12월 18일</b>을 누르면 그날 공연 시간이 나와요. 날씨·동물 상태에 따라 바뀌거나 취소될 수 있어요.
-        <div class="links"><a href="https://www.kobesuma-seaworld.jp/guide/schedule/">🐋 공연 스케줄 (공식)</a><a href="https://www.kobesuma-seaworld.jp/guide/time/">영업시간</a><a href="https://www.kobesuma-seaworld.jp/facilities/area/">관내 지도</a></div>
-      </div>
-      <ul>
-        <li><b>12월 18일(금) 10:00~18:00</b> · 입장 마감 17:00 (공식 영업시간 기준). 참고로 16·17일은 휴관이라 18일이 딱 맞아요</li>
-        <li>요금(12~3월 예정가): 어른(고등학생 이상) <b>2,900엔</b> · 초·중학생 <b>1,700엔</b> → 딸이 중학생이면 4명 약 <b>9,200엔</b>. 날짜별 요금제라 달력에서 확인</li>
-        <li><b>날짜 지정 웹티켓</b> 권장 — 매달 1일에 2달 뒤 날짜까지 판매(12월분 판매 중), 신용카드 결제, 입구에서 <b>스마트폰 QR</b>. 전날까지 무료 취소, 당일 취소는 100% 수수료</li>
-        <li><b>재입관</b>: 당일에 한해 가능 — 나가기 전 출구 직원에게 말하면 손등에 도장</li>
-        <li>음식물 반입은 원칙적으로 안 돼요 (식사는 관내 식당에서)</li>
-      </ul>
-      <details class="r"><summary><b>⭐ 씨월드에서 꼭 할 것 (추천 순서)</b><span>공연 시간에 맞춰 나머지를 끼워 넣기</span></summary>
-        <ol>
-          <li><b>오르카 퍼포먼스</b> (오르카 스타디움) — 오늘의 메인. 공연 <b>20~30분 전</b>에 자리 잡기. 앞줄은 물벼락 구역일 수 있어 <b>겨울엔 중간~뒤쪽</b> 추천. 바닷바람이 차니 목도리·장갑</li>
-          <li><b>오르카 스타디움 수중 관람창</b> — 공연이 없을 때 큰 유리 너머로 헤엄치는 범고래를 가까이. 공연 전후 사람 적을 때 사진 찍기 좋아요</li>
-          <li><b>돌핀 퍼포먼스</b> (돌핀 스타디움) — 바다를 배경으로 하는 돌고래 점프 쇼. 범고래 공연과 시간이 겹치지 않으면 둘 다!</li>
-          <li><b>아쿠아라이브 · SUMA COLLECTION</b> — 실내 수족관 구역. 공연 사이 쉬는 시간에 돌면 추위도 피하고 좋아요</li>
-          <li><b>오르카 스타디움 홀 &amp; 랩</b> — 범고래 생태를 보여주는 전시 공간. 아들 관심 있으면</li>
-          <li><b>기념품</b>: 오르카 스타디움의 <b>블루 플래그</b> 숍 · 돌핀 스타디움의 <b>와프 숍</b> — 범고래 인형은 여기서 (공연 직후엔 붐벼요)</li>
-        </ol>
-      </details>
-      <details class="r"><summary><b>💰 유료 체험 (선택 · 사전 구매)</b><span>방문 3일 전부터 판매 · 오르카 스타디움 1F 안내소 20분 전 집합</span></summary>
-        <ul>
-          <li><b>돌핀 커뮤니케이션</b> — 돌고래와 교감(약 20분) · 1인 2,000엔 · <b>초5 이상 + 키 130cm 이상</b> → 지운이(12)·나연이 가능. 수건·양말 지참, 장화(웨이더) 대여</li>
-          <li><b>바다거북 커뮤니케이션</b> — 집게로 거북 먹이 주기(약 20분) · 800엔 · 초3 이상</li>
-          <li><b>아쿠아라이브 백야드 투어</b> — 수족관 뒤쪽 견학(약 40분) · 1,000엔 · 일본어 설명</li>
-        </ul>
-        <div class="links"><a href="https://www.kobesuma-seaworld.jp/guide/discovery/">체험 프로그램 (공식)</a></div>
-      </details>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=神戸須磨シーワールド">지도</a><a href="https://www.kobesuma-seaworld.jp/">공식 사이트</a><a href="https://www.google.com/search?q=고베+스마+씨월드">한국어로 검색</a></div>
-    </div></div>
-
-    <div class="it c-food"><div class="t">12:00</div><div class="b">
-      <h4><span class="tag">점심 · 관내 식당 <em class="rv no">예약 없이</em></span>씨월드 안에서 간단히</h4>
-      <ul>
-        <li><b>포트 다이너</b> <i class="jpn">PORT DINER</i> (오르카 스타디움) · <b>와프</b> <i class="jpn">WHARF</i> (돌핀 스타디움) — 가볍게 먹는 식당·푸드</li>
-        <li><b>블루 오션</b> <i class="jpn">BLUE OCEAN</i> (오르카 스타디움) — 범고래 수조가 보이는 레스토랑, <b>사전 예약제</b></li>
-        <li>12시 정각은 붐비니 <b>11:30 이전</b> 또는 <b>13:00 이후</b>, 공연 시간과 안 겹치게</li>
-      </ul>
-      <div class="links"><a href="https://www.kobesuma-seaworld.jp/facilities/restaurant/">관내 식당 (공식)</a></div>
-    </div></div>
-
-    <div class="it c-move"><div class="t">15:00</div><div class="b">
-      <h4><span class="tag">이동</span>스마카이힌코엔 → 산노미야 → 아리마온천</h4>
-      <p>JR 普通 열차로 <b>三ノ宮</b> 하차 (약 20분) → <b>ミント神戸 1층 산노미야 버스터미널</b>에서 아리마행 고속버스 (약 30~45분, 약 780엔). 15:00에 나오면 <b>16:00 전후 버스 → 16:45 전후 아리마</b>.</p>
-      <div class="box tip" style="margin:6px 0"><b>버스 시간은 전날 확인</b>아리마행은 1시간에 1~3대 정도라 시간표가 중요해요. 씨월드에서 나오는 시간을 버스 출발 <b>약 1시간 전</b>으로 맞추세요. 코인로커에 넣은 가방은 나올 때 꺼내기.</div>
+      <h4><span class="tag">이동 · 30~45분</span>산노미야 버스터미널 → 아리마온천 (고속버스)</h4>
+      <p><b>ミント神戸 1층 산노미야 버스터미널</b>에서 아리마행 고속버스 (약 780엔). 타다(山本通)에서 터미널까지는 <b>내리막 도보 약 15분</b>, 힘들면 <b>택시 5분</b>. 13시대 버스 → <b>14시 전후 아리마</b> 도착.</p>
+      <div class="box tip" style="margin:6px 0"><b>버스 시간은 전날 확인</b>아리마행은 1시간에 1~3대 정도라 시간표가 중요해요. 점심이 늦어지면 한 대 늦춰도 체크인(15:00)에는 충분해요.</div>
       <details><summary>이용 방법 (버스)</summary>
         <ol>
           <li><b>三宮バスターミナル</b>(산노미야 버스터미널, ミント神戸 1층)에서 “有馬温泉” 행 승강장 확인.</li>
-          <li>JR 고속버스 <b>“有馬エクスプレス(Arima Express)”</b> 등 <b>有馬温泉行き</b> 탑승. 시간표는 하루 전 미리 확인.</li>
+          <li>JR 고속버스 <b>“有馬エクスプレス(Arima Express)”</b> 등 <b>有馬温泉行き</b> 탑승.</li>
           <li>ICOCA 되는 노선이 많지만, 안 되면 현금/승차권.</li>
           <li>종점 <b>有馬温泉</b> 하차.</li>
         </ol>
@@ -1213,10 +1198,27 @@ BASE LAYER HOTEL KOBE SANNOMIYA ご担当者様
       <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=三宮バスターミナル&destination=有馬温泉&travelmode=transit">구글맵 경로</a></div>
     </div></div>
 
-    <div class="it c-stay"><div class="t">16:45</div><div class="b">
-      <h4><span class="tag">숙소 · 바로 체크인</span>월광원 유게츠산소 <i class="jpn">月光園 游月山荘</i></h4>
-      <p>버스 정류장에서 도보 약 6분. <b>마을 안 송영(픽업)</b>은 도착 후 전화하면 와줍니다: <b>078-904-1737</b>. 온천마을 산책은 내일 아침으로 미루고 오늘은 <b>바로 체크인</b>.</p>
-      <p><b>체크인하자마자</b>: ① 석식 시간 확인(18:30) ② <b>가족 전세탕</b>(있으면) 예약 — 4명이 같이 들어갈 수 있어요 ③ 자매관 <b>코요칸</b> 대욕장 이용 가능 여부 확인. <a href="#" data-go="stay" data-open="onsen-tips">온천 이용 팁 →</a></p>
+    <div class="it c-stay"><div class="t">14:00</div><div class="b">
+      <h4><span class="tag">도착 · 체크인 전 짐 맡기기</span>월광원 유게츠산소 <i class="jpn">月光園 游月山荘</i></h4>
+      <p>버스 정류장에서 도보 약 6분. <b>마을 안 송영(픽업)</b>은 전화하면 와줘요: <b>078-904-1737</b>. 체크인(15:00) 전이라 프런트에 <b>가방만 맡기고</b> 빈손으로 산책.</p>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=月光園+游月山荘">호텔 지도</a><a href="tel:0789041737">전화 걸기</a></div>
+    </div></div>
+
+    <div class="it c-see"><div class="t">14:15</div><div class="b">
+      <h4><span class="tag">온천마을 산책 · 1시간</span>유모토자카 (湯本坂) 골목</h4><div class="gal"><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Arimaonsen05s2048.jpg/960px-Arimaonsen05s2048.jpg" alt="아리마 온천마을 골목" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>아리마 온천마을 골목 · <a href="https://commons.wikimedia.org/wiki/File:Arimaonsen05s2048.jpg" target="_blank" rel="noopener">📷 663highland · CC BY 2.5</a></figcaption></figure><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Kin-no-yu_Arima_Onsen_2013.jpg/960px-Kin-no-yu_Arima_Onsen_2013.jpg" alt="킨노유 — 앞에 무료 족욕" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>킨노유 — 앞에 무료 족욕 · <a href="https://commons.wikimedia.org/wiki/File:Kin-no-yu_Arima_Onsen_2013.jpg" target="_blank" rel="noopener">📷 Wpcpey · CC BY-SA 4.0</a></figcaption></figure></div>
+      <p>오후라 가게가 다 열려 있어서 산책하기 가장 좋은 시간이에요. 내일은 아침 일찍 씨월드로 가니 <b>오늘 다 보기</b>.</p>
+      <ul>
+        <li><b>金の湯</b>(킨노유) 앞 <b>무료 족욕</b> — 작은 수건 챙기기</li>
+        <li><b>다케나카 정육점 고로케</b> <i class="jpn">竹中肉店</i> — 갓 튀긴 고베규 고로케 1개씩 (간식)</li>
+        <li><b>탄산센베이</b> 굽는 가게 구경 · 선물 사기 · <b>아리마 사이다</b></li>
+        <li><b>炭酸泉源公園</b> — 탄산수가 솟는 원천</li>
+      </ul>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=金の湯+有馬">킨노유</a><a href="https://www.google.com/maps/search/?api=1&query=竹中肉店+有馬">다케나카 정육점</a><a href="#" data-go="food" data-open="f-arima">아리마 먹거리 →</a></div>
+    </div></div>
+
+    <div class="it c-stay"><div class="t">15:15</div><div class="b">
+      <h4><span class="tag">숙소 · 체크인</span>체크인 + 할 일 3가지</h4>
+      <p><b>체크인하자마자</b>: ① 석식 시간 고르기(<b>18:00</b> 추천) ② <b>가족 전세탕</b>(있으면) 예약 — 4명이 같이 들어갈 수 있어요 ③ <b>내일 조식 시작 시간 · 체크아웃 · 아침 송영</b> 확인 (씨월드 때문에 08:15쯤 나가요). <a href="#" data-go="stay" data-open="onsen-tips">온천 이용 팁 →</a></p>
       <div class="box tip" style="margin-bottom:0"><b>온천 매너 (아이들과 미리 공유)</b>
         <ul>
           <li>탕에 들어가기 전 <b>몸 씻기</b> 먼저</li>
@@ -1225,27 +1227,31 @@ BASE LAYER HOTEL KOBE SANNOMIYA ご担当者様
           <li>유카타는 <b>왼쪽 앞자락이 위</b>로</li>
         </ul>
       </div>
-      <p class="jp">체크인이 17시 전후라 출발 전에 예약 사이트 메시지로 <b>“도착 17시쯤, 석식 18:30 희망”</b>을 미리 남겨 두면 안심이에요.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=月光園+游月山荘">호텔 지도</a><a href="tel:0789041737">전화 걸기</a><a href="#" data-go="stay">숙소 정보 →</a></div>
+      <div class="links"><a href="#" data-go="stay">숙소 정보 →</a></div>
     </div></div>
 
-    <div class="it c-stay"><div class="t">17:15</div><div class="b">
-      <h4><span class="tag">온천</span>저녁 먹기 전 온천 한 번</h4>
-      <p>아리마에서도 드문 <b>호텔 전용 원천</b>. 철분 많은 붉은 <b>킨센(金泉)</b>과 투명한 <b>긴센(銀泉)</b>이 유명해요. 하루 종일 걸었으니 따끈하게 몸 풀기.</p>
+    <div class="it c-stay"><div class="t">15:45</div><div class="b">
+      <h4><span class="tag">온천 · 가장 한산한 시간</span>첫 온천</h4>
+      <p>체크인 직후 15~16시대가 가장 한산해요. 아리마에서도 드문 <b>호텔 전용 원천</b> — 철분 많은 붉은 <b>킨센(金泉)</b>. 걷느라 지친 다리 풀기.</p>
     </div></div>
 
-    <div class="it c-food"><div class="t">18:30</div><div class="b">
+    <div class="it c-food"><div class="t">18:00</div><div class="b">
       <h4><span class="tag">석식 (숙소 포함) · 90분</span>창작 일식 뷔페 + 와규 · 사시미</h4>
-      <p>일식 셰프의 제철 뷔페에 <b>흑모와규 요리 1품 + 신선한 사시미 1품</b>이 메인으로 따로 나와요. 오늘은 도착이 늦으니 <b>18:30 시작</b> 추천 (체크인 때 확정).</p>
+      <p>일식 셰프의 제철 뷔페에 <b>흑모와규 요리 1품 + 신선한 사시미 1품</b>이 메인으로 따로 나와요. 오늘은 일찍 도착하니 <b>18:00 시작</b> 추천 (체크인 때 확정).</p>
       <ul>
         <li>어린이 <b>A 요금</b>은 와규 메인 포함, <b>B 요금</b>은 뷔페만</li>
         <li>식사하는 동안 방에 이불이 깔려요</li>
       </ul>
     </div></div>
 
-    <div class="it c-stay"><div class="t">20:00</div><div class="b">
-      <h4><span class="tag">휴식</span>밤 온천 · 다다미 방에서 가족 시간</h4>
-      <p>유카타 입고 온천 한 번 더. 아리마의 밤은 조용해요. 매점·자판기에서 아리마 사이다 한 병.</p>
+    <div class="it c-stay"><div class="t">19:45</div><div class="b">
+      <h4><span class="tag">휴식 · 내일 준비</span>밤 온천 · 다다미 방에서 가족 시간</h4>
+      <p>유카타 입고 온천 한 번 더. 아리마의 밤은 조용해요.</p>
+      <ul>
+        <li>내일 <b>06:45 기상</b> · 씨월드 웹티켓(QR) 확인</li>
+        <li>내일 아침 <b>아리마 → 산노미야 버스 08시대</b> 시간표 확인</li>
+        <li>1박 백팩은 아침에 바로 매고 나갈 수 있게 미리 싸 두기</li>
+      </ul>
     </div></div>
 
   </div>
@@ -1256,192 +1262,165 @@ BASE LAYER HOTEL KOBE SANNOMIYA ご担当者様
   <div class="dayhead">
     <div class="sign">
       <div class="sign-top"><span class="no"><b>4</b><small>일차</small></span><span class="date">12월 19일 토요일</span></div>
-      <p class="name">고베<span>Kobe</span></p>
+      <p class="name">스마 · 고베<span>Suma · Kobe</span></p>
       <div class="band"><a href="#" data-go="d3" class="prev">18 금 <span lang="ja">有馬</span></a><a href="#" data-go="d5" class="next">20 일 <span lang="ja">空港</span></a></div>
     </div>
-    <h2>고베규 · 쇼핑 · 하버랜드 야경</h2>
-    <p>아리마 아침 산책 후 산노미야로. 고베규 점심 → 센터가이 쇼핑 → 저녁엔 하버랜드에서 밥 먹고 모자이크 → 메리켄파크 → 포트타워까지 바닷가 야경 코스.</p>
-    <div class="chips"><span class="chip">베이스레이어 체크인 15:00</span><span class="chip">고베규: 숙소 통해 예약 → 안 되면 오픈런</span><span class="chip">포트타워 시간 지정권</span><span class="chip">여권 지참</span></div>
+    <h2>스마 씨월드 → 쇼핑 · 디저트 → 산노미야 밤 산책</h2>
+    <p>아리마에서 일찍 체크아웃하고 산노미야를 거쳐 <b>스마 씨월드</b>로. 돌고래·범고래 공연 시간에 맞춰 보고, 점심은 관내에서 가볍게. 고베로 돌아와 <b>베이스레이어 체크인</b>(짐은 방에 두고) → 가볍게 나가 17일에 못 한 <b>드럭스토어·돈키호테 쇼핑</b> (중간에 <b>디저트</b>) → 가정식 저녁 → 산노미야 밤 산책·인형뽑기.</p>
+    <div class="chips"><span class="chip">아리마 체크아웃 08:15</span><span class="chip">🐬 11:00 · 🐋 12:00</span><span class="chip">베이스레이어 체크인 15:05</span><span class="chip">디저트 16:30</span><span class="chip">여권 (면세)</span></div>
   </div>
   <div class="tl">
 
-    <div class="it c-stay"><div class="t">07:00</div><div class="b">
-      <h4><span class="tag">아침 온천</span>마지막 온천</h4>
-      <p>아침 온천은 사람이 적어 가장 좋아요.</p>
+    <div class="it c-stay"><div class="t">06:45</div><div class="b">
+      <h4><span class="tag">아침 온천 · 짧게</span>마지막 온천</h4>
+      <p>아침 온천은 사람이 적어 가장 좋아요. 오늘은 일정이 빠르니 20~30분만.</p>
     </div></div>
 
-    <div class="it c-food"><div class="t">08:00</div><div class="b">
+    <div class="it c-food"><div class="t">07:15</div><div class="b">
       <h4><span class="tag">조식 (포함)</span>일식·양식 뷔페</h4>
-      <p>가볍게 먹는 가족이면 죽·미소시루·빵·과일 정도로. 점심이 고베규라 배 비워두기!</p>
+      <p>조식 시작 시간에 맞춰 바로. 씨월드에선 간식만 먹고 점심이 15시 넘어서라 <b>든든하게</b> 먹어 두기.</p>
     </div></div>
 
-    <div class="it c-see"><div class="t">09:00</div><div class="b">
-      <h4><span class="tag">온천마을 아침 산책 · 선택 40분</span>유모토자카 (湯本坂) 골목</h4><div class="gal"><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Arimaonsen05s2048.jpg/960px-Arimaonsen05s2048.jpg" alt="아리마 온천마을 골목" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>아리마 온천마을 골목 · <a href="https://commons.wikimedia.org/wiki/File:Arimaonsen05s2048.jpg" target="_blank" rel="noopener">📷 663highland · CC BY 2.5</a></figcaption></figure><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Kin-no-yu_Arima_Onsen_2013.jpg/960px-Kin-no-yu_Arima_Onsen_2013.jpg" alt="킨노유 — 앞에 무료 족욕" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>킨노유 — 앞에 무료 족욕 · <a href="https://commons.wikimedia.org/wiki/File:Kin-no-yu_Arima_Onsen_2013.jpg" target="_blank" rel="noopener">📷 Wpcpey · CC BY-SA 4.0</a></figcaption></figure></div>
-      <p>어제는 바로 체크인했으니 체크아웃 전에 짧게. 가게는 대부분 <b>9~10시 오픈</b>이라 문 연 곳 위주로.</p>
-      <ul>
-        <li><b>金の湯</b>(킨노유) 앞 <b>무료 족욕</b> — 작은 수건 챙기기</li>
-        <li><b>탄산센베이</b> 선물 사기 · <b>아리마 사이다</b></li>
-        <li><b>다케나카 정육점 고로케</b> <i class="jpn">竹中肉店</i> — 문 열었으면 고베규 고로케 1개씩 (점심이 고베규라 조금만!)</li>
-        <li><b>炭酸泉源公園</b> — 탄산수가 솟는 원천</li>
-      </ul>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=金の湯+有馬">킨노유</a><a href="https://www.google.com/maps/search/?api=1&query=竹中肉店+有馬">다케나카 정육점</a><a href="#" data-go="food" data-open="f-arima">아리마 먹거리 →</a></div>
-    </div></div>
-
-    <div class="it c-move"><div class="t">10:00</div><div class="b">
-      <h4><span class="tag">이동</span>체크아웃 → 아리마온천 → 산노미야 (버스 30~45분)</h4>
-      <p>체크아웃 시간 확인 후 송영 요청 → 버스 정류장. 어제의 역순으로 <b>三宮バスターミナル</b> 하차. 선물(탄산센베이)은 아침 산책 때.</p>
-      <p class="jp">고베규 <b>오픈런</b>이면 <b>10:00 전후 버스</b>를 꼭 타기 (10:45 산노미야 도착 목표). 예약이 됐으면 예약 시간에 맞춰 한 대 늦춰도 OK.</p>
-    </div></div>
-
-    <div class="it c-stay"><div class="t">10:45</div><div class="b">
-      <h4><span class="tag">도착 · 두 팀으로</span>짐 맡기기 + 고베규 줄서기 동시에</h4>
-      <ul>
-        <li><b>엄마 + 나연</b>: 버스에서 내리자마자 고베규 가게로 → <b>오픈 전 줄</b> (예약했으면 생략)</li>
-        <li><b>아빠 + 지운</b>: 1박 가방을 <b>베이스레이어 호텔</b>에 맡기고 합류 (버스터미널에서 도보 약 10분, 택시 5분). 체크인(15:00) 전이니 프런트 보관 → 어제 맡긴 큰 짐과 함께</li>
-      </ul>
-      <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=三宮バスターミナル&destination=BASE+LAYER+HOTEL+KOBE+SANNOMIYA&travelmode=walking">도보 경로</a></div>
-    </div></div>
-
-    <div class="it c-food"><div class="t">11:00</div><div class="b">
-      <h4><span class="tag">점심 · 고베규! <em class="rv rec">예약 권장 · 안 되면 오픈런</em></span>철판 스테이크 런치</h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Kobe_steak_preparation%2C_in_kobe%2C_01.jpg/960px-Kobe_steak_preparation%2C_in_kobe%2C_01.jpg" alt="고베규 철판 스테이크 (사진은 다른 가게)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>고베규 철판 스테이크 (사진은 다른 가게) · <a href="https://commons.wikimedia.org/wiki/File:Kobe_steak_preparation,_in_kobe,_01.jpg" target="_blank" rel="noopener">📷 sailko · CC BY-SA 3.0</a></figcaption></figure>
-      <p>저녁보다 <b>런치 코스가 훨씬 저렴</b>. 셰프가 눈앞 철판에서 구워주는 방식이라 아이들에게도 볼거리. 토요일이라 그냥 가면 줄이 길어요.</p>
-      <div class="box tip"><b>예약 작전 (순서대로)</b>
-        <ol>
-          <li><b>숙소 통해 전화 예약</b>: 16일 렘 플러스 체크인 때 프런트에 가게 이름·날짜·인원을 보여주며 부탁 (<a href="#" data-go="ph">회화 탭 · 식당</a> 마지막 문장). 안 되면 18일 월광원 프런트에 한 번 더</li>
-          <li><b>오픈런</b>: 예약이 안 되면 <b>스테이크랜드 고베관</b> 오픈(보통 11:00, 전날 구글맵 확인) <b>15~20분 전</b>부터 줄. 버스터미널에서 가장 가까워요</li>
-          <li><b>대안 — 줄이 40분 넘거나 이미 마감</b>: 바로 아래 대안으로</li>
-        </ol>
-      </div>
-      <ul>
-        <li><b>스테이크랜드 고베관</b> <i class="jpn">ステーキランド 神戸館</i> — JR 산노미야역 앞, 가성비 · <b>오픈런 1순위</b></li>
-        <li><b>고베규 스테이크 이시다</b> <i class="jpn">神戸牛ステーキ Ishida.</i> — 산노미야·기타노자카에 지점 여러 개 · <b>온라인 예약</b>이 쉬워 전화 대신 직접 예약해도 OK</li>
-        <li><b>모리야 본점</b> <i class="jpn">モーリヤ 本店</i> — 1885년 창업 노포, 고급 · 예약 권장</li>
-      </ul>
-      <details class="r"><summary><b>대안: 줄이 길거나 마감일 때</b><span>예약 없이 갈 수 있는 곳 · 모두 도보 10분 안</span></summary>
-        <ul>
-          <li><b>이시다 다른 지점</b> — 산노미야에 여러 곳이라 한 곳이 꽉 차도 다른 지점은 자리가 있을 수 있어요 (전화·구글맵 “예약” 버튼)</li>
-          <li><b>고베규는 저녁으로 미루기</b> — 점심은 가볍게 (레드락 로스트비프 덮밥·그릴 잇페이 비프카츠), 저녁에 이시다·모리야 <b>저녁 예약</b> (점심보다 비싸요)</li>
-          <li>그냥 배고플 때: <b>모리모리 스시</b>(회전초밥, 오픈 11:00) · <b>못코스 라멘</b> · <b>나가타 혼조켄 소바메시</b></li>
-        </ul>
-        <div class="links"><a href="#" data-go="food" data-open="f-beef">고베규 가게 전체 →</a></div>
+    <div class="it c-move"><div class="t">08:15</div><div class="b">
+      <h4><span class="tag">이동 · 약 1시간 45분</span>아리마 → 산노미야 → 스마카이힌코엔</h4>
+      <p>체크아웃 → 송영 요청 → <b>08시대 버스</b>로 <b>三宮バスターミナル</b> (30~45분) → JR <b>普通</b>으로 <b>須磨海浜公園</b> (15~20분) → 도보 5분. <b>10:00~10:15 입장</b> 목표.</p>
+      <ol>
+        <li><b>아리마온천 → 산노미야</b>: 어제의 역순 고속버스 (토요일 시간표 전날 확인)</li>
+        <li><b>1박 백팩</b>: 아빠가 그대로 매고 관람 (아이들은 각자 작은 가방). 무거우면 <b>메인 엔트런스 옆 코인로커</b>(선택)</li>
+        <li><b>JR 三ノ宮</b> → <b>JR神戸線 西明石・姫路方面</b> → <b>普通(Local)</b> 탑승 — <b>쾌속·신쾌속은 스마카이힌코엔에 안 서요!</b></li>
+        <li><b>須磨海浜公園</b> 하차 → 남쪽(바다 쪽)으로 도보 약 5분</li>
+      </ol>
+      <details><summary>다른 길</summary>
+        <p>산요전철 <b>月見山(츠키미야마)</b>역 도보 약 10분, JR <b>須磨</b>역 도보 약 20분. 4명이 짐이 있으면 산노미야에서 택시(약 25~30분, 대당 약 5,000엔대)도 방법.</p>
       </details>
-      <p class="jp">고베규 런치 1인 대략 5,000~15,000엔 (부위·그램 따라). 아이들은 양이 적은 코스나 1인분을 나눠도 되는지 물어보기.</p>
-      <div class="links"><a href="#" data-go="food" data-open="f-beef">맛집 탭 · 고베규 더 보기 →</a></div>
+      <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=有馬温泉&destination=三宮バスターミナル&travelmode=transit">버스 경로</a><a href="https://www.google.com/maps/dir/?api=1&origin=三ノ宮駅&destination=神戸須磨シーワールド&travelmode=transit">JR 경로</a></div>
     </div></div>
 
-    <div class="it c-shop"><div class="t">13:00</div><div class="b">
-      <h4><span class="tag">쇼핑 ① 신발 · 시계</span>ABC마트 (뉴발란스 · 호카)</h4>
-      <p>센터가이의 <b>ABC-MART</b> <i class="jpn">ABC-MART 三宮センター街店</i>에서 4명 워킹화 신어 보기. 발 길이 측정 → <b>뉴발란스 880·1080</b>, <b>호카 본디·클리프톤</b> 비교. 1시간 잡기.</p>
+    <div class="it c-see"><div class="t">10:10</div><div class="b">
+      <h4><span class="tag">아쿠아리움 · 양지연 추천 <em class="rv rec">웹티켓 권장</em></span>고베 스마 씨월드 <i class="jpn">神戸須磨シーワールド</i></h4><div class="gal"><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/%E7%A5%9E%E6%88%B8%E9%A0%88%E7%A3%A8%E3%82%B7%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89_%E3%82%B7%E3%83%A3%E3%83%81%E3%81%AE%E3%83%A2%E3%83%8B%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88.jpg/960px-%E7%A5%9E%E6%88%B8%E9%A0%88%E7%A3%A8%E3%82%B7%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89_%E3%82%B7%E3%83%A3%E3%83%81%E3%81%AE%E3%83%A2%E3%83%8B%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88.jpg" alt="입구의 범고래 조형물" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>입구의 범고래 조형물 · <a href="https://commons.wikimedia.org/wiki/File:%E7%A5%9E%E6%88%B8%E9%A0%88%E7%A3%A8%E3%82%B7%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89_%E3%82%B7%E3%83%A3%E3%83%81%E3%81%AE%E3%83%A2%E3%83%8B%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88.jpg" target="_blank" rel="noopener">📷 Haiskawa · CC BY 4.0</a></figcaption></figure><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Kobe_Suma_Sea_World_3.jpg/960px-Kobe_Suma_Sea_World_3.jpg" alt="바다 옆 범고래 공연장" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>바다 옆 범고래 공연장 · <a href="https://commons.wikimedia.org/wiki/File:Kobe_Suma_Sea_World_3.jpg" target="_blank" rel="noopener">📷 Totti · CC BY-SA 4.0</a></figcaption></figure></div>
+      <p>2024년 6월 문을 연 수족관. <b>서일본에서 유일하게 범고래(오르카)</b>를 볼 수 있고, 범고래·돌고래 공연이 하이라이트. 오늘은 <b>공연 2개(돌핀 11:00 · 오르카 12:00)</b>를 중심으로 짜고, 더 보고 싶으면 오후 회차를 더해요.</p>
+      <div class="shows" role="list" aria-label="공연 시간">
+        <div class="show" role="listitem"><b class="sn">🐬 돌핀</b><span class="st"><em class="on">11:00</em><em>13:00</em><em>15:15</em></span></div>
+        <div class="show" role="listitem"><b class="sn">🐋 오르카</b><span class="st"><em class="on">12:00</em><em>14:00</em><em>16:30</em></span></div>
+      </div>
+      <p class="jp" style="margin-top:0">진한 칸 = 오늘 보는 회차 · 나머지는 오후 회차</p>
+      <p class="jp">공연 시간은 날씨·동물 상태에 따라 바뀌거나 취소될 수 있어요. 전날 밤 공식 스케줄 달력에서 <b>12월 19일</b> 다시 확인.</p>
+      <ol>
+        <li><b>10:10~10:40</b> 입장 → 실내 <b>아쿠아라이브</b> 한 바퀴 (따뜻해요)</li>
+        <li><b>10:40</b> 돌핀 스타디움 자리 잡기 → <b>11:00 🐬 돌핀 퍼포먼스</b> (바다 배경 점프 쇼)</li>
+        <li><b>11:20</b> 오르카 스타디움으로 이동 · <b>수중 관람창</b>에서 범고래 가까이 → <b>11:35 자리 잡기</b></li>
+        <li><b>12:00 🐋 오르카 퍼포먼스</b> — 오늘의 메인. 앞줄은 물벼락 구역일 수 있어 <b>겨울엔 중간~뒤쪽</b></li>
+        <li><b>12:30~</b> 간식 · <b>SUMA COLLECTION</b> · 기념품 (공연 직후엔 숍이 붐벼요)</li>
+        <li><b>선택</b>: <b>13:00 🐬 2회차</b>나 <b>14:00 🐋 2회차</b>를 다른 자리(수중창 쪽)에서 한 번 더 → <b>14:30 출발</b></li>
+      </ol>
       <ul>
-        <li>호카 재고가 없으면 구글맵 <b>“ABC-MART 三宮”</b>으로 다른 지점, 또는 다이마루 고베 신발 매장</li>
-        <li>⌚ 시계는 이때 <b>다이마루 고베</b> 시계 매장에서 17일 난바 빅카메라 가격과 비교 · 구매 (센터가이 서쪽 끝에서 도보 5분)</li>
-        <li>면세는 <b>신는 사람 여권</b>으로 · 신발 상자는 접어서 짐 줄이기 (또는 상자째 위탁 가방에)</li>
+        <li>영업시간은 보통 <b>10:00~18:00</b>(날짜별 · 입장 마감 1시간 전) — 공식 달력에서 19일 확인</li>
+        <li>요금(12~3월 예정가): 어른(고등학생 이상) <b>2,900엔</b> · 초·중학생 <b>1,700엔</b>. 날짜별 요금제라 달력에서 확인</li>
+        <li><b>날짜 지정 웹티켓</b> 권장 — 입구에서 <b>스마트폰 QR</b>. 전날까지 무료 취소, 당일 취소는 100% 수수료</li>
+        <li><b>재입관</b>: 당일에 한해 가능 — 나가기 전 출구 직원에게 말하면 손등에 도장</li>
+        <li>바닷바람이 차요 → 목도리·장갑</li>
       </ul>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ABC-MART+三宮">ABC마트 지도</a><a href="#" data-go="sh" data-open="shoes">쇼핑 탭 · 신발 →</a><a href="#" data-go="sh" data-open="watch">시계 →</a></div>
+      <div class="box warn" style="margin-top:6px"><b>⏱ 일찍 나오고 싶으면</b>12:30 오르카 공연이 끝나고 간식·기념품만 사서 <b>13:15 출발</b> → 14:00 숙소에 짐만 맡기고(체크인은 15:00부터) 먼저 점심. 아이들이 배고파하면 이쪽으로.
+        <div class="links"><a href="https://www.kobesuma-seaworld.jp/guide/schedule/">🐋 공연 스케줄 (공식)</a><a href="https://www.kobesuma-seaworld.jp/guide/time/">영업시간</a><a href="https://www.kobesuma-seaworld.jp/facilities/area/">관내 지도</a></div>
+      </div>
+      <details class="r"><summary><b>💰 유료 체험 (선택 · 사전 구매)</b><span>방문 3일 전부터 판매 · 오르카 스타디움 1F 안내소 20분 전 집합</span></summary>
+        <ul>
+          <li><b>돌핀 커뮤니케이션</b> — 돌고래와 교감(약 20분) · 1인 2,000엔 · <b>초5 이상 + 키 130cm 이상</b> → 지운이(12)·나연이 가능. 수건·양말 지참, 장화(웨이더) 대여</li>
+          <li><b>바다거북 커뮤니케이션</b> — 집게로 거북 먹이 주기(약 20분) · 800엔 · 초3 이상</li>
+          <li><b>아쿠아라이브 백야드 투어</b> — 수족관 뒤쪽 견학(약 40분) · 1,000엔 · 일본어 설명</li>
+        </ul>
+        <p class="jp">공연 시간(11:00·12:00)과 겹치지 않는 회차로 고르기.</p>
+        <div class="links"><a href="https://www.kobesuma-seaworld.jp/guide/discovery/">체험 프로그램 (공식)</a></div>
+      </details>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=神戸須磨シーワールド">지도</a><a href="https://www.kobesuma-seaworld.jp/">공식 사이트</a><a href="https://www.google.com/search?q=고베+스마+씨월드">한국어로 검색</a></div>
     </div></div>
 
-    <div class="it c-shop"><div class="t">14:00</div><div class="b">
-      <h4><span class="tag">쇼핑 ② 필수</span>유니클로 고베산노미야점</h4>
-      <p><b>효고현 최대 매장</b>(2024년 오픈). 센터가이 <b>동쪽 입구</b> 쪽 건물 1~5층. 일본 한정 UT·콜라보, 히트텍·후리스는 한국보다 저렴한 경우 많음.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ユニクロ+神戸三宮店">지도</a></div>
+    <div class="it c-food"><div class="t">12:30</div><div class="b">
+      <h4><span class="tag">가벼운 점심 · 관내 <em class="rv no">예약 없이</em></span>씨월드 안에서 간단히</h4>
+      <ul>
+        <li><b>포트 다이너</b> <i class="jpn">PORT DINER</i> (오르카 스타디움) · <b>와프</b> <i class="jpn">WHARF</i> (돌핀 스타디움) — 핫도그·버거·감자튀김·음료 같은 가벼운 푸드</li>
+        <li>오후에 고베에서 <b>디저트</b>를 먹을 거라 <b>가볍게</b>. 2회차 공연 전 자리 잡기 전에 먹기</li>
+        <li>음식물 반입은 원칙적으로 안 돼요</li>
+      </ul>
+      <div class="links"><a href="https://www.kobesuma-seaworld.jp/facilities/restaurant/">관내 식당 (공식)</a></div>
     </div></div>
 
-    <div class="it c-shop"><div class="t">14:45</div><div class="b">
-      <h4><span class="tag">쇼핑 ③ 필수</span>드럭스토어 (센터가이)</h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Matsumoto_KiYoshi_Himeji-Ekimae_01.jpg/960px-Matsumoto_KiYoshi_Himeji-Ekimae_01.jpg" alt="마츠모토키요시 (사진은 히메지 지점)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>마츠모토키요시 (사진은 히메지 지점) · <a href="https://commons.wikimedia.org/wiki/File:Matsumoto_KiYoshi_Himeji-Ekimae_01.jpg" target="_blank" rel="noopener">📷 Corpse Reviver · CC BY-SA 3.0</a></figcaption></figure>
-      <p>센터가이 안에 <b>마츠모토키요시, 다이코쿠드럭, 코쿠민, 선드럭</b> 등이 몰려 있어요. 2~3곳 가격 비교 추천.</p>
+    <div class="it c-move"><div class="t">14:30</div><div class="b">
+      <h4><span class="tag">이동 · 약 35분 · 마지막 JR</span>스마카이힌코엔 → 산노미야 → 숙소</h4>
+      <p>JR <b>普通</b> <b>三ノ宮・大阪方面</b> → <b>三ノ宮</b> 하차 (약 20분). 이게 이번 여행 <b>마지막 JR</b>이에요 (ICOCA 환불은 오늘 밤). 북쪽 출구로 나와 <b>토어로드 오르막 도보 7~10분</b>, 짐이 있거나 피곤하면 택시 5분.</p>
+      <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=須磨海浜公園駅&destination=BASE+LAYER+HOTEL+KOBE+SANNOMIYA&travelmode=transit">구글맵 경로</a></div>
+    </div></div>
+
+    <div class="it c-stay"><div class="t">15:05</div><div class="b">
+      <h4><span class="tag">체크인 · 짐 받기</span>베이스레이어 호텔 체크인</h4>
+      <ol>
+        <li><b>BASE LAYER HOTEL</b> 체크인(15:00~) — Booking Reference No. <b>2610310100621462316</b> · YUHYUN LEE</li>
+        <li>18일에 맡긴 <b>캐리어 2개</b>(+쇼핑백) 받기 (보관표 제시) → 1박 백팩까지 <b>전부 방에</b></li>
+        <li>15분쯤 쉬고 <b>작은 가방·장바구니만</b> 들고 가볍게 출발 (15:30)</li>
+      </ol>
+      <div class="phrase"><div class="ja">チェックインお願いします。18日に荷物を預けたYUHYUN LEEです。</div><div class="rd">첵쿠인 오네가이시마스. 쥬-하치니치니 니모츠오 아즈케타 YUHYUN LEE 데스.</div><div class="en">Check-in, please. I'm YUHYUN LEE. I left our luggage here on the 18th.</div><div class="ko">체크인할게요. 18일에 짐을 맡긴 YUHYUN LEE예요.</div></div>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=BASE+LAYER+HOTEL+KOBE+SANNOMIYA">지도</a><a href="#" data-go="stay" data-open="luggage">짐 맡기기 →</a></div>
+    </div></div>
+
+    <div class="it c-shop"><div class="t">15:30</div><div class="b">
+      <h4><span class="tag">쇼핑 ① 필수 · 걸으면서</span>토어로드 → 센터가이 드럭스토어</h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Matsumoto_KiYoshi_Himeji-Ekimae_01.jpg/960px-Matsumoto_KiYoshi_Himeji-Ekimae_01.jpg" alt="마츠모토키요시 (사진은 히메지 지점)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>마츠모토키요시 (사진은 히메지 지점) · <a href="https://commons.wikimedia.org/wiki/File:Matsumoto_KiYoshi_Himeji-Ekimae_01.jpg" target="_blank" rel="noopener">📷 Corpse Reviver · CC BY-SA 3.0</a></figcaption></figure>
+      <p>숙소에서 <b>토어로드를 내려가 도보 약 7분</b>이면 <b>센터가이</b>(지붕 있는 상점가). 산노미야 ↔ 모토마치 방향으로 걸으며 쇼핑. <b>마츠모토키요시, 다이코쿠드럭, 코쿠민, 선드럭</b> 등 2~3곳 가격 비교.</p>
       <p class="jp">면세(환급)는 <b>한 매장에서 하루 5,000엔 이상</b>부터 → 한 곳에 몰아서 사는 게 유리.</p>
     </div></div>
 
-    <div class="it c-food"><div class="t">15:45</div><div class="b">
-      <h4><span class="tag">디저트 타임 · 양지연 추천 <em class="rv no">예약 없이 · 줄서기</em></span>하브스 고베 크레피 산노미야점 <i class="jpn">HARBS 神戸クレフィ三宮店</i></h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/HARBS%2C_Nagoya%2C_Aichi%2C_Japan%2C_%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%89%E3%83%9E%E3%83%AD%E3%83%B3%E3%82%B1%E3%83%BC%E3%82%AD%2C_%E3%83%9E%E3%83%AD%E3%83%B3%E3%82%BF%E3%83%AB%E3%83%88%2C_%E3%83%9F%E3%83%AB%E3%82%AF%E3%83%AC%E3%83%BC%E3%83%97%2C_%E3%83%8F%E3%83%BC%E3%83%96%E3%82%B9%2C_%E6%A0%84%E6%9C%AC%E5%BA%97_%2815869571285%29.jpg/960px-HARBS%2C_Nagoya%2C_Aichi%2C_Japan%2C_%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%89%E3%83%9E%E3%83%AD%E3%83%B3%E3%82%B1%E3%83%BC%E3%82%AD%2C_%E3%83%9E%E3%83%AD%E3%83%B3%E3%82%BF%E3%83%AB%E3%83%88%2C_%E3%83%9F%E3%83%AB%E3%82%AF%E3%83%AC%E3%83%BC%E3%83%97%2C_%E3%83%8F%E3%83%BC%E3%83%96%E3%82%B9%2C_%E6%A0%84%E6%9C%AC%E5%BA%97_%2815869571285%29.jpg" alt="하브스 밀크레이프·케이크 (나고야 본점 사진)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>하브스 밀크레이프·케이크 (나고야 본점 사진) · <a href="https://commons.wikimedia.org/wiki/File:HARBS,_Nagoya,_Aichi,_Japan,_%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%89%E3%83%9E%E3%83%AD%E3%83%B3%E3%82%B1%E3%83%BC%E3%82%AD,_%E3%83%9E%E3%83%AD%E3%83%B3%E3%82%BF%E3%83%AB%E3%83%88,_%E3%83%9F%E3%83%AB%E3%82%AF%E3%83%AC%E3%83%BC%E3%83%97,_%E3%83%8F%E3%83%BC%E3%83%96%E3%82%B9,_%E6%A0%84%E6%9C%AC%E5%BA%97_(15869571285).jpg" target="_blank" rel="noopener">📷 bryan... from Taipei, Taiwan · CC BY-SA 2.0</a></figcaption></figure>
-      <p>과일을 듬뿍 넣은 <b>밀크레이프</b>로 유명한 케이크 카페. 조각이 커서 <b>2명이 1조각 나눠 먹기</b> 좋아요. 산노미야역 남쪽 <b>크레피 산노미야 1층</b>, 센터가이에서 도보 약 5분.</p>
+    <div class="it c-food"><div class="t">16:30</div><div class="b">
+      <h4><span class="tag">디저트 · 쇼핑 중 휴식 <em class="rv no">예약 없이</em></span>하브스 밀크레이프 <i class="jpn">HARBS 神戸クレフィ三宮店</i></h4>
+      <p>센터가이 동쪽 끝, 산노미야역 앞 <b>크레피 산노미야 1층</b>(三宮町 1-4-3). 과일 듬뿍 <b>밀크레이프</b>로 유명한 케이크 카페. 조각이 커서 <b>2명이 1조각</b>이면 충분하고, 저녁(18:45)까지 시간이 있어 부담 없어요.</p>
       <ul>
-        <li>영업 대략 11:00~20:00 (방문 전 확인) · 주말 오후엔 대기 줄이 생길 수 있어요</li>
-        <li>쇼핑 짐 내려놓고 쉬어 가는 타이밍. 줄이 길면 케이크만 <b>포장</b> <i class="jpn">テイクアウト</i>해서 호텔에서</li>
-        <li>대안: <b>프로인드리브</b>(옛 교회 건물 빵집 카페, 산노미야역 북쪽 · 저녁 일찍 닫음) · 백화점 지하 디저트 사서 호텔에서</li>
+        <li>영업 대략 <b>11:00~20:00</b> (확인 필요) · 토요일 오후는 <b>대기</b>가 있을 수 있어요 → 길면 포장해서 호텔에서</li>
+        <li><b>대안</b>: <b>모로조프</b>(고베 원조 치즈케이크) · <b>고베 프란츠</b>(항아리 푸딩, 포장) · 센터가이·산노미야 지하상가의 카페</li>
       </ul>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=HARBS+神戸クレフィ三宮店">지도</a><a href="https://www.google.com/search?q=하브스+고베+밀크레이프">한국어로 검색</a></div>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=HARBS+神戸クレフィ三宮店">지도</a><a href="#" data-go="food" data-open="f-wife">맛집 탭 · 디저트 →</a></div>
     </div></div>
 
-    <div class="it c-shop"><div class="t">16:30</div><div class="b">
-      <h4><span class="tag">쇼핑 ④ 필수</span>돈키호테 산노미야</h4>
+    <div class="it c-shop"><div class="t">17:15</div><div class="b">
+      <h4><span class="tag">쇼핑 ② 필수</span>돈키호테 · 못 산 것 보충</h4>
       <ul>
-        <li><b>돈키호테 산노미야점</b> <i class="jpn">ドン・キホーテ 三宮店</i> — 기본 매장 (과자·화장품·잡화)</li>
         <li><b>돈키호테 산노미야 오파 센터가이점</b> <i class="jpn">ドン・キホーテ 三宮オーパ センター街店</i> — 10~20대 취향 (10:00~21:00). 딸 추천</li>
+        <li><b>돈키호테 산노미야점</b> <i class="jpn">ドン・キホーテ 三宮店</i> — 과자·화장품·잡화 기본 매장</li>
+        <li>17일에 못 산 <b>유니클로·ABC마트·로프트</b> 보충</li>
+        <li>짐이 많아지면 <b>18:15쯤 숙소에 한 번 두고</b> 저녁 먹으러 (숙소 ↔ 산노미야 도보 7~10분)</li>
       </ul>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ドン・キホーテ+三宮">돈키호테 지도</a></div>
     </div></div>
 
-    <div class="it c-play"><div class="t">17:15</div><div class="b">
-      <h4><span class="tag">인형뽑기 2차</span>산노미야 게임센터</h4>
-      <p>구글맵 <b>“クレーンゲーム 三宮”</b> 검색 → 리뷰 사진으로 경품 확인 후 이동.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=クレーンゲーム+三宮">주변 게임센터 찾기</a></div>
-    </div></div>
-
-
-    <div class="it c-stay"><div class="t">18:00</div><div class="b">
-      <h4><span class="tag">숙소</span>베이스레이어 체크인 · 쇼핑 짐 내려놓기</h4>
-      <p>컴포트 트윈룸(타입 A). 맡겨 둔 큰 짐 받고, 쇼핑백만 내려놓고 바로 하버랜드로. <b>ICOCA 잔액 털기</b>용으로 가는 길 편의점에서 내일 아침거리 사기 (아래 참고).</p>
-    </div></div>
-
-    <div class="it c-move"><div class="t">18:20</div><div class="b">
-      <h4><span class="tag">이동 + ICOCA 환불 · 마지막 JR</span>JR 산노미야 → 고베역 (3정거장, 약 5분)</h4>
-      <p>오늘 이 JR이 이번 여행 <b>마지막 JR 탑승</b>이라 고베역에서 바로 ICOCA를 환불해요. 고베공항엔 JR역이 없어서 JR역 창구에서만 돼요.</p>
-      <ol>
-        <li>산노미야 편의점에서 내일 아침거리를 <b>ICOCA로</b> 사서 잔액을 <b>200엔 정도</b>만 남기기 (JR 운임 약 170엔)</li>
-        <li><b>JR 三ノ宮 → 神戸</b>(고베역, 3정거장) 하차</li>
-        <li>JR 고베역 <b>みどりの窓口</b>에서 4장 환불 → 보증금 <b>1장당 500엔</b> 현금 수령</li>
-        <li>창구가 닫혀 있거나 줄이 길면 → 내일 아침 포트라이너 타기 전 <b>JR 산노미야역</b> 창구에서 다시 시도</li>
-      </ol>
-      <div class="links"><a href="#" data-go="tr" data-open="icoca-refund">ICOCA 환불 자세히 →</a></div>
-    </div></div>
-
-    <div class="it c-food"><div class="t">19:00</div><div class="b">
-      <h4><span class="tag">저녁 · 바다 보이는 곳 <em class="rv rec">주말이라 예약 권장</em></span>하버랜드 모자이크 저녁</h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Kobe%27s_Harborland%2C_Hyogo%2C_Japan_--_Night_View_of_Mosaic_Ferris_Wheel.jpg/960px-Kobe%27s_Harborland%2C_Hyogo%2C_Japan_--_Night_View_of_Mosaic_Ferris_Wheel.jpg" alt="하버랜드 모자이크 대관람차 야경" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>하버랜드 모자이크 대관람차 야경 · <a href="https://commons.wikimedia.org/wiki/File:Kobe%27s_Harborland,_Hyogo,_Japan_--_Night_View_of_Mosaic_Ferris_Wheel.jpg" target="_blank" rel="noopener">📷 Brett Fagan · CC0</a></figcaption></figure>
-      <p>JR 고베역에서 남쪽으로 도보 5분, <b>umie 모자이크</b> 2~3층에 바다·관람차가 보이는 식당이 모여 있어요. 점심이 고베규였으니 저녁은 가볍게. <b>창가 자리</b>를 원하면 구글맵 “예약” 버튼이나 전화로.</p>
+    <div class="it c-food"><div class="t">18:45</div><div class="b">
+      <h4><span class="tag">저녁 · 양지연 추천 <em class="rv no">예약 없이</em></span>고베 가정식 고항야 베이네 <i class="jpn">ごはんや 米音</i></h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Deep-fried_horse_mackerel_lunch_001.jpg/960px-Deep-fried_horse_mackerel_lunch_001.jpg" alt="전갱이 튀김 정식 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>전갱이 튀김 정식 (예시) · <a href="https://commons.wikimedia.org/wiki/File:Deep-fried_horse_mackerel_lunch_001.jpg" target="_blank" rel="noopener">📷 Ocdp · CC0</a></figcaption></figure>
+      <p>산노미야역 남동쪽 <b>御幸通 6-1</b>(フキ三宮ビル) 2층의 정식집. 파란 나선 계단을 올라가면 다이쇼 로망 분위기의 차분한 가게. 주메뉴 2가지를 고르는 <b>“베이네 정식”(1,000엔 전후)</b> — 전갱이 튀김·일본식 함박 같은 <b>가정식 반찬</b>이라 아이들도 무난.</p>
       <ul>
-        <li><b>오스테리아 가우단테</b> <i class="jpn">オステリア ガウダンテ</i> (3F · 이탈리안) — 피자·파스타라 아이들 무난, 창밖으로 관람차·야경</li>
-        <li><b>나카나곤</b> <i class="jpn">中納言 神戸ハーバーランド店</i> (3F · 이세에비 일식) — 가족 외식 분위기, 야경 쪽 넓은 자리</li>
-        <li><b>프란츠 카페</b> <i class="jpn">Frantz Cafe</i> (3F · 캐주얼 이탈리안) — 바다 보이는 카페 식사, 디너 1인 2,500엔 전후~</li>
-        <li><b>더 오이스터 바 코베</b> <i class="jpn">THE OYSTER BAR KOBE</i> (2F) — 굴·이탈리안, 부부 취향 · 바다 전망 좋은 편</li>
-        <li>빨리 먹고 싶으면 <b>umie 푸드코트</b> (카무쿠라 라멘 등) — 예약 없이</li>
+        <li>영업 <b>11:00~15:00 · 17:00~20:00</b> · <b>일요일 휴무</b> (토요일 OK) · 전화 <b>078-862-1510</b></li>
+        <li><b>20:00 마감</b>이라 <b>19:00 전에 입장</b> — 주문 마감은 그보다 이를 수 있어요</li>
+        <li>점심이 가벼웠으니 <b>정식 1인 1개</b>로 든든하게 (디저트를 많이 먹었으면 나눠서)</li>
       </ul>
-      <details class="r"><summary><b>양지연 추천 대안: 야키토리 잇카쿠</b> <em class="rv rec">예약 권장 · 25석</em> <i class="jpn">焼鳥 一角</i><span>JR 모토마치역 쪽 · 메리켄파크까지 도보 약 10분</span></summary>
-        <p>원래 17일 저녁에 넣었던 비장탄 꼬치구이 집. 하버랜드 대신 이곳에서 먹고 <b>모토마치 → 메리켄파크 → 포트타워</b> 순서로 걸어도 동선이 좋아요 (모자이크 관람차는 메리켄파크에서 바다 건너로 보여요). 17:00~24:00 · 수요일 휴무(토요일 OK) · 1인 약 4,000~5,000엔 · 핫페퍼 예약.</p>
-        <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=焼鳥+一角+神戸+下山手通">지도</a><a href="https://www.hotpepper.jp/strJ003872129/">핫페퍼 예약</a></div>
+      <details class="r"><summary><b>저녁 대안 · 토요일 밤에 여는 곳</b><span>산노미야 · 모토마치</span></summary>
+        <ul>
+          <li><b>돈카츠 킨톤</b> <i class="jpn">とんかつ きんとん</i> — 양지연 추천, 17:00~21:00 (17일에 갔으면 패스)</li>
+          <li><b>고베 모토마치 별관 모란원</b> <i class="jpn">別館牡丹園</i> <em class="rv rec">주말 예약 권장</em> — 광둥요리 노포, 17:00~21:00 (주문 마감 20:00)</li>
+          <li><b>그릴 주지야</b> <i class="jpn">グリル十字屋</i> — 1933년 창업 요쇼쿠(하이라이스·비프카츠). 토요일 저녁 17:30~19:30</li>
+          <li><b>모리모리 스시</b> — 회전초밥, 늦게까지 · <b>야키토리 잇카쿠</b> — 부부 취향 꼬치구이 (핫페퍼 예약)</li>
+        </ul>
+        <div class="links"><a href="#" data-go="food" data-open="f-family">맛집 탭 · 가족 추천 →</a></div>
       </details>
-      <p class="jp">식당 구성·층은 바뀔 수 있어요. 출발 전 umie 공식 사이트 “グルメ”나 구글맵에서 영업 여부 확인.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=umie+MOSAIC+レストラン">모자이크 식당 지도</a><a href="https://umie.jp/">umie 공식</a></div>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ごはんや+米音+御幸通">지도</a><a href="https://tabelog.com/hyogo/A2801/A280101/28076673/">타베로그</a><a href="tel:0788621510">전화 걸기</a></div>
     </div></div>
 
-    <div class="it c-see"><div class="t">20:15</div><div class="b">
-      <h4><span class="tag">야경 · 양지연 추천 <em class="rv no">예약 없이</em></span>모자이크 대관람차 · umie 일루미네이션</h4>
-      <p>약 12만 개 LED로 반짝이는 <b>모자이크 대관람차</b>(4인승 · 1바퀴 약 10분, 토요일 23:00까지). 겨울 일루미네이션, <b>umie</b> 쇼핑몰(못 산 것 보충)도 같은 곳.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=神戸ハーバーランドumie+モザイク">모자이크 지도</a></div>
-    </div></div>
-
-    <div class="it c-see"><div class="t">20:45</div><div class="b">
-      <h4><span class="tag">바닷가 산책 · 15분</span>메리켄파크 · BE KOBE</h4>
-      <p>모자이크에서 바닷가 산책로를 따라 동쪽으로 <b>도보 약 15분</b>. 조명이 켜진 <b>“BE KOBE”</b> 조형물 앞에서 야경 가족사진 → 바로 옆 빨간 포트타워로.</p>
+    <div class="it c-play"><div class="t">20:00</div><div class="b">
+      <h4><span class="tag">가볍게 · 숙소 근처</span>산노미야 밤 산책 · 인형뽑기 · ICOCA 환불</h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Ikuta_jinja_kobe_15.jpg/960px-Ikuta_jinja_kobe_15.jpg" alt="이쿠타 신사" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>이쿠타 신사 · <a href="https://commons.wikimedia.org/wiki/File:Ikuta_jinja_kobe_15.jpg" target="_blank" rel="noopener">📷 Hyppolyte de Saint-Rambert · CC BY-SA 4.0</a></figcaption></figure>
       <ul>
-        <li><b>스타벅스 고베 메리켄파크점</b> <i class="jpn">スターバックス 神戸メリケンパーク店</i> — 바다 앞 유리 건물 카페. 디저트·따뜻한 음료 (보통 8:00~22:00, 방문 전 확인)</li>
+        <li><b>이쿠타 신사</b> <i class="jpn">生田神社</i> — 산노미야 한가운데 큰 신사, 밤에도 경내 산책 가능</li>
+        <li>🧸 <b>센터가이 게임센터 인형뽑기</b> — 구글맵 <b>“クレーンゲーム 三宮”</b> → 리뷰 사진으로 경품 확인. 예산은 미리 정하기</li>
+        <li>🎫 <b>ICOCA 환불</b>: 편의점에서 내일 아침거리를 <b>ICOCA 잔액으로</b> 사서 잔액 털기 → <b>JR 三ノ宮駅 みどりの窓口</b>에서 4장 환불 (보증금 1장 500엔). 창구가 닫혀 있으면 내일 아침 포트라이너 타기 전에 (<a href="#" data-go="tr" data-open="icoca-refund">자세히</a>)</li>
+        <li>디저트 사 와서 <b>방에서 마지막 밤 디저트 파티</b></li>
       </ul>
-      <div class="links"><a href="https://www.google.com/maps/dir/?api=1&origin=umie+MOSAIC&destination=BE+KOBE+メリケンパーク&travelmode=walking">도보 경로</a><a href="https://www.google.com/maps/search/?api=1&query=スターバックス+神戸メリケンパーク店">스타벅스 메리켄파크</a></div>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=生田神社">이쿠타 신사</a><a href="https://www.google.com/maps/search/?api=1&query=クレーンゲーム+三宮">게임센터 찾기</a></div>
     </div></div>
 
-    <div class="it c-see"><div class="t">21:10</div><div class="b">
-      <h4><span class="tag">야경 · 양지연 추천 <em class="rv must">시간 지정 티켓 필수</em></span>고베 포트타워 옥상 데크</h4><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Kobe_Port_Tower_and_Maritime_Museum%2C_November_2016.jpg/960px-Kobe_Port_Tower_and_Maritime_Museum%2C_November_2016.jpg" alt="고베 포트타워(빨간 탑)와 해양박물관" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>고베 포트타워(빨간 탑)와 해양박물관 · <a href="https://commons.wikimedia.org/wiki/File:Kobe_Port_Tower_and_Maritime_Museum,_November_2016.jpg" target="_blank" rel="noopener">📷 Martin Falbisoner · CC BY-SA 4.0</a></figcaption></figure>
-      <p>2024년 리뉴얼한 고베 상징 빨간 타워. <b>유리로 둘러싼 옥상 데크</b>에서 보는 야경이 압권. 9:00~23:00 (입장 마감 22:30).</p>
-      <ul>
-        <li>요금(전망층+옥상 데크): 고등학생 이상 약 1,200엔 · 초등학생 약 500엔 → 딸(중학생)은 요금 구분 확인</li>
-        <li><b>날짜·시간 지정 티켓 필수</b> → 21:00~21:30 입장으로 미리 예매 (당일 저녁 먹으면서 예매도 가능)</li>
-        <li>입장 마감 22:30 · 옥상 데크는 바람이 세니 목도리 단단히</li>
-                  <li>내려오면 <b>택시로 호텔</b>까지 약 10분 (1,000엔대) — 메리켄파크 앞이나 큰길에서 잡기. 걸으면 오르막 25분</li>
-      </ul>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=神戸ポートタワー">지도</a><a href="https://www.kobe-port-tower.com/">공식 사이트 · 예매</a><a href="https://www.google.com/search?q=고베+포트타워+예매">한국어로 검색</a></div>
-    </div></div>
-
-    <div class="it c-stay"><div class="t">22:00</div><div class="b">
+    <div class="it c-stay"><div class="t">21:45</div><div class="b">
       <h4><span class="tag">숙소</span>짐 싸기 · 내일 준비</h4>
       <ul>
         <li><b>면세(환급) 물품은 따로 한 가방에</b> — 공항 세관에서 꺼내 보여줘야 해요</li>
@@ -1452,7 +1431,7 @@ BASE LAYER HOTEL KOBE SANNOMIYA ご担当者様
       </ul>
     </div></div>
 
-    <div class="it c-food"><div class="t">22:30</div><div class="b">
+    <div class="it c-food"><div class="t">22:15</div><div class="b">
       <h4><span class="tag">부부 타임 🍶 · 마지막 밤 · 선택</span>마무리 한잔</h4>
       <p>아이들은 방에서 쉬고, 부부는 호텔 근처에서 가볍게 한 잔 (내일 07:00 기상!). 베이스레이어가 토어로드라 산노미야 술집 거리까지 금방이에요.</p>
       <div class="links"><a href="#" data-go="food" data-open="f-night">맛집 탭 · 부부 한잔 →</a></div>
@@ -1587,13 +1566,11 @@ BASE LAYER HOTEL KOBE SANNOMIYA ご担当者様
       <p class="jp">각 가게 이름 옆 스티커: <em class="rv must">예약 필수</em> <em class="rv rec">예약 권장</em> <em class="rv no">예약 없이</em> (줄서기 · 회전 빠름)</p>
       <table>
         <tr><th>구분</th><th>곳 (날짜)</th><th>예약 실패 · 줄 길 때 대안</th></tr>
-        <tr><td><em class="rv must">필수</em></td><td>고베 포트타워 (19일 밤 21시대) — 시간 지정권</td><td>당일 예매 가능 · 매진이면 <b>메리켄파크·모자이크 야경</b>으로 충분</td></tr>
-        <tr><td><em class="rv rec">권장</em></td><td><b>고베규 점심</b> (19일 토) — 숙소 통해 전화 예약 · 이시다 온라인</td><td><b>스테이크랜드 오픈런</b> → 이시다 다른 지점 → 고베규는 저녁으로 미루기</td></tr>
-        <tr><td><em class="rv rec">권장</em></td><td>하버랜드 모자이크 저녁 (19일 19:00 · 창가) — 구글맵 예약/전화</td><td>umie 푸드코트 · 대안 <b>야키토리 잇카쿠</b>(모토마치 · 핫페퍼)</td></tr>
-        <tr><td><em class="rv rec">권장</em></td><td>고베 타다 (17일 11:30 점심 · 20석) — 핫페퍼</td><td>대기 이름 적기 → <b>나가타 혼조켄 소바메시</b> · 난킨마치</td></tr>
-        <tr><td><em class="rv rec">권장</em></td><td>모리야 · 와코쿠 · 카니도라쿠(코스)</td><td>참고용 고급 옵션</td></tr>
-        <tr><td><em class="rv rec">권장</em></td><td>스마 씨월드 웹티켓 (18일) · 유료 체험은 3일 전부터</td><td>현장 매표소 (줄 감수)</td></tr>
-        <tr><td><em class="rv no">없이</em></td><td>레드락 (16일) · 코메다 (18일) · 쿠시카츠 다루마 (17일 저녁) · 하브스 (19일) · 회전초밥 · 라멘 · 교자 · 쿠시카츠 · 우동</td><td>아래 <b>웨이팅 규칙</b>대로 바로 다음 후보로</td></tr>
+        <tr><td><em class="rv rec">권장</em></td><td>고베 타다 (18일 금 11:30 점심 · 20석) — 핫페퍼</td><td>대기 이름 적기 → <b>나가타 혼조켄 소바메시</b> · 난킨마치</td></tr>
+        <tr><td><em class="rv rec">권장</em></td><td>스마 씨월드 웹티켓 (19일 토) · 유료 체험은 3일 전부터</td><td>현장 매표소 (줄 감수)</td></tr>
+        <tr><td><em class="rv no">없이</em></td><td>고항야 베이네 (19일 저녁 · <b>20:00 마감</b> → 19:00 전 입장)</td><td>별관 모란원 · 그릴 주지야 · 모리모리 스시</td></tr>
+        <tr><td><em class="rv rec">권장</em></td><td>별관 모란원 (주말 저녁) · 모리야 · 와코쿠 (고베규 · 참고)</td><td>참고용 옵션</td></tr>
+        <tr><td><em class="rv no">없이</em></td><td>레드락 (16일) · 코메다 (17일) · 하코타로 (17일 · 대기표) · 킨톤 (17일 17:00) · 회전초밥 · 라멘 · 교자 · 우동</td><td>아래 <b>웨이팅 규칙</b>대로 바로 다음 후보로</td></tr>
       </table>
     </div>
 
@@ -1631,17 +1608,17 @@ BASE LAYER HOTEL KOBE SANNOMIYA ご担当者様
 
     <div class="card">
       <h4>✉️ 예약 문의 메일 — 영어</h4>
-      <pre class="msg">Subject: Lunch reservation request - Sat, Dec 19, 4 people
+      <pre class="msg">Subject: Dinner reservation request - Sat, Dec 19, 4 people
 
 Hello,
 
-I would like to make a lunch reservation.
+I would like to make a dinner reservation.
 
 - Date: Saturday, December 19, 2026
-- Time: 11:30 (any time between 11:15 and 12:30 is fine)
+- Time: 19:00 (any time between 18:30 and 19:30 is fine)
 - Party: 4 people (2 adults, 1 teenager aged 15, 1 child aged 12)
-- Course: Kobe beef lunch course
-  (Could you tell me the courses and prices?)
+- Menu: a la carte is fine
+  (Please let me know if a course is required.)
 - Allergies: none
 - Name / phone / email: ○○
 
@@ -1654,17 +1631,17 @@ Thank you very much.
 
     <div class="card">
       <h4>✉️ 예약 문의 메일 — 일본어</h4>
-      <pre class="msg">件名：12月19日（土）ランチ予約のお願い（4名）
+      <pre class="msg">件名：12月19日（土）ディナー予約のお願い（4名）
 
 ご担当者様
 
-ランチの予約をお願いしたくご連絡いたしました。
+ディナーの予約をお願いしたくご連絡いたしました。
 
-・日時：2026年12月19日（土）11:30
-　（11:15〜12:30の間で空いている時間でも大丈夫です）
+・日時：2026年12月19日（土）19:00
+　（18:30〜19:30の間で空いている時間でも大丈夫です）
 ・人数：4名（大人2名、15歳1名、12歳1名）
-・コース：神戸牛ランチコース
-　（コース内容と料金を教えていただけますか）
+・メニュー：単品で大丈夫です
+　（コースが必要な場合は教えていただけますか）
 ・アレルギー：なし
 ・お名前／電話／メール：○○
 
@@ -1679,10 +1656,10 @@ Thank you very much.
 
   <h3>고베 · 산노미야</h3>
 
-  <details class="cat" id="f-wife"><summary>💝 양지연 추천 <small>8곳 · 일정에 반영</small></summary>
-    <details class="r" data-q="고베 타다 소바메시 기타노"><summary><b>고베 타다</b> <em class="rv rec">예약 권장</em> <i class="jpn">神戸 北野 多田</i><span>스테이크 소바메시 · 17일 점심</span></summary>
+  <details class="cat" id="f-wife"><summary>💝 양지연 추천 <small>10곳 · 일정에 반영</small></summary>
+    <details class="r" data-q="고베 타다 소바메시 기타노"><summary><b>고베 타다</b> <em class="rv rec">예약 권장</em> <i class="jpn">神戸 北野 多田</i><span>스테이크 소바메시 · 18일 점심</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Sobameshi_%288697338872%29.jpg/960px-Sobameshi_%288697338872%29.jpg" alt="소바메시 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>소바메시 (예시) · <a href="https://commons.wikimedia.org/wiki/File:Sobameshi_(8697338872).jpg" target="_blank" rel="noopener">📷 Masayuki (Yuki) Kawagishi · CC BY 2.0</a></figcaption></figure>
       <p>기타노자카 아래 야마모토도리(山本通 2-9-15)의 철판 오코노미야키·소바메시 집. 11:00~20:00(주문 마감 19:00) · 20석 · 어린이 OK · 금연 · 핫페퍼 온라인 예약.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=神戸+北野+多田+山本通">지도</a><a href="https://www.hotpepper.jp/strJ004612188/">핫페퍼 예약</a><a href="#" data-go="d2">17일 일정</a></div>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=神戸+北野+多田+山本通">지도</a><a href="https://www.hotpepper.jp/strJ004612188/">핫페퍼 예약</a><a href="#" data-go="d3">18일 일정</a></div>
     </details>
     <details class="r" data-q="레드락 고베본점"><summary><b>레드락 고베본점</b> <em class="rv no">예약 없이</em> <i class="jpn">レッドロック 本店</i><span>로스트비프 덮밥 · 16일 저녁</span></summary>
       <p>한큐 고베산노미야역 옆 JR 고가 아래. 로스트비프·스테이크 덮밥. 11:30~21:30 · 연중무휴 · 예약 없이 줄서기(회전 빠름). 고베규 전문점은 아니에요.</p>
@@ -1697,25 +1674,50 @@ Thank you very much.
       <p>가나자와에서 시작한 회전초밥. JR 산노미야역 도보 3분, 산노미야 OPA2 9층. 11:00~23:00(입장 마감 21:30) · 금연 · 1인 3,000엔 이하.</p>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=もりもり寿し+三宮OPA2店">지도</a></div>
     </details>
-    <details class="r" data-q="겐로쿠 스시 도톤보리점"><summary><b>스시 ② 겐로쿠 스시 도톤보리점</b> <em class="rv no">예약 없이</em> <i class="jpn">元禄寿司 道頓堀店</i><span>오사카 회전초밥 · 17일 저녁 옵션</span></summary>
-      <p>회전초밥을 처음 만든 곳으로 알려진 체인. 도톤보리 큰길의 커다란 초밥 간판이 표시. 저렴하고 빨라 아이들 점심으로 부담 없어요. 11:15~22:30 전후.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=元禄寿司+道頓堀店">지도</a><a href="#" data-go="food" data-open="f-namba">난바 맛집 →</a></div>
+    <details class="r" data-q="고베 고항야 베이네 정식"><summary><b>고항야 베이네</b> <em class="rv no">예약 없이</em> <i class="jpn">ごはんや 米音</i><span>고베 가정식 정식 · 19일 저녁</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Deep-fried_horse_mackerel_lunch_001.jpg/960px-Deep-fried_horse_mackerel_lunch_001.jpg" alt="전갱이 튀김 정식 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>전갱이 튀김 정식 (예시) · <a href="https://commons.wikimedia.org/wiki/File:Deep-fried_horse_mackerel_lunch_001.jpg" target="_blank" rel="noopener">📷 Ocdp · CC0</a></figcaption></figure>
+      <p>산노미야역 남동쪽 <b>御幸通 6-1</b>(フキ三宮ビル) 2층. 주메뉴 2가지를 고르는 <b>“베이네 정식”(1,000엔 전후)</b> — 전갱이 튀김·일본식 함박 같은 가정식 반찬. 영업 <b>11:00~15:00 · 17:00~20:00</b> · <b>일요일 휴무</b> (078-862-1510).</p>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ごはんや+米音+御幸通">지도</a><a href="https://tabelog.com/hyogo/A2801/A280101/28076673/">타베로그</a><a href="#" data-go="d4">19일 일정</a></div>
     </details>
-    <details class="r" data-q="하브스 고베 밀크레이프"><summary><b>하브스</b> <em class="rv no">예약 없이</em> <i class="jpn">HARBS 神戸クレフィ三宮店</i><span>밀크레이프 · 19일 15:30</span></summary>
+    <details class="r" data-q="고베 모토마치 우나쥬 장어"><summary><b>우나쥬 (장어덮밥)</b> <em class="rv no">예약 없이 · 현금</em> <i class="jpn">うな重</i><span>간사이식 숯불 장어 · 참고 (이번 일정엔 없음)</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Unaju_at_Unagi-Naruse.jpg/960px-Unaju_at_Unagi-Naruse.jpg" alt="장어 찬합 우나쥬 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>장어 찬합 우나쥬 (예시) · <a href="https://commons.wikimedia.org/wiki/File:Unaju_at_Unagi-Naruse.jpg" target="_blank" rel="noopener">📷 妖精書士 · CC0</a></figcaption></figure>
+      <p>JR 모토마치역 도보 3분(元町通 2-5-14). 찌지 않고 바로 굽는 <b>간사이식</b>이라 겉이 바삭. 대략 11:00~19:00 <b>쉬는 시간 없이</b> 영업 · <b>월요일 휴무</b> · 약 20석 · <b>현금</b> 준비.</p>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=うな重+元町通2-5-14">지도</a><a href="https://tabelog.com/hyogo/A2801/A280102/28005701/">타베로그</a></div>
+    </details>
+    <details class="r" data-q="고베 돈카츠 킨톤"><summary><b>돈카츠 킨톤 고베점</b> <em class="rv no">예약 없이</em> <i class="jpn">とんかつ きんとん 神戸店</i><span>돈카츠 백명점 · 17일 저녁</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Tonkatsu_Teishoku_20200715-02.jpg/960px-Tonkatsu_Teishoku_20200715-02.jpg" alt="돈카츠 정식 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>돈카츠 정식 (예시) · <a href="https://commons.wikimedia.org/wiki/File:Tonkatsu_Teishoku_20200715-02.jpg" target="_blank" rel="noopener">📷 円周率３パーセント · CC BY-SA 4.0</a></figcaption></figure>
+      <p>산노미야 <b>상프라자 지하 1층</b>. 나가사키 브랜드 돼지 <b>芳寿豚</b>로 유명하고 타베로그 돈카츠 백명점에 꼽힌 곳. 대략 11:00~15:00 · 17:00~21:00 (주말 점심 15:30까지). 마지막은 <b>가츠 오차즈케</b>로.</p>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=とんかつ+きんとん+神戸店+さんプラザ">지도</a><a href="https://3nomiya.net/shops/kinton.html">매장 안내</a><a href="#" data-go="d2">17일 일정</a></div>
+    </details>
+    <details class="r" data-q="하브스 고베 밀크레이프"><summary><b>하브스</b> <em class="rv no">예약 없이</em> <i class="jpn">HARBS 神戸クレフィ三宮店</i><span>밀크레이프 · 19일 쇼핑 중 디저트 16:30</span></summary>
       <p>과일 듬뿍 밀크레이프로 유명한 케이크 카페. 크레피 산노미야 1층(三宮町 1-4-3). 영업 대략 11:00~20:00(확인 필요). 조각이 커서 2명이 1조각.</p>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=HARBS+神戸クレフィ三宮店">지도</a><a href="#" data-go="d4">19일 일정</a></div>
     </details>
-    <details class="r" data-q="스타벅스 고베 기타노이진칸점"><summary><b>스타벅스 기타노이진칸점</b> <em class="rv no">예약 없이</em> <i class="jpn">スターバックス 神戸北野異人館店</i><span>100년 넘은 서양관 · 17일 오전</span></summary>
+    <details class="r" data-q="스타벅스 고베 기타노이진칸점"><summary><b>스타벅스 기타노이진칸점</b> <em class="rv no">예약 없이</em> <i class="jpn">スターバックス 神戸北野異人館店</i><span>100년 넘은 서양관 · 18일 오전</span></summary>
       <p>기타노 언덕의 옛 서양식 저택(北野物語館) 안 스타벅스. 기타노 산책 중 음료·디저트. 보통 8:00~22:00(확인 필요).</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=スターバックス+神戸北野異人館店">지도</a><a href="#" data-go="d2">17일 일정</a></div>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=スターバックス+神戸北野異人館店">지도</a><a href="#" data-go="d3">18일 일정</a></div>
     </details>
-    <details class="r" data-q="스타벅스 고베 메리켄파크점"><summary><b>스타벅스 메리켄파크점</b> <em class="rv no">예약 없이</em> <i class="jpn">スターバックス 神戸メリケンパーク店</i><span>바다 앞 · 19일 밤</span></summary>
-      <p>메리켄파크 바닷가의 유리 건물. 포트타워 야경 보며 디저트. 보통 8:00~22:00(확인 필요).</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=スターバックス+神戸メリケンパーク店">지도</a><a href="#" data-go="d4">19일 일정</a></div>
+    <details class="r" data-q="스타벅스 고베 메리켄파크점"><summary><b>스타벅스 메리켄파크점</b> <em class="rv no">예약 없이</em> <i class="jpn">スターバックス 神戸メリケンパーク店</i><span>바다 앞 · 17일 밤</span></summary>
+      <p>메리켄파크 바닷가의 유리 건물. 포트타워 조명 보며 따뜻한 음료. 보통 8:00~22:00(확인 필요).</p>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=スターバックス+神戸メリケンパーク店">지도</a><a href="#" data-go="d2">17일 일정</a></div>
     </details>
   </details>
 
-  <details class="cat" id="f-beef"><summary>🥩 고베규 <small>4곳 · 19일 점심</small></summary>
+  <details class="cat" id="f-family"><summary>👨‍👩‍👧‍👦 가족 추천 · 평점 좋은 곳 <small>6곳 · 대안용</small></summary>
+    <details class="r" data-q="고베 모토마치 별관 모란원"><summary><b>고베 모토마치 별관 모란원</b> <em class="rv rec">주말 예약 권장</em> <i class="jpn">神戸元町別館牡丹園</i><span>광둥요리 노포 · 원탁</span></summary>
+      <p>난킨마치 옆 고베 대표 중화 노포. 원탁에서 단품을 나눠 먹을 수 있어 <b>가족 외식</b>에 딱. 저녁 17:00~21:00(주문 마감 20:00) · <b>수요일 휴무</b>. 토요일 저녁은 붐벼요.</p>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=神戸元町別館牡丹園">지도</a></div>
+    </details>
+    <details class="r" data-q="고베 그릴 주지야 하이라이스"><summary><b>그릴 주지야</b> <em class="rv no">예약 없이</em> <i class="jpn">グリル十字屋</i><span>1933년 창업 요쇼쿠 · 하이라이스</span></summary>
+      <p>구거류지 쪽 오래된 양식집. 하이라이스·비프카츠·크로켓 등 아이들도 좋아하는 메뉴. <b>토요일 저녁은 17:30~19:30</b>처럼 짧을 수 있어 일찍 가기.</p>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=グリル十字屋+神戸">지도</a></div>
+    </details>
+    <ul style="margin:8px 4px">
+      <li><b>모리모리 스시</b> — 회전초밥, 11:00~23:00 (<a href="#" data-go="food" data-open="f-wife">양지연 추천</a>)</li>
+      <li><b>그릴 잇페이</b> — 오므라이스·비프카츠 (<a href="#" data-go="food" data-open="f-yoshoku">요쇼쿠</a>)</li>
+      <li><b>나가타 혼조켄</b> — 소바메시, 아이들 인기 (<a href="#" data-go="food" data-open="f-kobe-b">B급 구루메</a>)</li>
+      <li><b>못코스</b> — 고베 소울 라멘, 늦게까지 (<a href="#" data-go="food" data-open="f-ramen">라멘</a>)</li>
+    </ul>
+  </details>
+
+  <details class="cat" id="f-beef"><summary>🥩 고베규 <small>4곳 · 참고 · 이번 일정엔 런치 생략</small></summary>
     <details class="r" data-q="스테이크랜드 고베관 고베"><summary><b>스테이크랜드 고베관</b> <em class="rv rec">예약 확인 · 오픈런</em> <i class="jpn">ステーキランド 神戸館</i><span>가성비 · 산노미야역 앞</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Kobe_steak_preparation%2C_in_kobe%2C_01.jpg/960px-Kobe_steak_preparation%2C_in_kobe%2C_01.jpg" alt="고베규 철판 스테이크 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>고베규 철판 스테이크 (예시) · <a href="https://commons.wikimedia.org/wiki/File:Kobe_steak_preparation,_in_kobe,_01.jpg" target="_blank" rel="noopener">📷 sailko · CC BY-SA 3.0</a></figcaption></figure>
       <p>셰프가 눈앞 철판에서 구워주는 고베규 런치가 비교적 합리적인 가격. 관광객이 많아 <b>토요일은 오픈 전부터 줄</b> → 오픈 시간 맞춰 가거나 예약 시도.</p>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ステーキランド+神戸館">지도</a></div>
@@ -1729,7 +1731,7 @@ Thank you very much.
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=モーリヤ+本店+神戸">지도</a></div>
     </details>
     <details class="r" data-q="와코쿠 고베 기타노"><summary><b>와코쿠</b> <em class="rv rec">예약 권장</em> <i class="jpn">和黒 (wakkoqu)</i><span>기타노 · 고급</span></summary>
-      <p>기타노 이진칸 쪽 고급 고베규 철판. 17일 오전 기타노 산책과 묶을 수도 있지만 점심 예산이 크니 참고만.</p>
+      <p>기타노 이진칸 쪽 고급 고베규 철판. 18일 오전 기타노 산책과 묶을 수도 있지만 점심 예산이 크니 참고만.</p>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=和黒+北野">지도</a></div>
     </details>
     <p class="jp" style="margin:8px 4px 4px">고베규 런치 1인 대략 5,000~15,000엔. “고베규(神戸ビーフ)”와 그냥 “와규(和牛)”는 가격이 크게 다르니 메뉴판 확인.</p>
@@ -1772,7 +1774,7 @@ Thank you very much.
     </details>
   </details>
 
-  <details class="cat" id="f-nankin"><summary>🥢 난킨마치 길거리 <small>17일 점심 대안</small></summary>
+  <details class="cat" id="f-nankin"><summary>🥢 난킨마치 길거리 <small>17일 밤 산책 길 · 19일 간식</small></summary>
     <details class="r" data-q="로쇼키 부타만 고베 난킨마치"><summary><b>로쇼키 부타만</b> <em class="rv no">예약 없이</em> <i class="jpn">老祥記</i><span>일본 최초 부타만</span></summary>
       <p>한입 크기 고기만두. 줄이 길지만 회전이 빨라요. 1인 3개 정도가 적당.</p>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=老祥記">지도</a></div>
@@ -1799,7 +1801,7 @@ Thank you very much.
   </details>
 
   <h3>아리마 온천</h3>
-  <details class="cat" id="f-arima"><summary>♨️ 아리마 먹거리 <small>19일 아침 산책</small></summary>
+  <details class="cat" id="f-arima"><summary>♨️ 아리마 먹거리 <small>18일 오후 산책</small></summary>
     <details class="r" data-q="다케나카 정육점 고로케 아리마"><summary><b>다케나카 정육점 고로케</b> <em class="rv no">예약 없이</em> <i class="jpn">竹中肉店</i><span>고베규 고로케</span></summary>
       <p>주문하면 바로 튀겨주는 고베규 고로케·멘치카츠. 아리마 산책 필수 간식.</p>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=竹中肉店+有馬">지도</a></div>
@@ -1812,56 +1814,25 @@ Thank you very much.
     </details>
   </details>
 
-  <h3>오사카 난바 · 도톤보리 (17일 오후 · 저녁)</h3>
-  <details class="cat" id="f-namba"><summary>🍢 난바 · 도톤보리 전체 <small>11곳 · 17일 저녁</small></summary>
-    <details class="r" data-q="쿠시카츠 다루마 도톤보리점 오사카"><summary><b>쿠시카츠 다루마 도톤보리점</b> <em class="rv no">예약 없이</em> <i class="jpn">串カツだるま 道頓堀店</i><span>원조 꼬치튀김</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Kushikatsu_-_Shinsekai_%2828289215848%29.jpg/960px-Kushikatsu_-_Shinsekai_%2828289215848%29.jpg" alt="쿠시카츠 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>쿠시카츠 (예시) · <a href="https://commons.wikimedia.org/wiki/File:Kushikatsu_-_Shinsekai_(28289215848).jpg" target="_blank" rel="noopener">📷 Ajay Suresh · CC BY 2.0</a></figcaption></figure>
-      <p>오사카 쿠시카츠 대표 가게. 공용 소스 통에 <b>두 번 찍기 금지(二度づけ禁止)</b>. 양배추는 무료 리필, 소스 떠먹는 데 써요. 아이들 만족도 최고.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=串カツだるま+道頓堀店">지도</a></div>
+  <h3>오사카 우메다 (17일 점심)</h3>
+  <details class="cat" id="f-umeda"><summary>🍣 우메다 스시 · 식당가 <small>10곳 · 17일 점심</small></summary>
+    <details class="r" data-q="하코타로 오사카 그랜드프론트 회전초밥"><summary><b>스시 ① 하코타로 오사카점</b> <em class="rv no">대기표</em> <i class="jpn">函太郎 大阪店</i><span>하코다테 회전초밥 · 그랜드 프론트 · 일정에 반영</span></summary>
+      <p>JR 오사카역 도보 1분, 그랜드 프론트 오사카 안. 홋카이도 네타가 좋아 식사 시간엔 늘 줄 → <b>11:30 이전 / 13:30 이후</b>가 수월.</p>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=函太郎+大阪店+グランフロント">지도</a><a href="#" data-go="d2">17일 일정</a></div>
     </details>
-    <details class="r" data-q="도톤보리 카무쿠라 라멘 오사카"><summary><b>도톤보리 카무쿠라 라멘</b> <em class="rv no">예약 없이</em> <i class="jpn">どうとんぼり神座</i><span>오사카 태생 라멘</span></summary>
-      <p>배추가 듬뿍 든 맑은 간장 돈코츠. 맵지 않고 순해서 가족 모두 OK. 테이블 위 부추김치로 맛 조절.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=どうとんぼり神座+道頓堀">지도</a></div>
+    <details class="r" data-q="우오신 우메다 붓치기리 스시"><summary><b>스시 ② 우오신 우메다점</b> <em class="rv no">예약 없이</em> <i class="jpn">元祖ぶっち切り寿司 魚心 梅田店</i><span>밥을 덮는 큰 네타 · 가성비</span></summary>
+      <p>네타가 밥보다 훨씬 큰 “붓치기리” 스시로 유명. 점심 정식·치라시가 저렴. 한큐 우메다역 도보 약 5분.</p>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=魚心+梅田店">지도</a></div>
     </details>
-    <details class="r" data-q="킨류 라멘 오사카 도톤보리"><summary><b>킨류 라멘</b> <em class="rv no">예약 없이</em> <i class="jpn">金龍ラーメン</i><span>용 간판 · 24시간</span></summary>
-      <p>지붕 위 거대한 용이 상징. 돈코츠 국물에 김치·부추·마늘 무한 셀프. 줄 없이 빨리 먹고 싶을 때.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=金龍ラーメン+道頓堀">지도</a></div>
+    <details class="r" data-q="기슈 야이치 한큐우메다"><summary><b>스시 ③ 기슈 야이치 한큐우메다 본점</b> <em class="rv no">예약 없이</em> <i class="jpn">紀州 弥一 阪急うめだ本店</i><span>백화점 식당가 · 가족 동반</span></summary>
+      <p>한큐백화점 우메다 본점 식당가. 좌석이 넉넉하고 차분해 아이 동반 가족에게 편해요.</p>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=紀州弥一+阪急うめだ本店">지도</a></div>
     </details>
-    <details class="r" data-q="도톤보리 이마이 우동 오사카"><summary><b>도톤보리 이마이 우동</b> <em class="rv no">예약 없이</em> <i class="jpn">道頓堀 今井</i><span>기츠네 우동 명가</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Kitsune_udon_at_Tenn%C5%8Dji.jpg/960px-Kitsune_udon_at_Tenn%C5%8Dji.jpg" alt="기츠네 우동 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>기츠네 우동 (예시) · <a href="https://commons.wikimedia.org/wiki/File:Kitsune_udon_at_Tenn%C5%8Dji.jpg" target="_blank" rel="noopener">📷 ノボホショコロトソ · CC BY 4.0</a></figcaption></figure>
-      <p>다시마·가다랑어 다시가 깊은 오사카 우동의 정석. 달게 조린 유부를 올린 <b>기츠네 우동</b>이 대표. 차분한 분위기라 쉬어 가기 좋아요.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=道頓堀今井">지도</a></div>
+    <details class="r" data-q="스시이치 오사카에키마에 제4빌딩"><summary><b>스시 ④ 스시이치</b> <em class="rv no">예약 없이</em> <i class="jpn">すしいち 大阪駅前第4ビル店</i><span>직장인 점심 스시 정식</span></summary>
+      <p>오사카역 앞 빌딩 지하의 빠르고 저렴한 스시 정식. 줄이 길 때 대안.</p>
+      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=すしいち+大阪駅前第4ビル">지도</a></div>
     </details>
-    <details class="r" data-q="겐로쿠 스시 도톤보리점 오사카"><summary><b>겐로쿠 스시 도톤보리점</b> <em class="rv no">예약 없이</em> <i class="jpn">元禄寿司 道頓堀店</i><span>회전초밥 발상</span></summary>
-      <p>회전초밥을 처음 만든 곳으로 알려진 체인. 저렴하고 빨라 아이들 점심으로 부담 없음.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=元禄寿司+道頓堀店">지도</a></div>
-    </details>
-    <details class="r" data-q="카니도라쿠 도톤보리 본점 오사카"><summary><b>카니도라쿠 도톤보리 본점</b> <em class="rv rec">코스면 예약</em> <i class="jpn">かに道楽 道頓堀本店</i><span>게 요리 · 움직이는 게 간판</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/%E3%81%8B%E3%81%AB%E9%81%93%E6%A5%BD%E6%9C%AC%E5%BA%97_-_panoramio.jpg/960px-%E3%81%8B%E3%81%AB%E9%81%93%E6%A5%BD%E6%9C%AC%E5%BA%97_-_panoramio.jpg" alt="카니도라쿠 움직이는 게 간판" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>카니도라쿠 움직이는 게 간판 · <a href="https://commons.wikimedia.org/wiki/File:%E3%81%8B%E3%81%AB%E9%81%93%E6%A5%BD%E6%9C%AC%E5%BA%97_-_panoramio.jpg" target="_blank" rel="noopener">📷 C.L. Kao (eddie5150) · CC BY-SA 3.0</a></figcaption></figure>
-      <p>도톤보리 상징인 움직이는 대형 게 간판 본점. 게 코스 런치는 가격대가 있지만 기억에 남는 한 끼.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=かに道楽+道頓堀本店">지도</a></div>
-    </details>
-    <details class="r" data-q="홋쿄쿠세이 신사이바시 본점 오사카"><summary><b>홋쿄쿠세이 신사이바시 본점</b> <em class="rv no">예약 없이</em> <i class="jpn">北極星 心斎橋本店</i><span>오므라이스 원조</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Omurice_with_Demi-glace_Sause_in_Osaka%2C_Japan.jpg/960px-Omurice_with_Demi-glace_Sause_in_Osaka%2C_Japan.jpg" alt="오사카식 오므라이스 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>오사카식 오므라이스 (예시) · <a href="https://commons.wikimedia.org/wiki/File:Omurice_with_Demi-glace_Sause_in_Osaka,_Japan.jpg" target="_blank" rel="noopener">📷 高砂の浦 · CC0</a></figcaption></figure>
-      <p>오므라이스를 처음 만든 가게로 알려진 곳. 다다미 방 좌식. 도톤보리에서 도보 7분.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=北極星+心斎橋本店">지도</a></div>
-    </details>
-    <details class="r" data-q="지유켄 난바 본점 카레 오사카"><summary><b>지유켄 난바 본점 카레</b> <em class="rv no">예약 없이</em> <i class="jpn">自由軒 難波本店</i><span>1910년 명물 카레</span></summary>
-      <p>밥과 카레를 미리 비벼 가운데 <b>날달걀</b>을 올려 나오는 “명물 카레”. 옛 오사카 분위기 그대로.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=自由軒+難波本店">지도</a></div>
-    </details>
-    <details class="r"><summary><b>타코야키 와나카 / 쿠쿠루 / 코가류</b> <em class="rv no">예약 없이</em> <i class="jpn">わなか / くくる / 甲賀流</i><span>오사카 길거리 간식</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Takoyaki_dish.jpg/960px-Takoyaki_dish.jpg" alt="타코야키 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>타코야키 (예시) · <a href="https://commons.wikimedia.org/wiki/File:Takoyaki_dish.jpg" target="_blank" rel="noopener">📷 sayo ts · CC0</a></figcaption></figure>
-      <p><b>わなか</b>: 겉바속촉 정석 · <b>くくる</b>: 문어가 큼직 · <b>甲賀流</b>: 아메리카무라 본점, 마요네즈 듬뿍. 4명이 한 접시씩 나눠 비교해보기.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=たこ焼き+道頓堀">지도</a></div>
-    </details>
-    <details class="r" data-q="551 호라이 본점 오사카 난바"><summary><b>551 호라이 본점</b> <em class="rv no">예약 없이</em> <i class="jpn">551蓬莱 本店</i><span>오사카 명물 고기만두</span></summary>
-      <p>오사카 사람들의 국민 간식 부타만. 테이크아웃해서 숙소 야식으로. 난바 본점은 줄이 있어도 금방.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=551蓬莱+本店">지도</a></div>
-    </details>
-    <details class="r" data-q="리쿠로 오지상 치즈케이크 오사카 난바"><summary><b>리쿠로 오지상 치즈케이크</b> <em class="rv no">예약 없이</em> <i class="jpn">りくろーおじさんの店</i><span>갓 구운 치즈케이크</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Souffl%C3%A9-style_cheesecake_001.jpg/960px-Souffl%C3%A9-style_cheesecake_001.jpg" alt="폭신한 수플레 치즈케이크 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>폭신한 수플레 치즈케이크 (예시) · <a href="https://commons.wikimedia.org/wiki/File:Souffl%C3%A9-style_cheesecake_001.jpg" target="_blank" rel="noopener">📷 Ocdp · CC0</a></figcaption></figure>
-      <p>흔들흔들 폭신한 치즈케이크. 구워져 나올 때 종을 쳐요. 1판 사서 숙소 디저트로.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=りくろーおじさんの店+なんば本店">지도</a></div>
-    </details>
-  </details>
-
-  <h3>오사카 우메다 (이번 일정엔 없음 · 참고)</h3>
-  <details class="cat" id="f-umeda"><summary>🍛 우메다 전체 <small>7곳 · 참고용</small></summary>
+    <p class="jp" style="margin:4px 4px 8px">⚠ 예전 블로그에 자주 나오던 <b>가메스시 총본점</b>(亀すし)은 2025년 3월 폐업했어요.</p>
     <details class="r" data-q="한신백화점 이카야키 오사카 우메다"><summary><b>한신백화점 이카야키</b> <em class="rv no">예약 없이</em> <i class="jpn">阪神百貨店 B1 스낵파크 · いか焼き</i><span>오사카 소울푸드 · 200엔 안팎</span></summary><figure class="ph"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/%E3%81%84%E3%81%8B%E7%84%BC%E3%81%8D%E3%81%A8%E3%83%93%E3%83%BC%E3%83%AB.jpg/960px-%E3%81%84%E3%81%8B%E7%84%BC%E3%81%8D%E3%81%A8%E3%83%93%E3%83%BC%E3%83%AB.jpg" alt="오사카식 이카야키 (예시)" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"><figcaption>오사카식 이카야키 (예시) · <a href="https://commons.wikimedia.org/wiki/File:%E3%81%84%E3%81%8B%E7%84%BC%E3%81%8D%E3%81%A8%E3%83%93%E3%83%BC%E3%83%AB.jpg" target="_blank" rel="noopener">📷 経済特区 · CC BY-SA 4.0</a></figcaption></figure>
       <p>오징어를 반죽과 함께 철판에 눌러 구운 얇은 부침. 1957년부터 이어온 명물로 줄이 있어도 금방 빠져요. 계란 넣은 <b>デラバン</b>도 인기. 가볍게 맛보고 다른 곳에서 식사해도 OK.</p>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=阪神梅田本店+スナックパーク">지도</a></div>
@@ -1881,10 +1852,6 @@ Thank you very much.
     <details class="r"><summary><b>LUCUA B2 · 그랜드프론트 식당가</b> <em class="rv no">예약 없이</em><span>가족 식당 다수 · 대기 짧음</span></summary>
       <p>오사카역 직결 쇼핑몰의 식당가. 돈카츠·초밥·파스타 등 고르기 쉽고 좌석이 넉넉해 지친 날 편해요.</p>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ルクア大阪+バルチカ">지도</a></div>
-    </details>
-    <details class="r" data-q="카무쿠라 라멘 우메다 오사카"><summary><b>카무쿠라 라멘 우메다</b> <em class="rv no">예약 없이</em> <i class="jpn">どうとんぼり神座</i><span>우메다 지점</span></summary>
-      <p>카무쿠라는 우메다 주변에도 지점이 있어요. 구글맵에서 가장 가까운 곳 검색.</p>
-      <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=神座+梅田">지도</a></div>
     </details>
     <details class="r" data-q="551 호라이 오사카역 오사카"><summary><b>551 호라이 오사카역</b> <em class="rv no">예약 없이</em> <i class="jpn">551蓬莱</i><span>테이크아웃 부타만</span></summary>
       <p>오사카역 구내·백화점 지하에도 매장. 귀갓길 JR 타기 전에 사서 숙소 야식으로.</p>
@@ -1985,12 +1952,12 @@ Thank you very much.
     <p>발권기 “<b>チャージ (Charge)</b>” → 카드 넣기/올리기 → 금액 선택 → <b>현금</b> 투입. 1,000엔 단위.</p>
     <table>
       <tr><th>날짜</th><th>주요 구간 (어른 1인)</th><th>대략</th></tr>
-      <tr><td>17일</td><td>한신 산노미야 ↔ 난바 왕복</td><td>약 900엔</td></tr>
-      <tr><td>18일</td><td>JR 스마카이힌코엔 왕복 + 아리마 버스</td><td>약 1,300엔</td></tr>
-      <tr><td>19일</td><td>아리마 버스 + JR 고베역 편도</td><td>약 1,000엔</td></tr>
-      <tr><td colspan="2"><b>합계 (어른 1인)</b></td><td><b>약 3,100엔</b></td></tr>
+      <tr><td>17일</td><td>JR 산노미야→오사카 + 한큐 우메다→산노미야 + JR 고베→산노미야</td><td>약 900엔</td></tr>
+      <tr><td>18일</td><td>아리마 버스 (산노미야→아리마)</td><td>약 800엔</td></tr>
+      <tr><td>19일</td><td>아리마 버스 + JR 산노미야 ↔ 스마카이힌코엔 왕복</td><td>약 1,300엔</td></tr>
+      <tr><td colspan="2"><b>합계 (어른 1인)</b></td><td><b>약 3,000엔</b></td></tr>
     </table>
-    <p class="jp">→ 처음 1,500엔으로 시작, 18일 아침에 <b>1,500엔</b>, 19일에 부족하면 <b>1,000엔</b> 추가. 조금씩 충전해야 마지막에 남는 돈이 적어요. 버스가 ICOCA 안 되면 현금으로 내면 되니 걱정 X.</p>
+    <p class="jp">→ 처음 1,500엔으로 시작(17일 오사카 왕복까지), 18일 아침에 <b>1,000엔</b>, 19일 아침에 부족하면 <b>1,000엔</b> 추가. 조금씩 충전해야 마지막에 남는 돈이 적어요. 버스가 ICOCA 안 되면 현금으로 내면 되니 걱정 X.</p>
   </div>
 
   <div class="card">
@@ -2004,7 +1971,7 @@ Thank you very much.
 
   <div class="card" id="icoca-refund">
     <h4>④ 마지막 날 환불 — 보증금 500엔 돌려받기</h4>
-    <div class="box warn" style="margin-top:4px"><b>⚠ 고베공항에는 JR역이 없어요</b>ICOCA 환불은 <b>JR서일본 역의 みどりの窓口(유인 창구)에서만</b> 가능해요. 포트라이너·공항·사철 역에서는 안 됩니다. 그래서 <b>19일 저녁, 마지막 JR을 내린 JR 고베역</b>에서 처리하도록 일정에 넣었어요.</div>
+    <div class="box warn" style="margin-top:4px"><b>⚠ 고베공항에는 JR역이 없어요</b>ICOCA 환불은 <b>JR서일본 역의 みどりの窓口(유인 창구)에서만</b> 가능해요. 포트라이너·공항·사철 역에서는 안 됩니다. 그래서 마지막 JR(19일 오후 스마카이힌코엔→산노미야)을 탄 뒤 <b>19일 밤 JR 산노미야역</b>에서 처리하도록 일정에 넣었어요.</div>
     <p><b>환불 계산법</b>: 돌려받는 돈 = <b>잔액 + 보증금 500엔 − 수수료 220엔</b><br>
     단, 수수료는 <b>잔액에서만</b> 빠져요. 잔액이 220엔보다 적으면 그 잔액만큼만 수수료로 빠지고 <b>보증금 500엔은 그대로</b> 돌아와요.</p>
     <table>
@@ -2015,9 +1982,9 @@ Thank you very much.
     </table>
     <p><b>👉 요령: 잔액을 0엔 가깝게 다 쓰고 → 창구에서 환불</b></p>
     <ol>
-      <li><b>19일 18시대</b> 산노미야 → JR 고베역(하버랜드)이 마지막 JR 탑승</li>
+      <li><b>19일 14:30</b> 스마카이힌코엔 → 산노미야가 마지막 JR 탑승</li>
       <li>편의점에서 음료·간식 사면서 <b>“ICOCA로 잔액 전부, 나머지는 현금”</b>으로 계산 (세븐일레븐 등 대부분 가능 — <a href="#" data-go="ph">회화 탭</a> 문장 보여주기)</li>
-      <li><b>JR 神戸駅 みどりの窓口</b>(안 되면 JR 三ノ宮駅)에서 4장 한꺼번에 내밀며 “<b>払い戻し(하라이모도시)</b>, please” → 현금으로 보증금 수령. 어린이 ICOCA도 동일</li>
+      <li>19일 밤 <b>JR 三ノ宮駅 みどりの窓口</b>(숙소 가는 길)에서 4장 한꺼번에 내밀며 “<b>払い戻し(하라이모도시)</b>, please” → 현금으로 보증금 수령. 어린이 ICOCA도 동일</li>
       <li>20일 포트라이너는 <b>종이표(어른 340엔, 어린이 170엔)</b> 현금 구매</li>
     </ol>
     <p class="jp">창구 영업시간은 출발 전 JR서일본 사이트에서 확인. 19일에 못 하면 20일 아침 포트라이너 타기 전에 JR 산노미야역 창구에서 시도. <b>환불 대신 기념으로 가져가도</b> OK — 10년 안에 다시 오면 그대로 사용 (보증금 500엔은 그때 돌려받거나 계속 사용).</p>
@@ -2038,10 +2005,11 @@ Thank you very much.
     <table>
       <tr><th>노선</th><th>언제</th><th>포인트</th></tr>
       <tr><td><b>포트라이너</b></td><td>16일·20일</td><td>무인 운전, 공항↔산노미야 종점. 맨 앞칸 뷰</td></tr>
-      <tr><td><b>JR 고베선</b></td><td>18일</td><td>스마카이힌코엔은 <b>普通</b>만 정차 (쾌속 X)</td></tr>
-            <tr><td><b>한신 난바선</b></td><td>17일 왕복</td><td>神戸三宮↔大阪難波 快速急行 직통, 환승 없음</td></tr>
+      <tr><td><b>JR 고베선</b></td><td>19일</td><td>스마카이힌코엔은 <b>普通</b>만 정차 (쾌속 X)</td></tr>
+      <tr><td><b>JR 新快速</b></td><td>17일 아침</td><td>三ノ宮→大阪 약 21분, 오사카역에서 다이마루 우메다(포켓몬센터) 바로</td></tr>
+      <tr><td><b>한큐 고베선</b></td><td>17일 오후</td><td>大阪梅田→神戸三宮 特急 약 30분, 종점이 렘 플러스 직결</td></tr>
       <tr><td><b>아리마 버스</b></td><td>18·19일</td><td>짐 있으면 최선. 시간표 사전 확인</td></tr>
-      <tr><td><b>JR 3정거장</b></td><td>19일 저녁</td><td>三ノ宮→神戸(3), 하버랜드 · 마지막 JR</td></tr>
+      <tr><td><b>JR 3정거장</b></td><td>17일 밤</td><td>神戸→三ノ宮(3), 하버랜드에서 돌아오기</td></tr>
     </table>
   </div>
 
@@ -2188,10 +2156,10 @@ Thank you very much.
     </details>
   </details>
 
-  <details class="cat" id="shoes"><summary>👟 ABC마트 · 뉴발란스 · 호카 워킹화 <small>19일 13:00 · 산노미야</small></summary>
+  <details class="cat" id="shoes"><summary>👟 ABC마트 · 뉴발란스 · 호카 워킹화 <small>17일 15:30 · 산노미야</small></summary>
     <div class="card" style="margin-top:8px">
       <h4>언제 · 어디서</h4>
-      <p><b>19일(토) 고베규 점심 직후 13:00</b>, 산노미야 <b>센터가이</b>의 ABC마트로. 유니클로·드럭스토어와 같은 아케이드라 동선이 짧아요. 4명 다 신어 보려면 <b>1시간</b>은 잡으세요.</p>
+      <p><b>17일(목) 오사카에서 돌아온 15:30</b>, 산노미야 <b>센터가이</b>의 ABC마트로. 유니클로·드럭스토어와 같은 아케이드라 동선이 짧아요. 4명 다 신어 보려면 <b>1시간</b>은 잡으세요.</p>
       <ul>
         <li><b>ABC-MART 산노미야 센터가이점</b> <i class="jpn">ABC-MART 三宮センター街店</i> — 센터가이 안. 구글맵에서 <b>“ABC-MART 三宮”</b>으로 검색하면 주변 지점이 모두 떠요 (산노미야에 여러 곳)</li>
         <li><b>호카는 지점마다 재고 차이</b>가 커요. 고급 라인을 모은 <b>GRAND STAGE · PREMIER STAGE</b> 간판 지점이 있으면 그쪽이 호카·뉴발 상위 모델이 많아요</li>
@@ -2212,10 +2180,10 @@ Thank you very much.
       </table>
       <p class="jp">일본 정가는 대략 1만 6천~2만 5천 엔대 (모델·시기별로 달라요). 일본 가격이 한국보다 늘 싼 건 아니어서, 출발 전 <b>한국 최저가 캡처</b>와 비교 → 면세 10% 환급까지 반영해서 결정하세요.</p>
     </div>
-    <details class="r"><summary><b>대안: 호카가 없을 때</b><span>백화점 스포츠층 · 오사카 난바</span></summary>
+    <details class="r"><summary><b>대안: 호카가 없을 때</b><span>백화점 스포츠층 · 19일 보충</span></summary>
       <ul>
         <li><b>다이마루 고베 · 고베 한큐</b> 스포츠·신발 매장 (면세 카운터)</li>
-        <li>17일 난바·신사이바시의 <b>ABC마트·스포츠 매장</b>에서 미리 사이즈 확인해 두기</li>
+        <li>17일에 사이즈만 확인하고 <b>19일 오후 센터가이 쇼핑</b> 때 다시 들르기 (재고가 바뀌기도 해요)</li>
         <li>사이즈만 확인하고 한국에서 사는 것도 방법 (신어 보는 것 자체가 수확)</li>
       </ul>
     </details>
@@ -2230,8 +2198,8 @@ Thank you very much.
       <h4>사는 계획</h4>
       <ol>
         <li><b>출발 전</b>: 아래 후보에서 <b>모델 번호 2~3개</b> 고르고 한국 최저가 캡처 (일본 매장은 모델 번호로 찾는 게 가장 빨라요)</li>
-        <li><b>17일 난바 (1차 · 가격 보기)</b>: <b>빅카메라 난바점</b> <i class="jpn">ビックカメラ なんば店</i> 시계 코너 — 신사이바시 쇼핑 시간에 들러 카시오·세이코를 차 보고 가격 사진. 마음에 들면 바로 사도 OK (<b>할인가 + 면세</b>)</li>
-        <li><b>19일 산노미야 (2차 · 비교 후 구매)</b>: ABC마트 들르는 길에 <b>다이마루 고베</b> 시계 매장이나 가전양판점 시계 코너. 구글맵 <b>“時計 三宮”</b> 검색. G-SHOCK·Baby-G는 <b>돈키호테</b>에도 있어요</li>
+        <li><b>17일 우메다 (1차 · 가격 보기)</b>: <b>요도바시 우메다</b> <i class="jpn">ヨドバシカメラ マルチメディア梅田</i> 시계 코너 — 11:15 요도바시 쇼핑 때 들러 카시오·세이코를 차 보고 가격 사진. 마음에 들면 바로 사도 OK (<b>할인가 + 면세</b>)</li>
+        <li><b>17일 저녁 모토마치 (2차 · 비교 후 구매)</b>: 메리켄파크 가는 길에 <b>다이마루 고베</b> 시계 매장이나 가전양판점 시계 코너. 구글맵 <b>“時計 三宮”</b> 검색. G-SHOCK·Baby-G는 <b>돈키호테</b>에도 있어요</li>
         <li>계산: <b>쓸 사람 여권</b>으로 면세 → 공항에서 환급. 상자·보증서(保証書)에 <b>구매일 도장</b> 받았는지 확인</li>
       </ol>
       <p class="jp">가격은 일본 정가·온라인가 기준 대략치이고 100엔≈900~950원으로 계산했어요. 매장 할인과 면세 10% 환급이 붙으면 더 내려가요.</p>
@@ -2257,7 +2225,7 @@ Thank you very much.
       </table>
       <p class="jp">💡 같은 모델도 매장마다 할인가가 달라요. 할인·포인트 조건도 매장마다 달라서, 계산 전에 “免税で、いくらですか？(면세로 얼마예요?)” 물어보기.</p>
     </div>
-    <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ビックカメラ+なんば店">빅카메라 난바 지도</a><a href="https://www.google.com/maps/search/?api=1&query=時計+三宮">산노미야 시계 매장 찾기</a></div>
+    <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=ヨドバシカメラ+マルチメディア梅田">요도바시 우메다 지도</a><a href="https://www.google.com/maps/search/?api=1&query=時計+三宮">산노미야 시계 매장 찾기</a></div>
   </details>
   <details class="cat"><summary>👕 유니클로 말고 면세로 사기 좋은 옷 <small>옵션</small></summary>
     <details class="r"><summary><b>GU</b> <i class="jpn">ジーユー</i><span>유니클로 형제 · 더 저렴 · 10대 트렌드</span></summary>
@@ -2280,26 +2248,18 @@ Thank you very much.
     </details>
   </details>
 
-  <details class="cat" id="osaka-shop"><summary>🛍 오사카 쇼핑 · 즐길거리 <small>17일 난바</small></summary>
+  <details class="cat" id="osaka-shop"><summary>🛍 오사카 쇼핑 · 즐길거리 <small>17일 우메다</small></summary>
     <div class="card" style="margin-top:8px">
-      <p>18일 아침 큰 짐을 베이스레이어 호텔에 맡길 때 <b>17일 오사카에서 산 것</b>도 같이 맡기면 돼서 오사카 쇼핑 부담이 줄어요. 이번 일정은 <b>난바·신사이바시만</b> 가요.</p>
+      <p>17일 오사카에서 산 것은 저녁에 렘 플러스 방에 두고, 18일 아침 <b>캐리어와 함께 베이스레이어에 맡기면</b> 돼서 오사카 쇼핑 부담이 적어요. 이번 일정은 <b>우메다만</b> 가요 (난바·도톤보리 X).</p>
     </div>
-    <details class="r"><summary><b>우메다</b><span>이번 일정엔 없음 · 참고</span></summary>
+    <details class="r"><summary><b>우메다</b><span>17일 09:30~14:45</span></summary>
       <ul>
-        <li><b>앳코스메 오사카</b>(루쿠아 이레 3F) — 화장품</li>
-        <li><b>요도바시 카메라 우메다</b> — 게임·장난감·전자</li>
-        <li><b>한큐·한신 백화점</b> — 브랜드·디저트 선물</li>
-        <li><b>HEP FIVE</b> — 10대 패션 + 관람차</li>
-      </ul>
-    </details>
-    <details class="r"><summary><b>신사이바시 · 난바</b><span>17일 오후</span></summary>
-      <ul>
-        <li><b>신사이바시스지 상점가</b> — 유니클로·GU 대형점, 드럭스토어 밀집</li>
-        <li><b>다이마루 신사이바시 · 신사이바시 PARCO</b> — 백화점·캐릭터숍</li>
-        <li><b>아메리카무라</b> — 구제·스트리트</li>
-        <li><b>돈키호테 도톤보리점</b> — 늦게까지</li>
-        <li><b>덴덴타운</b> — 피규어·게임·크레인게임</li>
-        <li><b>난바 파크스</b> <i class="jpn">なんばパークス</i> — 옥상 정원이 있는 쇼핑몰</li>
+        <li><b>포켓몬센터 오사카</b> <i class="jpn">ポケモンセンターオーサカ</i> — 다이마루 우메다 13F, 바로 옆 <b>닌텐도 오사카</b>. 오픈 직후 입장 (붐비면 정리권)</li>
+        <li><b>요도바시 카메라 멀티미디어 우메다</b> — 게임·장난감·전자·시계, 면세 카운터</li>
+        <li><b>키디랜드 우메다점</b> (한큐 3번가) — 캐릭터 굿즈</li>
+        <li><b>한큐·한신 백화점</b> — 브랜드·디저트 선물 · 한신 B1 이카야키</li>
+        <li><b>우메다 로프트 · 앳코스메 오사카</b>(루쿠아 이레) — 잡화·화장품</li>
+        <li><b>HEP FIVE</b> — 10대 패션 + 빨간 관람차 (오늘 밤 하버랜드 관람차와 중 하나만)</li>
       </ul>
     </details>
   </details>
@@ -2327,15 +2287,16 @@ Thank you very much.
   <details class="cat"><summary>📍 주요 매장 한눈에</summary>
     <table style="margin:8px 4px 10px;width:calc(100% - 8px)">
       <tr><th>매장</th><th>위치</th><th>일정</th></tr>
-                  <tr><td>빅카메라 난바점 (시계 가격 보기)</td><td>난바 센니치마에</td><td>17일 오후</td></tr>
-      <tr><td>ABC마트 (뉴발란스·호카)</td><td>산노미야 센터가이</td><td>19일 13:00</td></tr>
-      <tr><td>다이마루 고베 (시계·신발 비교)</td><td>모토마치 쪽</td><td>19일</td></tr>
-      <tr><td>GiGO 오사카 도톤보리 본점</td><td>도톤보리 (크레인 약 300대)</td><td>17일 오후</td></tr>
-      <tr><td>유니클로 고베산노미야점</td><td>센터가이 동쪽 입구 1~5F</td><td>19일</td></tr>
-      <tr><td>드럭스토어 (마츠키요 등)</td><td>센터가이 · 모토마치</td><td>19일</td></tr>
-      <tr><td>돈키호테 산노미야점 / 오파점</td><td>산노미야</td><td>19일</td></tr>
+                  <tr><td>포켓몬센터 오사카 · 닌텐도 오사카</td><td>다이마루 우메다 13F</td><td>17일 09:30</td></tr>
+      <tr><td>ABC마트 (뉴발란스·호카)</td><td>산노미야 센터가이</td><td>17일 15:30</td></tr>
+      <tr><td>다이마루 고베 (시계·신발 비교)</td><td>모토마치 쪽</td><td>17일 저녁</td></tr>
+      <tr><td>요도바시 우메다 (게임·시계 가격 보기)</td><td>JR 오사카역 북쪽</td><td>17일 11:15</td></tr>
+      <tr><td>유니클로 고베산노미야점</td><td>센터가이 동쪽 입구 1~5F</td><td>17일 (19일 보충)</td></tr>
+      <tr><td>드럭스토어 (마츠키요 등)</td><td>센터가이 · 모토마치</td><td>19일 16:15</td></tr>
+      <tr><td>돈키호테 산노미야점 / 오파점</td><td>산노미야</td><td>19일 17:15</td></tr>
+      <tr><td>게임센터 (인형뽑기)</td><td>센터가이</td><td>19일 밤</td></tr>
       <tr><td>고베 로프트</td><td>고베 한큐 신관</td><td>틈날 때</td></tr>
-      <tr><td>umie · 모자이크</td><td>하버랜드 (JR 고베역)</td><td>19일 저녁</td></tr>
+      <tr><td>umie · 모자이크</td><td>하버랜드 (JR 고베역)</td><td>17일 저녁</td></tr>
     </table>
   </details>
 </section>
@@ -2366,7 +2327,7 @@ Thank you very much.
   <details class="cat"><summary>🏨 호텔 <small>9</small></summary>
     <div class="phrase"><div class="ja">チェックインお願いします。予約名は○○です。</div><div class="rd">첵쿠인 오네가이시마스. 요야쿠메-와 ○○데스.</div><div class="en">Check-in, please. The reservation is under ○○.</div><div class="ko">체크인할게요. 예약자 이름은 ○○예요.</div></div>
     <div class="phrase"><div class="ja">荷物を預かってもらえますか？</div><div class="rd">니모츠오 아즈캇테 모라에마스카?</div><div class="en">Could you keep our luggage?</div><div class="ko">짐 좀 맡아 주실 수 있나요?</div></div>
-    <div class="phrase"><div class="ja">19日に泊まります。18日の朝から荷物を預かってもらえますか？</div><div class="rd">쥬-쿠니치니 토마리마스. 쥬-하치니치노 아사카라 니모츠오 아즈캇테 모라에마스카?</div><div class="en">We are staying on December 19. Could you keep our suitcases from the morning of December 18?</div><div class="ko">19일에 묵어요. 18일 아침부터 짐을 맡아 주실 수 있나요? (베이스레이어 사전 문의)</div></div>
+    <div class="phrase"><div class="ja">19日に泊まります。18日の朝から荷物を預かってもらえますか？</div><div class="rd">쥬-쿠니치니 토마리마스. 쥬-하치니치노 아사카라 니모츠오 아즈캇테 모라에마스카?</div><div class="en">We are staying on December 19. Could you keep our luggage from the morning of December 18?</div><div class="ko">19일에 묵어요. 18일 아침부터 짐을 맡아 주실 수 있나요? (베이스레이어 · 18일 아침)</div></div>
     <div class="phrase"><div class="ja">朝食は何時からですか？</div><div class="rd">쵸-쇼쿠와 난지 카라데스카?</div><div class="en">What time does breakfast start?</div><div class="ko">조식은 몇 시부터예요?</div></div>
     <div class="phrase"><div class="ja">チェックアウトは何時ですか？</div><div class="rd">첵쿠아우토와 난지데스카?</div><div class="en">What time is check-out?</div><div class="ko">체크아웃은 몇 시예요?</div></div>
     <div class="phrase"><div class="ja">Wi-Fiのパスワードを教えてください</div><div class="rd">와이파이노 파스와-도오 오시에테 쿠다사이</div><div class="en">What's the Wi-Fi password?</div><div class="ko">와이파이 비밀번호 알려주세요</div></div>
@@ -2394,7 +2355,7 @@ Thank you very much.
     <div class="phrase"><div class="ja">お水をください</div><div class="rd">오미즈오 쿠다사이</div><div class="en">Water, please.</div><div class="ko">물 주세요</div></div>
     <div class="phrase"><div class="ja">持ち帰りできますか？</div><div class="rd">모치카에리 데키마스카?</div><div class="en">Can I get this to go?</div><div class="ko">포장 돼요?</div></div>
     <div class="phrase"><div class="ja">お会計お願いします</div><div class="rd">오카이케- 오네가이시마스</div><div class="en">Check, please.</div><div class="ko">계산해 주세요</div></div>
-    <div class="phrase"><div class="ja">このお店に予約の電話をしていただけますか？12月19日11時半、4名です。</div><div class="rd">코노 오미세니 요야쿠노 뎅와오 시테 이타다케마스카? 쥬-니가츠 쥬-쿠니치 쥬-이치지 항, 요메-데스.</div><div class="en">Could you call this restaurant and book a table for four at 11:30 on December 19?</div><div class="ko">이 가게에 예약 전화 좀 해주실 수 있어요? 12월 19일 11시 45분, 4명이에요. (호텔 프런트)</div></div>
+    <div class="phrase"><div class="ja">このお店に予約の電話をしていただけますか？12月18日11時半、4名です。</div><div class="rd">코노 오미세니 요야쿠노 뎅와오 시테 이타다케마스카? 쥬-니가츠 쥬-하치니치 쥬-이치지 항, 요메-데스.</div><div class="en">Could you call this restaurant and book a table for four at 11:30 on December 18?</div><div class="ko">이 가게에 예약 전화 좀 해주실 수 있어요? 12월 18일 11시 반, 4명이에요. (호텔 프런트 · 타다 예약이 안 될 때)</div></div>
   </details>
 
   <details class="cat"><summary>🛍 쇼핑 · 면세 <small>13</small></summary>
@@ -2486,10 +2447,9 @@ Thank you very much.
 
   <h4 class="ck-sub">🍽 식당 · 예약</h4>
   <div class="check" data-group="todo-food">
-    <label><input type="checkbox"><span>핫페퍼 예약: 고베 타다(17일 목 11:30) · 19일 저녁 하버랜드 식당(창가) 또는 잇카쿠(19일 토 19:00)</span></label>
-    <label><input type="checkbox"><span><b>고베규 점심(19일 토)</b>: 16일 렘 플러스 체크인 때 <b>프런트에 전화 예약 부탁</b> (회화 탭 · 식당 마지막 문장) → 안 되면 당일 <b>오픈런</b> (19일 일정 참고)</span></label>
-    <label><input type="checkbox"><span>포트타워 시간 지정 티켓 (19일 토 21:00~21:30 입장)</span></label>
-    <label><input type="checkbox"><span>스마 씨월드(18일 금) <b>웹티켓</b> 구매 · 유료 체험은 15일부터 · <b>17일 밤 공연 시간 확인</b></span></label>
+    <label><input type="checkbox"><span>핫페퍼 예약: <b>고베 타다(18일 금 11:30 · 4명)</b> — 안 되면 16일 렘 플러스 프런트에 전화 부탁 (회화 탭 · 식당 마지막 문장)</span></label>
+    <label><input type="checkbox"><span>스마 씨월드(19일 토) <b>웹티켓</b> 구매 · 유료 체험은 16일부터 · <b>18일 밤 공연 시간·영업시간 확인</b> (돌핀 11:00 · 오르카 12:00)</span></label>
+    <label><input type="checkbox"><span>17일 포켓몬센터 오사카 <b>오픈 시간·정리권</b> 여부 전날 확인</span></label>
   </div>
 
   <h4 class="ck-sub">🛍 쇼핑 준비</h4>
@@ -2501,7 +2461,7 @@ Thank you very much.
 
   <h4 class="ck-sub">🏨 숙소 · 기타</h4>
   <div class="check" data-group="todo-etc">
-    <label><input type="checkbox"><span>베이스레이어 호텔에 18일 아침(08:30쯤) 짐 보관 가능한지 문의 (숙소 탭 메일 템플릿)</span></label>
+    <label><input type="checkbox"><span><b>베이스레이어 호텔</b>에 18일 08:15 ~ 19일 15:00 체크인까지 <b>캐리어 2개</b>(+쇼핑백) 보관 가능한지 문의 (숙소 탭 메시지 템플릿 · Ref. 2610310100621462316)</span></label>
     <label><input type="checkbox"><span>카카오T 앱 업데이트 · 해외 택시 호출(일본) 메뉴 확인</span></label>
     <label><input type="checkbox"><span>eSIM / 로밍 준비 (4인 모두 또는 포켓와이파이)</span></label>
     <label><input type="checkbox"><span>구글맵·번역 앱(파파고/구글번역) 일본어 오프라인 다운로드</span></label>
@@ -2515,7 +2475,7 @@ Thank you very much.
     <label><input type="checkbox"><span>110V 돼지코 어댑터 (일본 A타입) 2~3개</span></label>
     <label><input type="checkbox"><span>보조배터리</span></label>
     <label><input type="checkbox"><span>겨울 외투 · 목도리 (최저 3~5℃, 아리마 더 추움)</span></label>
-    <label><input type="checkbox"><span>편한 운동화 (17일 많이 걸음) · 작은 백팩 (18일 씨월드·아리마)</span></label>
+    <label><input type="checkbox"><span>편한 운동화 (17일 많이 걸음) · 1박 백팩(아빠) · 아이들 각자 작은 가방 (18~19일 아리마·씨월드)</span></label>
     <label><input type="checkbox"><span>접이식 장바구니 / 보조 캐리어 (쇼핑 짐)</span></label>
     <label><input type="checkbox"><span>상비약 (감기·소화·밴드)</span></label>
     <label><input type="checkbox"><span>작은 수건 (아리마 족욕용)</span></label>
@@ -2645,7 +2605,7 @@ Thank you very much.
   });
 
   // 한눈에: 날짜별 타임테이블 (시간 배분 바) — [시작, 끝, 분류, 막대 이름, 목록 이름, 선택?]
-  var TT_START = 7, TT_END = 23, TT_SPAN = (TT_END - TT_START) * 60;
+  var TT_BANDS = [['오전', 6, 12], ['오후', 12, 18], ['저녁', 18, 24]];
   var TT = [
     {id:'d1', date:'12/16', dow:'수', pc:'p-kobe', title:'도착 · 산노미야 야경', sub:'숙소: 렘 플러스 고베산노미야 (1/2박) · 조식 없음', items:[
       ['11:30','13:15','move','집→공항','집(광교) 출발 → 인천공항 T2'],
@@ -2659,58 +2619,55 @@ Thank you very much.
       ['21:00','21:45','see','시청 전망대','고베시청 24층 무료 전망대'],
       ['21:45','22:30','food','한잔','부부 한잔 (선택)',1]
     ]},
-    {id:'d2', date:'12/17', dow:'목', pc:'p-osaka', title:'기타노 → 오사카 난바', sub:'숙소: 렘 플러스 고베산노미야 (2/2박)', items:[
-      ['08:00','08:45','food','빵 아침','고베 빵집 아침'],
-      ['08:45','10:30','see','기타노 이진칸','기타노 이진칸 · 신사 산책'],
-      ['10:30','11:30','shop','토어로드','기타노자카 · 토어로드 구경'],
+    {id:'d2', date:'12/17', dow:'목', pc:'p-osaka', title:'우메다 → 고베 쇼핑 · 하버랜드', sub:'숙소: 렘 플러스 고베산노미야 (2/2박) · 조식 없음', items:[
+      ['07:30','08:15','food','코메다','코메다 모닝'],
+      ['08:30','09:30','move','JR→오사카','JR 신쾌속 → 오사카역'],
+      ['09:30','11:15','play','포켓몬센터','포켓몬센터 오픈런 · 닌텐도 오사카'],
+      ['11:15','12:30','shop','요도바시','요도바시 우메다'],
+      ['12:30','13:45','food','스시 점심','하코타로 회전초밥 점심'],
+      ['13:45','14:45','play','우메다','키디랜드 · 한큐3번가 · 이카야키'],
+      ['14:45','15:30','move','한큐→고베','한큐 특급 → 고베산노미야'],
+      ['15:30','17:15','shop','센터가이 쇼핑','ABC마트 · 유니클로 · 센터가이'],
+      ['17:15','18:30','food','킨톤','돈카츠 킨톤 저녁'],
+      ['18:30','19:30','see','메리켄파크','난킨마치 → 메리켄파크 야경'],
+      ['19:30','20:40','see','하버랜드 🎡','하버랜드 · 모자이크 대관람차'],
+      ['20:40','21:00','move','JR','JR 고베 → 산노미야'],
+      ['21:00','21:30','stay','짐 나누기','짐 두 덩어리로 싸기'],
+      ['21:30','22:30','food','한잔','부부 한잔 (선택)',1]
+    ]},
+    {id:'d3', date:'12/18', dow:'금', pc:'p-arima', title:'기타노 → 아리마 온천', sub:'숙소: 월광원 유게츠산소 · 조·석식 포함', items:[
+      ['08:00','08:30','stay','짐 맡기기','렘 체크아웃 → 베이스레이어에 짐 맡기기'],
+      ['08:30','09:00','food','빵 아침','고베 빵집 아침'],
+      ['09:00','10:45','see','기타노 이진칸','기타노 이진칸 · 신사 산책'],
+      ['10:45','11:30','shop','토어로드','기타노자카 · 토어로드'],
       ['11:30','12:45','food','타다','고베 타다 소바메시 점심'],
-      ['12:45','13:45','move','한신→난바','한신 직통 → 오사카난바'],
-      ['13:45','14:15','see','도톤보리','도톤보리 산책 · 사진'],
-      ['14:15','15:30','play','GiGO','GiGO 인형뽑기'],
-      ['15:30','17:45','shop','신사이바시 쇼핑','신사이바시 · 난바 쇼핑 · 즐길거리'],
-      ['17:45','19:15','food','쿠시카츠','쿠시카츠 다루마 저녁'],
-      ['19:15','20:15','move','한신→고베','한신 직통 → 고베산노미야'],
-      ['20:15','21:15','play','밤 산책','산노미야 밤 산책 · 뽑기 · 디저트'],
-      ['21:15','21:45','stay','짐','18일용 최소 짐 꾸리기'],
-      ['21:45','22:45','food','한잔','부부 한잔 (선택)',1]
+      ['12:45','14:00','move','버스→아리마','터미널까지 걷기 → 고속버스 → 아리마온천'],
+      ['14:00','14:15','stay','짐','월광원에 짐 맡기기'],
+      ['14:15','15:15','see','유모토자카','아리마 온천마을 산책 · 고로케'],
+      ['15:15','15:45','stay','체크인','월광원 체크인'],
+      ['15:45','18:00','stay','온천','첫 온천 · 전세탕'],
+      ['18:00','19:30','food','석식 뷔페','석식 뷔페 · 와규 · 사시미'],
+      ['19:45','22:00','stay','밤 온천','밤 온천 · 가족 시간']
     ]},
-    {id:'d3', date:'12/18', dow:'금', pc:'p-arima', title:'스마 씨월드 → 아리마 온천', sub:'숙소: 월광원 유게츠산소 · 조·석식 포함', items:[
-      ['07:45','08:30','food','코메다','코메다 모닝'],
-      ['08:30','09:15','stay','짐 맡기기','체크아웃 · 베이스레이어에 짐 맡기기'],
-      ['09:15','09:50','move','JR','JR → 스마카이힌코엔'],
-      ['09:50','12:00','see','씨월드 🐋','스마 씨월드 · 오전 (10:00 오픈)'],
-      ['12:00','12:45','food','점심','씨월드 관내 점심'],
-      ['12:45','15:00','see','씨월드 🐬','스마 씨월드 · 오후 (공연 시간 확인)'],
-      ['15:00','15:40','move','JR','JR → 산노미야'],
-      ['15:40','16:45','move','버스→아리마','고속버스 → 아리마온천'],
-      ['16:45','17:15','stay','체크인','월광원 바로 체크인'],
-      ['17:15','18:30','stay','온천','저녁 전 온천'],
-      ['18:30','20:00','food','석식 뷔페','석식 뷔페 · 와규 · 사시미'],
-      ['20:00','22:00','stay','밤 온천','밤 온천 · 가족 시간']
-    ]},
-    {id:'d4', date:'12/19', dow:'토', pc:'p-kobe', title:'고베규 · 쇼핑 · 하버랜드 야경', sub:'숙소: BASE LAYER HOTEL 고베산노미야 · 조식 없음', items:[
-      ['07:00','08:00','stay','온천','아침 온천'],
-      ['08:00','09:00','food','조식','조식 뷔페 (숙소 포함)'],
-      ['09:00','09:40','see','산책','아리마 온천마을 아침 산책 (선택)',1],
-      ['09:40','10:00','stay','체크아웃','체크아웃 · 송영'],
-      ['10:00','10:45','move','버스','버스 → 산노미야'],
-      ['10:45','11:00','stay','짐','짐 맡기기 · 고베규 줄서기'],
-      ['11:00','12:45','food','고베규','고베규 철판 스테이크 점심'],
-      ['13:00','14:00','shop','ABC마트','ABC마트 신발 · 시계'],
-      ['14:00','14:45','shop','유니클로','유니클로 고베산노미야점'],
-      ['14:45','15:45','shop','드럭스토어','드럭스토어 (센터가이)'],
-      ['15:45','16:30','food','하브스','하브스 밀크레이프'],
-      ['16:30','17:15','shop','돈키','돈키호테 산노미야'],
-      ['17:15','18:00','play','뽑기','인형뽑기 2차'],
-      ['18:00','18:20','stay','체크인','베이스레이어 체크인'],
-      ['18:20','19:00','move','JR','JR → 고베역 · ICOCA 환불'],
-      ['19:00','20:15','food','하버랜드 저녁','하버랜드 모자이크 저녁'],
-      ['20:15','20:45','see','관람차','모자이크 대관람차'],
-      ['20:45','21:10','see','메리켄','메리켄파크 · BE KOBE'],
-      ['21:10','21:50','see','포트타워','포트타워 옥상 데크 야경'],
-      ['21:50','22:00','move','택시','택시로 호텔'],
-      ['22:00','22:30','stay','짐 싸기','짐 싸기 · 내일 준비'],
-      ['22:30','23:00','food','한잔','부부 한잔 (선택)',1]
+    {id:'d4', date:'12/19', dow:'토', pc:'p-kobe', title:'스마 씨월드 → 고베 쇼핑', sub:'숙소: BASE LAYER HOTEL 고베산노미야 · 조식 없음', items:[
+      ['06:45','07:15','stay','온천','아침 온천'],
+      ['07:15','08:15','food','조식','조식 뷔페 (숙소 포함)'],
+      ['08:15','10:10','move','버스·JR','아리마 → 산노미야 → 스마카이힌코엔'],
+      ['10:10','11:00','see','아쿠아라이브','씨월드 입장 · 아쿠아라이브'],
+      ['11:00','11:20','see','🐬 돌핀','돌핀 퍼포먼스 11:00'],
+      ['11:20','12:00','see','범고래','오르카 수중창 · 자리 잡기'],
+      ['12:00','12:30','see','🐋 오르카','오르카 퍼포먼스 12:00'],
+      ['12:30','13:00','food','가벼운 점심','관내 가벼운 점심 · 기념품'],
+      ['13:00','14:30','see','2회차','2회차 공연 (13:00 🐬 / 14:00 🐋 · 선택)',1],
+      ['14:30','15:05','move','JR→숙소','JR → 산노미야 → 숙소 (마지막 JR)'],
+      ['15:05','15:30','stay','체크인','베이스레이어 체크인 · 짐 받기'],
+      ['15:30','16:30','shop','드럭스토어','토어로드 → 센터가이 드럭스토어'],
+      ['16:30','17:15','food','디저트','하브스 밀크레이프 (쇼핑 중 휴식)'],
+      ['17:15','18:30','shop','돈키','돈키호테 · 못 산 것 보충'],
+      ['18:45','19:45','food','베이네','고항야 베이네 저녁 (20:00 마감)'],
+      ['20:00','21:30','play','밤 산책·뽑기','이쿠타 신사 · 인형뽑기 · ICOCA 환불'],
+      ['21:45','22:15','stay','짐 싸기','짐 싸기 · 내일 준비'],
+      ['22:15','23:00','food','한잔','부부 한잔 (선택)',1]
     ]},
     {id:'d5', date:'12/20', dow:'일', pc:'p-kobe', title:'귀국 · 고베공항 11:10', sub:'공항 이동: 포트라이너 또는 택시 (당일 선택)', items:[
       ['07:00','07:30','food','아침','편의점 아침 (방에서)'],
@@ -2723,7 +2680,6 @@ Thank you very much.
     ]}
   ];
   function tmin(s){ var p = s.split(':'); return (+p[0]) * 60 + (+p[1]); }
-  function tpct(m){ return Math.max(0, Math.min(100, (m - TT_START * 60) / TT_SPAN * 100)); }
   function fitTT(){
     document.querySelectorAll('.tt-seg').forEach(function(b){
       b.classList.remove('tiny');
@@ -2739,19 +2695,26 @@ Thank you very much.
       art.className = 'tt-day ' + d.pc;
       var h = '<header class="tt-head"><span class="dt">' + d.date + '<small>' + d.dow + '</small></span><div><h4>' + d.title + '</h4><p>' + d.sub + '</p></div>' +
               '<a href="#" class="tt-more" data-go="' + d.id + '">자세히 →</a></header>';
-      h += '<div class="tt-bar" role="list" aria-label="' + d.date + ' 시간 배분">';
-      d.items.forEach(function(it, i){
-        var l = tpct(tmin(it[0])), w = tpct(tmin(it[1])) - l;
-        if (w <= 0) return;
-        h += '<button type="button" role="listitem" class="tt-seg c-' + it[2] + (it[5] ? ' opt' : '') + '" data-i="' + i + '" style="left:' + l.toFixed(3) + '%;width:' + w.toFixed(3) + '%"' +
-             ' title="' + it[0] + '–' + it[1] + ' ' + it[4] + '" aria-label="' + it[0] + '–' + it[1] + ' ' + it[4] + '"><span>' + it[3] + '</span></button>';
+      var isToday = tNow.getFullYear() === 2026 && tNow.getMonth() === 11 && +d.date.split('/')[1] === tNow.getDate();
+      var nm = tNow.getHours() * 60 + tNow.getMinutes();
+      h += '<div class="tt-rows">';
+      TT_BANDS.forEach(function(bd){
+        var r0 = bd[1] * 60, r1 = bd[2] * 60, span = r1 - r0, segs = '';
+        var pct = function(m){ return (m - r0) / span * 100; };
+        d.items.forEach(function(it, i){
+          var s = Math.max(tmin(it[0]), r0), e = Math.min(tmin(it[1]), r1);
+          if (e <= s) return;
+          var l = pct(s), w = pct(e) - l;
+          segs += '<button type="button" role="listitem" class="tt-seg c-' + it[2] + (it[5] ? ' opt' : '') + '" data-i="' + i + '" style="left:' + l.toFixed(3) + '%;width:' + w.toFixed(3) + '%"' +
+                  ' title="' + it[0] + '–' + it[1] + ' ' + it[4] + '" aria-label="' + it[0] + '–' + it[1] + ' ' + it[4] + '"><span>' + it[3] + '</span></button>';
+        });
+        if (!segs) return;
+        if (isToday && nm >= r0 && nm < r1) segs += '<i class="tt-now" style="left:' + pct(nm).toFixed(3) + '%" title="지금"></i>';
+        h += '<div class="tt-row"><span class="tt-lbl">' + bd[0] + '</span><div><div class="tt-bar" role="list" aria-label="' + d.date + ' ' + bd[0] + ' 시간 배분">' + segs +
+             '</div><div class="tt-axis" aria-hidden="true">';
+        for (var hr = bd[1]; hr <= bd[2]; hr++) h += '<span style="left:' + pct(hr * 60).toFixed(3) + '%">' + hr + (hr === bd[1] || hr === bd[2] ? '시' : '') + '</span>';
+        h += '</div></div></div>';
       });
-      if (tNow.getFullYear() === 2026 && tNow.getMonth() === 11 && +d.date.split('/')[1] === tNow.getDate()) {
-        var nm = tNow.getHours() * 60 + tNow.getMinutes();
-        if (nm >= TT_START * 60 && nm <= TT_END * 60) h += '<i class="tt-now" style="left:' + tpct(nm).toFixed(3) + '%" title="지금"></i>';
-      }
-      h += '</div><div class="tt-axis" aria-hidden="true">';
-      for (var hr = TT_START; hr <= TT_END; hr += 2) h += '<span style="left:' + tpct(hr * 60).toFixed(3) + '%">' + hr + '시</span>';
       h += '</div><ol class="tt-list">';
       d.items.forEach(function(it, i){
         h += '<li class="c-' + it[2] + (it[5] ? ' opt' : '') + '" data-i="' + i + '"><time>' + it[0] + '</time><span>' + it[4] + '</span></li>';

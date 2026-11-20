@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14233B">
+<title>늘벗 23기 여수 모임</title>
+<meta name="description" content="늘벗 23기 동문 여수 모임 11/21(토)~22(일) · 일정 · 오동도 · 회식 1·2·3차 · 아침">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Dodum&display=swap">
+<style>
+/* 여수 밤바다 — 남색 바다 + 동백 빨강 + 등대 노랑 */
+:root{
+  --font-body:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --font-display:"Do Hyeon","Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --bg:#F4F1EA; --surface:#FFFFFF; --surface-2:#EEF2F6; --ink:#1B2433; --sub:#5A6474; --line:#DCE1E8;
+  --sea:#14233B; --sea-2:#24406A; --camellia:#C8323C; --camellia-soft:#FBE3E3; --light:#F2B33D; --light-soft:#FFF2D6;
+  --ok:#2E7D5B; --ok-soft:#E1F2EA;
+  --radius:16px; --shadow:0 1px 2px rgba(20,35,59,.06),0 4px 14px rgba(20,35,59,.06);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1624; --surface:#16213A; --surface-2:#1C2944; --ink:#ECEFF4; --sub:#A9B3C3; --line:#2A3A58;
+  --camellia-soft:#3A1E26; --light-soft:#3A3020; --ok-soft:#173A2C; --shadow:none;
+}}
+:root[data-theme="dark"]{
+  --bg:#0E1624; --surface:#16213A; --surface-2:#1C2944; --ink:#ECEFF4; --sub:#A9B3C3; --line:#2A3A58;
+  --camellia-soft:#3A1E26; --light-soft:#3A3020; --ok-soft:#173A2C; --shadow:none;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--font-body);word-break:keep-all;overflow-wrap:anywhere}
+a{color:var(--sea-2)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) a{color:#8FB5F0}}
+:root[data-theme="dark"] a{color:#8FB5F0}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 56px}
+
+/* header */
+header.hero{background:linear-gradient(180deg,var(--sea) 0%,var(--sea-2) 100%);color:#fff;padding:28px 16px 34px;position:relative;overflow:hidden}
+header.hero .in{max-width:760px;margin:0 auto;position:relative;z-index:1}
+header.hero .kicker{font-size:14px;opacity:.85;letter-spacing:.02em}
+header.hero h1{font:400 clamp(30px,8vw,44px)/1.15 var(--font-display);margin:6px 0 8px}
+header.hero h1 em{font-style:normal;color:var(--light)}
+header.hero p{margin:0;opacity:.92}
+header.hero svg.waves{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:40px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:4px 12px;font-size:14px}
+
+/* nav */
+nav.jump{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav.jump .in{max-width:760px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:8px 16px;scrollbar-width:none}
+nav.jump .in::-webkit-scrollbar{display:none}
+nav.jump a{flex:none;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:14px}
+
+/* sections */
+section{margin-top:26px;scroll-margin-top:56px}
+h2{font:400 26px/1.25 var(--font-display);margin:0 0 10px;display:flex;align-items:center;gap:8px}
+h2 small{font:14px var(--font-body);color:var(--sub)}
+h3{font:400 20px/1.3 var(--font-display);margin:0 0 4px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);margin-bottom:10px}
+.card p{margin:4px 0}
+.sub{color:var(--sub);font-size:14px}
+ul,ol{padding-left:20px;margin:6px 0}
+li{margin:2px 0}
+
+/* timeline */
+.tl{position:relative;margin:0;padding:0;list-style:none}
+.tl li{position:relative;padding:0 0 14px 70px;margin:0}
+.tl li::before{content:"";position:absolute;left:56px;top:8px;bottom:-6px;width:2px;background:var(--line)}
+.tl li:last-child::before{display:none}
+.tl li::after{content:"";position:absolute;left:51px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--sea-2);border:2px solid var(--surface)}
+.tl li.food::after{background:var(--camellia)}
+.tl li.walk::after{background:var(--ok)}
+.tl li.night::after{background:var(--light)}
+.tl .t{position:absolute;left:0;top:0;width:48px;font-weight:700;font-variant-numeric:tabular-nums;font-size:15px}
+.tl b{display:block}
+.day{font:400 18px var(--font-display);margin:14px 0 8px;color:var(--sea-2)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .day{color:var(--light)}}
+:root[data-theme="dark"] .day{color:var(--light)}
+
+/* place cards */
+.grid{display:grid;gap:10px}
+@media (min-width:640px){.grid.two{grid-template-columns:1fr 1fr}}
+.place h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px}
+.tag{display:inline-block;font:12px/1.6 var(--font-body);border-radius:999px;padding:0 8px;background:var(--surface-2);color:var(--sub);border:1px solid var(--line)}
+.tag.pick{background:var(--camellia);color:#fff;border-color:var(--camellia)}
+.tag.resv{background:var(--light-soft);color:var(--ink);border-color:var(--light)}
+.tag.ok{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.facts{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:14px;color:var(--sub);margin:6px 0}
+.links{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.links a{font-size:13px;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:var(--surface-2);color:var(--ink)}
+.round{display:flex;align-items:center;gap:8px;margin:18px 0 8px}
+.round .no{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:400 18px var(--font-display);color:#fff;background:var(--camellia)}
+.round.r2 .no{background:var(--sea-2)}
+.round.r3 .no{background:var(--light);color:var(--sea)}
+.round h3{margin:0}
+.round .sub{margin:0}
+
+.box{border-radius:var(--radius);padding:12px 14px;margin:10px 0;border:1px solid var(--line)}
+.box.tip{background:var(--light-soft);border-color:var(--light)}
+.box.warn{background:var(--camellia-soft);border-color:var(--camellia)}
+.box b:first-child{display:block;margin-bottom:2px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--sub);font-weight:400;white-space:nowrap}
+figure{margin:8px 0 0}
+figure img{width:100%;height:auto;max-height:260px;object-fit:cover;border-radius:12px;display:block;background:var(--surface-2)}
+figcaption{font-size:12px;color:var(--sub);margin-top:4px}
+figcaption a{color:inherit}
+footer{margin-top:34px;color:var(--sub);font-size:13px;text-align:center}
+.themebtn{position:absolute;top:14px;right:14px;z-index:2;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:999px;padding:4px 10px;font:13px var(--font-body);cursor:pointer}
+@media print{nav.jump,.themebtn{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <button class="themebtn" type="button" id="themebtn" aria-label="화면 밝기 전환">🌙 / ☀️</button>
+  <div class="in">
+    <div class="kicker">늘벗 23기 동문 모임</div>
+    <h1>여수 <em>밤바다</em> 1박 2일</h1>
+    <p>오동도 산책 → 삼치회 · 포차 · 한잔 → 해장 아침</p>
+    <div class="meta"><span>📅 2026.11.21(토) ~ 22(일)</span><span>🚄 여수EXPO역</span><span>🏨 신라스테이 여수</span></div>
+  </div>
+  <svg class="waves" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 Q150 4 300 22 T600 22 T900 22 T1200 22 V40 H0Z" fill="var(--bg)"/></svg>
+</header>
+
+<nav class="jump" aria-label="바로가기"><div class="in">
+  <a href="#key">핵심</a><a href="#plan">일정</a><a href="#hotel">숙소</a><a href="#odongdo">오동도</a><a href="#dinner">회식 1·2·3차</a><a href="#breakfast">아침</a><a href="#move">이동</a><a href="#todo">총무 체크</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="key">
+  <h2>⚡ 먼저 알아둘 것</h2>
+  <div class="card">
+    <table>
+      <tr><th>일몰</th><td><b>17:21</b> · 보름 직전이라 밤바다에 달이 밝아요</td></tr>
+      <tr><th>오동도</th><td>입장 무료 · <b>동백열차 나오는 막차 16:45</b> · 음악분수는 11월 <b>운영 안 함</b> · 동백꽃은 2~3월(지금은 숲 산책)</td></tr>
+      <tr><th>날씨</th><td>평년 최저 8℃ 안팎인데 <b>이번 주말은 2~9℃ 추운 예보</b>(토 오전 비 가능) · 방파제 바람 셈 → <b>패딩·바람막이</b></td></tr>
+      <tr><th>낭만포차</th><td>겨울 17:00~24:00(가게마다 새벽까지) · 호텔에서 걸어서 10~13분</td></tr>
+      <tr><th>제철</th><td><b>삼치회</b>(11~2월 제철) · 서대회 · 갈치조림 · 돌게장 · 장어탕</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="plan">
+  <h2>🗓 일정 <small>가볍게 · 회식 중심</small></h2>
+  <div class="day">11/21 토</div>
+  <ol class="tl">
+    <li><span class="t">14:00</span><b>여수EXPO역 도착</b><span class="sub">호텔까지 1km · 택시 3분(기본요금) 또는 도보 15분</span></li>
+    <li><span class="t">14:20</span><b>신라스테이에 짐 맡기기</b><span class="sub">체크인은 15:00부터 · 짐 보관은 미리 전화 확인 ☎ 061-924-5300</span></li>
+    <li class="walk"><span class="t">14:30</span><b>오동도 산책 (약 2시간)</b><span class="sub">입구까지 도보 15분 → 방파제 768m 걸어서 15분 → 섬 한 바퀴 1시간 → 나올 때 동백열차(막차 16:45)</span></li>
+    <li><span class="t">16:45</span><b>호텔 체크인 · 휴식</b><span class="sub">따뜻하게 갈아입기</span></li>
+    <li class="night"><span class="t">17:21</span><b>일몰</b><span class="sub">호텔 오션뷰 객실 · 해양공원 쪽 바다</span></li>
+    <li class="food"><span class="t">18:00</span><b>1차 · 저녁 겸 회식</b><span class="sub">삼치회 or 회 정식 · <a href="#dinner">아래 후보</a></span></li>
+    <li class="food"><span class="t">20:00</span><b>2차 · 낭만포차 / 실내포차</b><span class="sub">돌문어삼합 · 딱새우회 · 밤바다</span></li>
+    <li class="food"><span class="t">22:00</span><b>3차 · 호프 · 노래방</b><span class="sub">새벽까지 하는 곳 많음</span></li>
+    <li><span class="t">~</span><b>숙소로</b><span class="sub">구도심에서 택시 5분 · 걸어서 15분</span></li>
+  </ol>
+  <div class="day">11/22 일</div>
+  <ol class="tl">
+    <li class="food"><span class="t">08:30</span><b>해장 아침</b><span class="sub">게장정식 · 장어탕 · 서대회 · <a href="#breakfast">아래 후보</a></span></li>
+    <li><span class="t">10:30</span><b>체크아웃 · 커피</b><span class="sub">체크아웃 12:00(사이트마다 11:00로도 나옴 → 확인)</span></li>
+    <li><span class="t">12:00</span><b>여수EXPO역 출발 (12~13시)</b><span class="sub">호텔에서 택시 3분 · 출발 20분 전 역 도착</span></li>
+  </ol>
+  <div class="box tip"><b>시간 남으면 (선택)</b>여수해상케이블카 — 호텔 근처 <b>자산(해야)정류장</b> 출발 · 09:30~21:30(매표 21:00) · 일반 캐빈 왕복 17,000원 · 단체할인은 현장 발권 · ☎ 061-664-7301</div>
+</section>
+
+<section id="hotel">
+  <h2>🏨 숙소 <small>신라스테이 여수</small></h2>
+  <div class="card">
+    <table>
+      <tr><th>주소</th><td>여수시 수정3길 8 (수정동) · 오동도 입구와 엑스포 해양공원 사이</td></tr>
+      <tr><th>체크인/아웃</th><td>15:00 / 12:00 (11:00이라는 곳도 있음 → 확인)</td></tr>
+      <tr><th>조식</th><td>7층 카페 뷔페 성인 33,000원 · 평일 06:30~09:30 · 주말 시간 확인 필요</td></tr>
+      <tr><th>주차</th><td>건물 2~5층 · 체크인 때 차량번호 등록 시 무료 · 밤엔 만차 후기 있음</td></tr>
+      <tr><th>호텔 바</th><td>7층 · 18:00~23:00 · ☎ 061-924-5307</td></tr>
+      <tr><th>전화</th><td><a href="tel:0619245300">061-924-5300</a></td></tr>
+    </table>
+    <div class="links"><a href="https://place.map.kakao.com/940468346" target="_blank" rel="noopener">카카오맵</a><a href="https://map.naver.com/p/search/신라스테이%20여수" target="_blank" rel="noopener">네이버지도</a><a href="https://www.shillahotels.com/en/shillastay/yeosu/introduction/location.do" target="_blank" rel="noopener">공식 사이트</a></div>
+  </div>
+</section>
+
+<section id="odongdo">
+  <h2>🌺 오동도 <small>입장 무료</small></h2>
+  <div class="card">
+    <ul>
+      <li><b>코스</b>: 입구 → <b>방파제 768m</b>(도보 15분) → 동백숲 터널 · 등대 · 용굴 · 바람골 · 시누대 터널 → 한 바퀴 약 1시간</li>
+      <li><b>동백열차</b>: 입구 ↔ 섬 1.2km · 편도 1,000원(65세 이상 500원) · 겨울 들어가는 열차 09:30~17:00 · <b>나오는 열차 ~16:45</b> · 30분 간격 · 12~13시 쉼 · 비 많이 오면 운휴</li>
+      <li><b>오동도등대</b>: 27m 전망 엘리베이터(관람 시간은 현장 확인)</li>
+      <li><b>11월</b>: 음악분수 운영 안 함(3~10월) · 동백꽃은 거의 없음 → 숲과 바다 산책</li>
+      <li>바닷바람이 세요 → 모자·목도리</li>
+    </ul>
+    <div class="links"><a href="https://map.naver.com/p/search/오동도" target="_blank" rel="noopener">지도</a><a href="https://www.yeosu.go.kr/tour/travel/10tour/odongdo" target="_blank" rel="noopener">여수시 안내</a><a href="tel:0616591821">동백열차 문의</a></div>
+  </div>
+</section>
+
+<section id="dinner">
+  <h2>🍶 회식 1·2·3차</h2>
+  <div class="box tip"><b>추천 동선 두 가지</b>
+    <b>A. 구도심 코스 (추천)</b> 1차 교동 <b>대성식당 삼치회</b>(택시 5분) → 2차 <b>낭만포차</b>(도보) → 3차 이순신광장 <b>광장먹거리 / 역전할머니맥주</b> → 택시 5분 호텔<br>
+    <b>B. 호텔 근처 코스</b> 1차 <b>동백회관</b>(룸 · 도보 3분) → 2차 <b>짱조아마차</b>(실내포차 · 위층 노래방) → 3차 <b>엑스포삼포집</b>(호텔 앞 90m · 새벽 2시)
+  </div>
+  <p class="sub">거리·도보 시간은 호텔 기준 · 가격은 메뉴판 기준 추정(술값 별도) · 영업시간은 카카오맵 11/21(토) 기준. <b>토요일 단체라 1차는 꼭 전화 예약</b>.</p>
+
+  <div class="round"><span class="no">1차</span><div><h3>저녁 겸 회식</h3><p class="sub">단체석 · 예약 · 삼치회 제철</p></div></div>
+  <div class="grid two">
+    <div class="card place">
+      <h3>대성식당 <span class="tag pick">추천</span><span class="tag resv">예약</span></h3>
+      <p>원조 삼치회 · 백년가게 · 7kg 넘는 대삼치</p>
+      <div class="facts"><span>📍 교동 · 택시 5분</span><span>🕘 09:00~21:00 (재료 소진 시 마감)</span><span>💰 1인 4~5만</span><span>🪑 단체석</span></div>
+      <p class="sub">삼치회(대) 8만 · 삼치회정식(2인) 4만 · 서대회 1.2만</p>
+      <div class="links"><a href="tel:050255545537">☎ 0502-5554-5537</a><a href="https://place.map.kakao.com/10251647" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>동백회관 <span class="tag pick">호텔 앞</span><span class="tag resv">예약</span></h3>
+      <p>해물회 한정식 코스 · <b>룸 4~15명 · 단체 30~40명</b></p>
+      <div class="facts"><span>📍 오동도로 74 · 도보 3분</span><span>🕘 11:00~21:00 (15~17시 쉼)</span><span>💰 1인 4만+</span></div>
+      <p class="sub">A정식 4인상 16만 · 5인상 20만 (랍스터·삼합) · 하모는 제철 아님</p>
+      <div class="links"><a href="tel:0616641487">☎ 061-664-1487</a><a href="https://place.map.kakao.com/20706486" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>사시사철삼치회 <span class="tag">대성식당 옆</span></h3>
+      <p>삼치회 · 갈치조림 · 테이블 붙여 단체 가능</p>
+      <div class="facts"><span>📍 교동 · 택시 5분</span><span>🕘 10:00~21:00</span><span>💰 1인 약 4만</span><span>🪑 단체석</span></div>
+      <p class="sub">삼치회 소·중·대 4·6·8만 · 갈치조림(2인) 3만</p>
+      <div class="links"><a href="tel:0616661445">☎ 061-666-1445</a><a href="https://place.map.kakao.com/8341558" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>희망선어 <span class="tag">늦게까지</span></h3>
+      <p>선어회(삼치·병어·민어) · 홀 넓음 · 2차 포차까지 도보</p>
+      <div class="facts"><span>📍 이순신광장 옆 · 택시 5분</span><span>🕘 12:00~22:00 (L.O. 21:00)</span><span>💰 1인 3.5~4.5만</span><span>🪑 룸</span></div>
+      <p class="sub">선어 중·대·특대 7·8·10만</p>
+      <div class="links"><a href="tel:0616627114">☎ 061-662-7114</a><a href="https://place.map.kakao.com/647109492" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>별주부횟집 <span class="tag">호텔 앞</span></h3>
+      <p>활어·선어회 · 서대회 · 후기 가장 많음</p>
+      <div class="facts"><span>📍 오동도로 61-18 · 도보 3분</span><span>🕘 11:00~22:00</span><span>🪑 룸</span></div>
+      <p class="sub">회정식 2인 6만 / 4인 10만 (점심 기준)</p>
+      <div class="links"><a href="tel:0616610003">☎ 061-661-0003</a><a href="https://place.map.kakao.com/1627167937" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>먹기만회 여수본점 <span class="tag">새벽 1시</span></h3>
+      <p>활어회 · 1차~2차 한 곳에서 길게</p>
+      <div class="facts"><span>📍 공화북4길 · 도보 8분</span><span>🕘 토 12:00~01:00</span><span>🪑 룸 · 단체석</span></div>
+      <div class="links"><a href="tel:0616627693">☎ 061-662-7693</a><a href="https://place.map.kakao.com/1867397779" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+  </div>
+
+  <div class="round r2"><span class="no">2차</span><div><h3>포차 · 해산물 안주</h3><p class="sub">낭만포차 거리 = 하멜로 일대(거북선대교 아래) · 호텔에서 도보 10~13분</p></div></div>
+  <div class="grid two">
+    <div class="card place">
+      <h3>낭만포차 34번 낭만여수밤바다 <span class="tag pick">추천</span></h3>
+      <div class="facts"><span>📍 하멜로 88 · 도보 10분</span><span>🕘 11:00~04:00</span><span>🪑 단체석</span></div>
+      <p class="sub">돌문어삼합(중) 4.5만 · 딱새우회 3.5만 · 낭만세트 10.5만</p>
+      <div class="links"><a href="https://place.map.kakao.com/296423216" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>낭만24포차</h3>
+      <div class="facts"><span>📍 하멜로 78 · 도보 10분</span><span>🕘 11:30~04:00</span><span>🪑 단체석</span></div>
+      <p class="sub">딱새우회 3.5만 · 돌문어차돌삼합 5.4~6.5만</p>
+      <div class="links"><a href="tel:050713616451">☎ 0507-1361-6451</a><a href="https://place.map.kakao.com/1267277320" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>짱조아마차 <span class="tag pick">B코스</span><span class="tag resv">예약 가능</span></h3>
+      <p>삼치회·선어 실내포차 · 현지인 많음 · <b>같은 건물 3층 노래방</b></p>
+      <div class="facts"><span>📍 박람회길 36 (엑스포역 쪽) · 도보 13분</span><span>🕘 15:00~23:00</span><span>🪑 룸 · 단체석</span></div>
+      <p class="sub">삼치회 5만 · 모듬선어 5~11만 · 문어숙회 3만</p>
+      <div class="links"><a href="tel:0616629879">☎ 061-662-9879</a><a href="https://place.map.kakao.com/2127285703" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>낭만여우 <span class="tag">원조 포차거리</span></h3>
+      <div class="facts"><span>📍 하멜로 102 포차거리 안 · 도보 12분</span><span>🕘 18:00~01:00</span><span>🪑 단체석</span></div>
+      <p class="sub">돌문어삼합 4만 · 해산물 4종 4만</p>
+      <div class="links"><a href="https://place.map.kakao.com/2060698948" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+  </div>
+  <p class="sub">포차는 테이블이 작아 10명 넘으면 나눠 앉을 수 있어요. 예비: 낭만상회33번포차(토 15~02시) · 해녀갯바구(13~23:55).</p>
+
+  <div class="round r3"><span class="no">3차</span><div><h3>호프 · 이자카야 · 노래방</h3><p class="sub">새벽까지</p></div></div>
+  <div class="grid two">
+    <div class="card place">
+      <h3>광장먹거리 <span class="tag">새벽 5시</span></h3>
+      <p>서대회·선어 노포 주점 · 이순신광장</p>
+      <div class="facts"><span>📍 중앙로 77-1 · 택시 5분</span><span>🕘 15:00~05:00</span><span>🪑 단체석</span></div>
+      <p class="sub">회서대회 3만 · 선어 5만 (최근 후기 적음 → 전화 확인)</p>
+      <div class="links"><a href="tel:0616624848">☎ 061-662-4848</a><a href="https://place.map.kakao.com/1606238655" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>역전할머니맥주 <span class="tag">저렴</span></h3>
+      <p>가볍게 생맥주 · 두 지점</p>
+      <div class="facts"><span>📍 이순신광장점(동문로 6-2) 16~02시</span><span>📍 덕충점(박람회길 38) 17~02시</span></div>
+      <div class="links"><a href="tel:0616623319">☎ 광장점</a><a href="tel:0616655002">☎ 덕충점</a><a href="https://place.map.kakao.com/1114953873" target="_blank" rel="noopener">광장점 지도</a><a href="https://place.map.kakao.com/877509363" target="_blank" rel="noopener">덕충점 지도</a></div>
+    </div>
+    <div class="card place">
+      <h3>엑스포삼포집 <span class="tag">호텔 앞 90m</span></h3>
+      <p>회·삼겹살 포차 · 마지막에 숙소 바로 앞에서</p>
+      <div class="facts"><span>📍 오동도로 66</span><span>🕘 10:00~02:00 (L.O. 01:00)</span><span>🪑 단체석</span></div>
+      <p class="sub">평점은 낮은 편 → 맛보다 위치</p>
+      <div class="links"><a href="https://place.map.kakao.com/634657158" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>만카이 엑스포점</h3>
+      <p>이자카야</p>
+      <div class="facts"><span>📍 박람회길 70 · 도보 17분</span><span>🕘 18:00~02:00</span><span>🪑 단체석</span></div>
+      <div class="links"><a href="tel:01053662534">☎ 010-5366-2534</a><a href="https://place.map.kakao.com/2079516971" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>🎤 노래방 <span class="tag">영업시간 전화 확인</span></h3>
+    <ul>
+      <li><b>엑스포노래연습장</b> — 박람회길 36 3층 (짱조아마차 위) · <a href="https://place.map.kakao.com/84704132" target="_blank" rel="noopener">지도</a></li>
+      <li><b>방방노래연습장</b> — 공화북4길 2-1 (먹기만회 건물) · <a href="tel:0616667774">061-666-7774</a></li>
+      <li><b>낭만노래연습장</b> — 이순신광장로 206 · 도보 8분</li>
+    </ul>
+    <p class="sub">조용히 마무리: 호텔 7층 바(~23시) · 칵테일 소울라운지(이순신광장로 130, 19~02시) · 와인바 샴페인 샤워(공화북4길, ~01시)</p>
+  </div>
+</section>
+
+<section id="breakfast">
+  <h2>🍚 다음날 아침 <small>11/22(일) 영업 확인</small></h2>
+  <div class="grid two">
+    <div class="card place">
+      <h3>낙원식당 <span class="tag pick">추천</span></h3>
+      <p>게장정식 · 갈치조림 · 평점 4.8</p>
+      <div class="facts"><span>📍 오동도로 88-1 · 도보 5분</span><span>🕘 07:00~20:00</span><span>🪑 단체석 · 주차</span></div>
+      <p class="sub">게장정식 1.4만(리필 1회) · 갈치조림+게장 1.9만</p>
+      <div class="links"><a href="tel:01036250253">☎ 010-3625-0253</a><a href="https://place.map.kakao.com/1546787771" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>화양식당 <span class="tag">해장</span></h3>
+      <p>장어탕 · 장어구이</p>
+      <div class="facts"><span>📍 공화남1길 3 (엑스포역 쪽) · 도보 7분</span><span>🕘 07:30~20:00</span><span>🪑 룸</span></div>
+      <p class="sub">장어탕 1.2만 · 장어구이 2만</p>
+      <div class="links"><a href="tel:0616635505">☎ 061-663-5505</a><a href="https://place.map.kakao.com/16952058" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>광장서대회</h3>
+      <p>서대회 + 장어탕 세트</p>
+      <div class="facts"><span>📍 이순신광장로 196 · 도보 9분</span><span>🕘 07:00~21:00</span><span>🪑 단체석</span></div>
+      <p class="sub">서대회+장어탕(2인 기본) 3.3만</p>
+      <div class="links"><a href="tel:0616662013">☎ 061-666-2013</a><a href="https://place.map.kakao.com/1603614393" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>덕충식당 <span class="tag ok">착한가격</span></h3>
+      <p>백반 · 서대회</p>
+      <div class="facts"><span>📍 공화남3길 9 · 도보 7분</span><span>🕘 07:00~20:00</span><span>🪑 룸</span></div>
+      <p class="sub">김치찌개백반 8천 · 서대회 1만</p>
+      <div class="links"><a href="tel:0616647838">☎ 061-664-7838</a><a href="https://place.map.kakao.com/16201093" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>연화정</h3>
+      <p>꽃게장 · 갈치 한상</p>
+      <div class="facts"><span>📍 오동도로 61-20 · 도보 3분</span><span>🕘 08:00~20:30</span><span>🪑 단체석</span></div>
+      <p class="sub">정식 2.7~3.5만</p>
+      <div class="links"><a href="tel:0616638888">☎ 061-663-8888</a><a href="https://place.map.kakao.com/1947810293" target="_blank" rel="noopener">카카오맵</a></div>
+    </div>
+    <div class="card place">
+      <h3>호텔 조식</h3>
+      <p>7층 카페 뷔페 · 이동 없이</p>
+      <div class="facts"><span>💰 성인 33,000원</span><span>🕘 주말 시간 확인</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>🚕 택시 타고 유명한 곳</h3>
+    <table>
+      <tr><th>구백식당</th><td>서대회·금풍생이 · 일 07:00~18:00 · 택시 5분 · <a href="tel:0616620900">061-662-0900</a> · <a href="https://place.map.kakao.com/12494997" target="_blank" rel="noopener">지도</a></td></tr>
+      <tr><th>원조두꺼비게장</th><td>봉산동 돌게장 무한리필 1.6만 · 08:00~21:00 · 택시 10분 · <a href="tel:0616431880">061-643-1880</a> · <a href="https://place.map.kakao.com/8276281" target="_blank" rel="noopener">지도</a></td></tr>
+      <tr><th>황소식당</th><td>봉산동 게장백반 1.6만 · 08:00~20:30 · <a href="tel:0616428037">061-642-8037</a> · <a href="https://place.map.kakao.com/8169241" target="_blank" rel="noopener">지도</a></td></tr>
+      <tr><th>등가게장</th><td>봉산동 · <b>09:00</b>~20:30 · 갈치조림+돌게장 2.2만 · <a href="tel:0616430332">061-643-0332</a></td></tr>
+      <tr><th>서울해장국</th><td>중앙동 갓돈찌개 1.3만 · 05:00~23:00 · <a href="tel:0616622195">061-662-2195</a></td></tr>
+    </table>
+    <p class="sub">봉산동 → 엑스포역 택시 10분이라 12~13시 출발에 여유.</p>
+  </div>
+</section>
+
+<section id="move">
+  <h2>🚕 이동</h2>
+  <div class="card">
+    <ul>
+      <li><b>택시</b>: 기본요금 4,300원(2km) · 엑스포역 ↔ 호텔 기본요금 · 호텔 ↔ 이순신광장·교동 5분(약 5~7천원) · 4명씩 → <b>15명이면 4대</b></li>
+      <li><b>카카오T</b> 호출 가능 · 엑스포역 앞 택시 승강장</li>
+      <li><b>걸어서</b>: 호텔 ↔ 낭만포차 10~13분 · ↔ 이순신광장 15분 · ↔ 오동도 입구 15분</li>
+      <li><b>버스</b>: 호텔 앞 “오동도낚시” 정류장 2·68·76·333·555번</li>
+    </ul>
+    <p class="sub">통합특별시 택시요금 인상(4,800원) 추진 중 · 시행 여부 미확정</p>
+  </div>
+</section>
+
+<section id="todo">
+  <h2>✅ 총무 체크</h2>
+  <div class="card">
+    <ul>
+      <li>☐ 호텔 ☎ 061-924-5300: <b>체크인 전 짐 보관</b> · <b>체크아웃 시간</b>(12시/11시) · 주말 조식 시간</li>
+      <li>☐ <b>1차 예약</b>(인원·18시): 대성식당 또는 동백회관</li>
+      <li>☐ 2차 짱조아마차 쓰면 예약 · 노래방 영업시간</li>
+      <li>☐ 토요일 아침 <a href="https://www.weather.go.kr/w/forecast/overall/short-term.do" target="_blank" rel="noopener">기상청 예보</a> 확인 (비 오면 동백열차 운휴 · 오동도 → 케이블카로 대체)</li>
+      <li>☐ 일요일 열차 시간 공유 · 아침 식당 정하기</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  늘벗 23기 · 2026.11 · 정보는 11/20 기준(카카오맵·여수시·신라스테이) · 현장 상황에 따라 다를 수 있어요
+</footer>
+</main>
+
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('themebtn');
+  try{var t=localStorage.getItem('yeosu-theme');if(t)root.setAttribute('data-theme',t);}catch(e){}
+  btn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem('yeosu-theme',next);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

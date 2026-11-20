@@ -501,7 +501,7 @@ h4.ck-sub{margin:18px 0 2px;font-family:var(--font-display);font-weight:400;font
   <noscript><p class="jp">타임테이블은 자바스크립트 필요 · 날짜 탭에서 일정 확인</p></noscript>
 
   <div class="box warn"><b>⚠ 2026년 11월부터 일본 면세 방식이 바뀝니다</b>
-    <b>세금 포함 결제</b> → 출국 시 <b>공항 세관 확인 후 환급</b>. 귀국일 공항 <b>2시간 30분 전</b> 도착. <a href="#" data-go="sh" data-open="taxfree">쇼핑 탭 · 새 면세 제도</a></div>
+    <b>세금 포함 결제</b> → 출국 시 <b>공항 세관 단말기 확인</b>(체크인 전) → <b>카드 환급</b>(현금은 약 10% 수수료). 매장에서 <b>카드 결제 + 환급 카드 등록</b>. <a href="#" data-go="sh" data-open="taxfree">쇼핑 탭 · 새 면세 제도</a></div>
 
 
   <div class="box tip"><b>이 페이지 사용법</b>
@@ -1482,17 +1482,17 @@ h4.ck-sub{margin:18px 0 2px;font-family:var(--font-display);font-weight:400;font
       <h4><span class="tag">공항 · 순서 중요</span>① 면세 환급 확인 → ② 체크인 → ③ 출국</h4>
       <div class="flow" aria-label="고베공항 면세 환급 순서">
         <div class="st"><b>T2 도착</b><span>08:30 목표</span></div>
-        <div class="st hl"><b>① 세관 확인 단말기</b><span>체크인 전 · 여권 스캔</span></div>
+        <div class="st hl"><b>① 세관 확인 단말기</b><span>체크인 전 · 여권 4개 스캔</span></div>
         <div class="st"><b>② 체크인 · 수하물</b><span>확인 후 면세품 위탁 가능</span></div>
         <div class="st"><b>③ 보안검색 · 출국심사</b><span></span></div>
-        <div class="st hl"><b>④ 현금 환급 단말기</b><span>출국심사 후 · 엔화 수령</span></div>
+        <div class="st"><b>④ 현금 환급 단말기</b><span>현금 원할 때만 · 수수료 약 10%</span></div>
         <div class="st"><b>탑승 ✈ 11:10</b><span>버스로 비행기까지</span></div>
       </div>
       <ol>
-        <li><b>체크인 전</b>: <b>세관 확인 단말기</b> <i class="jpn">税関承認端末</i>(2대) <b>각자 여권 스캔</b> · 면세품 가방 준비 (세관 확인 가능)</li>
+        <li><b>체크인 전</b>: <b>세관 확인 단말기</b> <i class="jpn">税関承認端末</i>(2대뿐) <b>여권 4개 각각 스캔</b> · 초록=끝, 빨강=세관 검사대 · <b>캐리어 맡기기 전에</b></li>
         <li>체크인 · 수하물 위탁</li>
         <li>보안검색 · 출국심사</li>
-        <li>출국심사 후 <b>현금 환급 단말기</b> <i class="jpn">現金還付端末</i>(2대) <b>엔화 수령</b> (또는 사전 등록 캐시리스)</li>
+        <li><b>카드 환급 등록했으면 끝</b> (귀국 후 1~2주 입금) · 현금 원하면 출국심사 후 <b>현금 환급 단말기</b> <i class="jpn">現金還付端末</i> (환급액의 약 10% 수수료)</li>
       </ol>
       <div class="links"><a href="#" data-go="sh" data-open="taxfree-ukb">면세 환급 자세히 · 필요한 문장 →</a></div>
     </div></div>
@@ -2050,64 +2050,88 @@ Thank you very much.
   <h2>쇼핑 · 면세 · 인형뽑기</h2>
   <p class="jp">카테고리를 눌러 펼치세요.</p>
 
-  <details class="cat" id="taxfree"><summary>🧾 새 면세 제도 완전 정리 <small>2026.11.1~</small></summary>
+  <details class="cat" id="taxfree"><summary>🧾 새 면세(환급) 제도 정리 <small>2026.11.1~ · 카드 환급</small></summary>
     <div class="card" style="margin-top:8px">
       <h4>한 줄 요약</h4>
-      <p>매장에선 <b>세금(10%) 포함 결제 → 출국 때 공항에서 환급</b>. 12월 여행도 새 제도 적용.</p>
+      <p>매장에선 <b>세금 포함 정가 결제</b> → 출국 때 공항 <b>세관 단말기 확인</b> → 나중에 <b>카드로 환급</b>(수수료 0원이 목표). 공항 <b>현금 환급은 환급액의 약 10% 수수료</b>.</p>
+      <table>
+        <tr><th></th><th>바뀐 것</th></tr>
+        <tr><td>결제</td><td>세금(10% · 식품 8%) <b>포함 가격</b> 그대로</td></tr>
+        <tr><td>최소 금액</td><td><b>같은 매장·같은 날 5,000엔(세전) 이상</b> (그대로) · 백화점 면세 카운터는 합산 가능</td></tr>
+        <tr><td>밀봉 봉투</td><td><b>없어짐</b> · 소모품 50만 엔 한도도 폐지</td></tr>
+        <tr><td>기한</td><td>구매 후 <b>90일 안에 출국</b> + 공항 세관 확인</td></tr>
+      </table>
     </div>
 
     <div class="card">
-      <h4>① 매장에서</h4>
+      <h4>① 매장에서 — 카드 환급으로 받는 법</h4>
       <ol>
-        <li><b>여권 원본</b> 제시 + “<b>Tax-free, please</b> / <b>免税でお願いします</b>” → 구매 기록 전자 등록</li>
-        <li>가격은 <b>세금 포함 그대로</b> 결제</li>
-        <li>조건: <b>같은 매장·같은 날 5,000엔(세전) 이상</b>. 백화점은 층 합산 가능한 곳 많음 → 면세 카운터 확인</li>
-        <li><b>산 사람 = 여권 주인</b> → 공항에서도 <b>각자 여권</b>으로 확인. 한 여권으로 몰아 사면 간단</li>
-        <li>영수증·서류는 한 봉투에</li>
+        <li><b>여권 원본</b> + “<b>Tax-free, please</b> / <b>免税でお願いします</b>” → 여권 스캔</li>
+        <li><b>신용카드로 결제</b> · 엔화(JPY)로 결제 (원화 결제 X)</li>
+        <li>계산 때 <b>환급 방법 = 카드</b>라고 말하기 · 받은 <b>QR 전단/영수증</b>의 환급 사이트에서 <b>카드 등록</b> (돈키호테 등) → <b>출국 전에</b> 끝내기</li>
+        <li>결제 전에 “<b>환급 수수료 있나요?</b>” 확인 (아래 문장)</li>
+        <li><b>영수증·QR 전단은 여권별로</b> 봉투에</li>
       </ol>
+      <p class="jp">현금 결제분도 카드 환급이 되는지는 매장마다 달라요(미확인) → <b>되도록 카드로 결제</b>. 카드 명의 = 여권 이름.</p>
+    </div>
+
+    <div class="card">
+      <h4>매장별 환급 (확인된 것)</h4>
+      <table>
+        <tr><th>매장</th><th>환급</th></tr>
+        <tr><td><b>돈키호테</b></td><td>QR 사이트에서 등록 · <b>카드 환급 무료</b> · 공항 현금만 수수료</td></tr>
+        <tr><td><b>빅카메라</b></td><td>환급 신청 무료</td></tr>
+        <tr><td><b>요도바시 우메다</b></td><td>매장 안 <b>Global Blue 카운터</b>에서 출국 전 현금 환급 가능 (보증용 카드 등록 · 수수료 미확인) · 공항 세관 확인은 그대로 필요</td></tr>
+        <tr><td>마츠키요 · 다이마루 · 한큐</td><td>방법·수수료 <b>미확인</b> → 계산 전에 물어보기</td></tr>
+      </table>
+      <p class="jp">카드 환급 입금은 보통 <b>1~2주</b>(가이드 기준, 공식 수치 없음) · 한국 도착 후 카드사 내역 확인.</p>
     </div>
 
     <div class="card">
       <h4>② 여행 중 주의</h4>
       <ul>
-        <li>면세품은 <b>일본 안에서 쓰거나 뜯지 않기</b> (세관 실물 확인, 없으면 환급 불가)</li>
-        <li><b>구매 후 90일 이내</b> 출국</li>
-        <li>면세품은 <b>꺼내기 쉬운 한 가방</b>에</li>
+        <li><b>뜯거나 쓰면 환급 불가</b> (특히 화장품·과자)</li>
+        <li>세관은 <b>영수증 단위</b>로 확인 → 한 영수증 물건이 <b>하나라도 없으면 그 영수증 전체 환급 X</b></li>
+        <li><b>산 사람 여권 = 공항에서 스캔할 여권</b> · 물건도 그 사람 것끼리 묶기</li>
+        <li>택배로 먼저 보내지 않기 (공항에서 물건 필요)</li>
       </ul>
     </div>
 
     <div class="card" id="taxfree-ukb">
       <h4>③ 고베공항(제2터미널) — 순서가 핵심</h4>
       <div class="flow" aria-label="고베공항 면세 환급 순서">
-        <div class="st"><b>T2 도착</b><span>08:30 목표</span></div>
-        <div class="st hl"><b>① 세관 확인 단말기</b><span>체크인 전 · 여권 스캔 · 면세품 준비</span></div>
-        <div class="st"><b>② 체크인 · 수하물</b><span>면세품은 확인 끝난 뒤 위탁 가능</span></div>
+        <div class="st"><b>T2 도착</b><span>08:15~08:30</span></div>
+        <div class="st hl"><b>① 세관 확인 단말기</b><span>체크인 전 · 여권 스캔 · 캐리어 그대로</span></div>
+        <div class="st"><b>② 체크인 · 수하물</b><span>통과 후 면세품 위탁 OK</span></div>
         <div class="st"><b>③ 보안검색 · 출국심사</b><span></span></div>
-        <div class="st hl"><b>④ 현금 환급 단말기</b><span>출국심사 후 · 엔화 수령 (또는 캐시리스)</span></div>
-        <div class="st"><b>탑승 ✈ 11:10</b><span>버스로 비행기까지</span></div>
+        <div class="st"><b>④ 현금 환급 단말기</b><span>현금 원할 때만 · 수수료 약 10%</span></div>
+        <div class="st"><b>탑승 ✈ 11:10</b><span>카드 환급은 귀국 후 입금</span></div>
       </div>
       <ol>
-        <li><b>체크인 전</b> 출발 로비 <b>세관 확인 단말기</b> <i class="jpn">税関承認端末</i> (2대)
+        <li><b>체크인 전</b> 출발 로비 <b>세관 확인 단말기</b> <i class="jpn">税関承認端末</i> (<b>2대뿐</b>) · 여권 <b>4개 각각</b> 스캔
           <ul>
-            <li>여권 스캔 → 구매 기록 확인 · 물건 보여 달라 할 수 있음</li>
-            <li>여권마다 각각 스캔</li>
+            <li><b>초록</b> = 끝 · <b>빨강</b> = 물건 들고 세관 검사대로</li>
+            <li>면세품이 든 <b>캐리어를 맡기기 전에</b> 통과 (위탁 후엔 못 꺼냄)</li>
+            <li>쓰거나 먹은 게 있으면 단말기 말고 <b>세관 카운터</b>로</li>
           </ul>
         </li>
-        <li><b>체크인 · 위탁</b> (면세품 위탁은 세관 확인 후)</li>
+        <li><b>체크인 · 위탁</b></li>
         <li>보안검색 · <b>출국심사</b></li>
-        <li>심사 후 <b>현금 환급 단말기</b> <i class="jpn">現金還付端末</i> (2대)에서 <b>엔화 수령</b> (또는 <b>캐시리스</b>)</li>
+        <li>카드 환급 등록했으면 <b>끝</b> · 현금 원하면 심사 후 <b>현금 환급 단말기</b> <i class="jpn">現金還付端末</i> (Cash Japan · 환급액의 약 10% 수수료 · 100엔 미만 지급 X)</li>
       </ol>
-      <p class="jp">운영사 <b>Cash Japan</b>. 수수료·언어·운영시간 미확인 → 출발 전 공항 공식 사이트 확인. 출국 후 Duty Free 구매품은 절차 불필요.</p>
+      <p class="jp">고베공항은 <b>Visit Japan Web 온라인 확인 대상 아님</b> → 단말기 줄 감안. 단말기 정확한 위치는 직원에게. 출국 후 Duty Free 구매품은 절차 불필요.</p>
     </div>
 
     <div class="card">
-      <h4>④ 영어/일본어 — 필요한 말</h4>
-      <p>단말기는 화면 안내대로, 막히면 아래 문장 제시. 전체는 <a href="#" data-go="ph">회화 탭 “면세”</a>.</p>
+      <h4>④ 필요한 말</h4>
+      <p>전체는 <a href="#" data-go="ph">회화 탭 “면세”</a>.</p>
       <div class="phrase"><div class="ja">免税の税関確認の端末はどこですか？</div><div class="rd">멘제-노 제-칸 카쿠닝노 탄마츠와 도코데스카?</div><div class="en">Where is the customs kiosk for the tax refund?</div><div class="ko">면세 세관 확인 단말기 어디예요?</div></div>
+      <div class="phrase"><div class="ja">還付はクレジットカードでお願いします。</div><div class="rd">캄푸와 쿠레짓토카-도데 오네가이시마스.</div><div class="en">I'd like the tax refund to my credit card, please.</div><div class="ko">환급은 신용카드로 해 주세요.</div></div>
+      <div class="phrase"><div class="ja">還付の手数料はかかりますか？</div><div class="rd">캄푸노 테스-료-와 카카리마스카?</div><div class="en">Is there a fee for the tax refund?</div><div class="ko">환급 수수료가 있나요?</div></div>
       <div class="phrase"><div class="ja">現金で受け取りたいです</div><div class="rd">겐킨데 우케토리타이데스</div><div class="en">I'd like to receive the refund in cash.</div><div class="ko">현금으로 받고 싶어요</div></div>
     </div>
 
-    <div class="box warn"><b>시간 계산</b>단말기 2대 → 줄 가능. 귀국일 <b>08:30 도착</b>(출발 2시간 40분 전), <b>환급 → 체크인</b> 순서 주의.</div>
+    <div class="box warn"><b>한국 입국 때</b>면세 한도 <b>1인 800달러</b>(일본 구매가 기준) · 넘으면 <b>자진 신고</b>(관세 30% 감면) · 안 하고 걸리면 가산세 40%.</div>
   </details>
 
   <details class="cat"><summary>💄 화장품 (딸 추천) <small>마츠모토키요시 · @cosme · 로프트</small></summary>
@@ -2333,10 +2357,12 @@ Thank you very much.
     <div class="phrase"><div class="ja">このお店に予約の電話をしていただけますか？12月18日11時半、4名です。</div><div class="rd">코노 오미세니 요야쿠노 뎅와오 시테 이타다케마스카? 쥬-니가츠 쥬-하치니치 쥬-이치지 항, 요메-데스.</div><div class="en">Could you call this restaurant and book a table for four at 11:30 on December 18?</div><div class="ko">이 가게에 예약 전화 좀 해주실 수 있어요? 12월 18일 11시 반, 4명이에요. (호텔 프런트 · 타다 예약이 안 될 때)</div></div>
   </details>
 
-  <details class="cat"><summary>🛍 쇼핑 · 면세 <small>13</small></summary>
+  <details class="cat"><summary>🛍 쇼핑 · 면세 <small>15</small></summary>
     <div class="phrase"><div class="ja">免税できますか？</div><div class="rd">멘제- 데키마스카?</div><div class="en">Is tax-free shopping available?</div><div class="ko">면세 되나요? (여권 함께)</div></div>
     <div class="phrase"><div class="ja">免税でお願いします。パスポートです。</div><div class="rd">멘제-데 오네가이시마스. 파스포-토데스.</div><div class="en">Tax-free, please. Here is my passport.</div><div class="ko">면세로 해주세요. 여권이에요.</div></div>
     <div class="phrase"><div class="ja">免税の税関確認の端末はどこですか？</div><div class="rd">멘제-노 제-칸 카쿠닝노 탄마츠와 도코데스카?</div><div class="en">Where is the customs kiosk for the tax refund?</div><div class="ko">면세 세관 확인 단말기 어디예요? (공항)</div></div>
+    <div class="phrase"><div class="ja">還付はクレジットカードでお願いします。</div><div class="rd">캄푸와 쿠레짓토카-도데 오네가이시마스.</div><div class="en">I'd like the tax refund to my credit card, please.</div><div class="ko">환급은 신용카드로 해 주세요.</div></div>
+    <div class="phrase"><div class="ja">還付の手数料はかかりますか？</div><div class="rd">캄푸노 테스-료-와 카카리마스카?</div><div class="en">Is there a fee for the tax refund?</div><div class="ko">환급 수수료가 있나요?</div></div>
     <div class="phrase"><div class="ja">現金で受け取りたいです</div><div class="rd">겐킨데 우케토리타이데스</div><div class="en">I'd like to receive the refund in cash.</div><div class="ko">현금으로 받고 싶어요 (공항 환급)</div></div>
     <div class="phrase"><div class="ja">足のサイズを測ってもらえますか？</div><div class="rd">아시노 사이즈오 핫테 모라에마스카?</div><div class="en">Could you measure my feet?</div><div class="ko">발 사이즈 재 주실 수 있어요? (ABC마트)</div></div>
     <div class="phrase"><div class="ja">26センチはありますか？</div><div class="rd">니쥬-로쿠 센치와 아리마스카?</div><div class="en">Do you have this in 26 cm?</div><div class="ko">26cm(260mm) 있어요?</div></div>
@@ -2442,6 +2468,8 @@ Thank you very much.
     <label><input type="checkbox"><span>eSIM / 로밍 / 포켓와이파이</span></label>
     <label><input type="checkbox"><span>구글맵·번역앱 일본어 오프라인 다운로드</span></label>
     <label><input type="checkbox"><span>트래블카드(엔화 충전) · 해외결제 카드</span></label>
+    <label><input type="checkbox"><span><b>면세 쇼핑</b>: 신용카드 결제 · 엔화 결제 · 영수증 QR로 <b>환급 카드 등록</b> · 영수증은 <b>여권별</b> 봉투</span></label>
+    <label><input type="checkbox"><span><b>20일 공항</b>: 체크인 <b>전</b> 세관 단말기 · 면세품 든 캐리어 그대로 · 여권 4개</span></label>
   </div>
 
   <h3>챙길 것</h3>
